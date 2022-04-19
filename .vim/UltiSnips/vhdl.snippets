@@ -1,0 +1,272 @@
+snippet others() "others => ()"
+(others => ())
+endsnippet
+
+snippet others0 "others=>'0'"
+(others => '0')
+endsnippet
+
+snippet others1 "others=>'1'"
+(others => '1')
+endsnippet
+
+snippet ifthen "ifthen"
+if ($1) then
+end if;
+endsnippet
+
+snippet ifris "if rising"
+if (rising_edge($1)) then
+
+end if;
+endsnippet
+
+snippet ifrst "if reset rising"
+if ($1) then
+
+elsif (rising_edge($2)) then
+
+end if;
+endsnippet
+
+snippet ifelse "if else"
+if ($1) then
+
+else
+
+end if;
+endsnippet
+
+snippet ifelsif "ifelsif"
+if ($1) then
+
+elsif ($2) then
+
+else
+
+end if;
+endsnippet
+
+snippet increment "increment"
+$1 <= $1 + 1;
+endsnippet
+
+snippet cases "case w default"
+case ($1) is
+		when $2     => ;
+		when others => ;
+end case;
+endsnippet
+
+snippet mapto "x => x,"
+$1 => $1,
+endsnippet
+
+snippet forgeninst "loop gen components"
+$1 : for i in natural range $2 to $3 generate
+begin
+	$1_i : $4
+	--generic map(
+	--)
+	port map(
+		$5 => $6(i),
+	);
+end generate;
+endsnippet
+
+snippet component "declare component"
+component $1
+	generic
+	(
+		$2 : $3
+	);
+	port
+	(
+	-- x : inout std_logic;
+		$4 : in  $5;
+		$6 : out $7
+	);
+end component;
+endsnippet
+
+snippet component_inst "instantiate component"
+$1 : $2
+	--generic map(
+	-- X => Y
+	--)
+	port map(
+		$3 => $4
+	);
+endsnippet
+
+snippet testbench "testbench"
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_TEXTIO.all;
+use IEEE.NUMERIC_STD.ALL;
+library std;
+use std.textio.all;
+use ieee.std_logic_textio.all;
+use IEEE.math_real.ALL;
+
+entity tb is
+--  Port ( );
+end tb;
+
+architecture behav of tb
+
+constant clk_half : time := $1ns;
+constant clk_t : time := 2*clk_half;
+
+constant DATA_DEPTH : positive := $2;
+constant NUM_BITS_IN_STIM : positive := $3;
+constant NUM_BITS_IN_OUTPUT : positive := $4;
+constant BYTES_PER_WORD : positive := $5;
+constant DIN_WIDTH : positive := $6;
+constant ROM_DEPTH : positive := NUM_BITS_IN_STIM/(DATA_DEPTH*BYTES_PER_WORD);
+
+constant DOUT_WIDTH : positive := $7;
+constant RAM_DEPTH  : positive := NUM_BITS_IN_OUTPUT/(DATA_DEPTH*BYTES_PER_WORD);
+
+type rom_type is array (0 to NUM_BITS_IN_STIM/DATA_DEPTH - 1) of STD_LOGIC_VECTOR(DATA_DEPTH - 1 downto 0);
+
+signal ROM : rom_type;
+signal ROM_done : std_logic := '0';
+
+constant TB_num : string := "$8";
+constant folder : string := "$9";
+
+signal clk : std_logic := '0';
+signal rst_n : std_logic := '0';
+
+-- read in the test_img from a text file
+signal addr : integer := 0;
+signal ROM_en : std_logic := '0';
+signal data, rdata : std_logic_vector(DATA_DEPTH-1 downto 0) := (others => '0');
+signal wdata : std_logic_vector(DATA_DEPTH-1 downto 0) := (others => '0');
+signal data_in : std_logic_vector(DIN_WIDTH-1 downto 0) := (others => '0');
+signal data_in_vld : std_logic := '0';
+
+-- write results back to file
+file tb_results_pointer : text;
+shared variable line_tb_result : line;
+shared variable result_counter : natural := 0;
+signal result_saved : std_logic := '0';
+signal data_out : std_logic_vector(DOUT_WIDTH-1 downto 0) := (others => '0');
+signal data_out_vld : std_logic := '0';
+
+begin
+
+	clk <= not clk after clk_half;
+
+	process
+
+		file file_pointer : text;
+		variable line_content : string(1 to DIN_WIDTH);
+  	variable line_num : line;
+  	variable j : integer := 0;
+  	variable rom_i : integer := 0;
+		variable char : character:='0';
+
+	begin
+		--Open the file from the specified location for reading(READ_MODE).
+  	  file_open(file_pointer, folder & "${10}.txt",READ_MODE);
+  	  file_open(tb_results_pointer, folder & "tb_output_${11}" & TB_num & ".txt", WRITE_MODE);
+  	  while not endfile(file_pointer) loop --till the end of file is reached continue.
+  	      readline (file_pointer,line_num);  --Read the whole line from the file
+  	      --Read the contents of the line from  the file into a variable.
+  	      READ(line_num,line_content);
+  	        --For each character in the line convert it to binary value.
+  	        --And then store it in a signal named 'bin_value'.
+  	        for j in 1 to DATA_DEPTH loop
+  	            char := line_content(j);
+  	            if(char = '0') then
+  	                ROM(rom_i)(DATA_DEPTH-j) <= '0';
+  	            else
+  	                ROM(rom_i)(DATA_DEPTH-j) <= '1';
+  	            end if;
+  	        end loop;
+  	        wait for 1 ps; --after reading each line wait for 10ns.
+  	        rom_i := rom_i + 1;
+  	  end loop;
+  	  file_close(file_pointer);  --after reading all the lines close the file.
+  	  wait for 1ps;
+  	  ROM_done <= '1';
+		wait;
+
+	end process;
+
+
+  DUT : entity work.${12}
+    generic map(
+
+    )
+    port map(
+			clk		=> clk,
+			rst_n => rst_n,
+
+			${13} => data_in_vld,
+			${14}	=> data_in,
+			${15}	=> data_out_vld,
+			${16}	=> data_out
+    );
+
+	sync_proc : process(data)
+	begin
+	    data_in <= data;
+	end process sync_proc;
+
+	rdata <= ROM(addr);
+
+	ROM_process : process (ROM_en, rdata)
+	begin
+    	if (ROM_en = '1') then
+        	data <= rdata;
+					data_in_vld	<= '1';
+    	else
+        	data <= (others => '0');
+					data_in_vld	<= '0';
+    	end if;
+	end process ROM_process;
+
+	test_proc : process
+	begin
+		wait until ROM_done = '1';
+		rst_n  <= '1'; wait for 5*clk_t;
+		rst_n  <= '0'; wait for 5*clk_t;
+		rst_n  <= '1'; wait for 5*clk_t;
+		ROM_en <= '1'; wait for clk_t;
+
+		-- begin feeding data in
+		for i in rom_type'range loop
+	    addr <= i; wait for clk_t;
+		end loop;
+
+		wait;
+	end process;
+
+	close_result_file : process(clk)
+	begin
+	    if (rising_edge(clk)) then
+	        if (result_counter = RAM_DEPTH*BYTES_PER_WORD and result_saved = '0') then
+	            file_close(tb_results_pointer);
+	            result_saved <= '1';
+	        end if;
+	    end if;
+	end process;
+
+	write_results_raw : process(clk)
+
+	begin
+	    if (rising_edge(clk)) then
+	        if (result_counter < RAM_DEPTH*BYTES_PER_WORD and data_out_vld = '1') then
+	            write(line_tb_result, data_out, right, DATA_DEPTH);
+	            writeline(tb_results_pointer, line_tb_result);
+	            result_counter := result_counter + 1;
+	        end if;
+	    end if;
+	end process;
+
+
+end architecture behav;
+endsnippet

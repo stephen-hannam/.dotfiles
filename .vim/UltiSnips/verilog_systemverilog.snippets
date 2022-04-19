@@ -1,0 +1,106 @@
+snippet module
+module $1($2);
+
+endmodule
+endsnippet
+
+snippet class_uvm_para
+class my_$1 extends uvm_$1#($4);
+
+	\`uvm_$2_utils(my_$1)
+
+	function new(string name, uvm_$3 parent);
+		super.new(name, parent);
+	endfunction
+
+endclass
+endsnippet
+
+snippet class_uvm
+class my_$1 extends uvm_$1;
+
+	\`uvm_$2_utils(my_$1)
+
+	function new(string name, uvm_$3 parent);
+		super.new(name, parent);
+	endfunction
+
+endclass
+endsnippet
+
+snippet funcm
+function new(string name, $1 parent);
+	super.new(name, parent);
+endfunction
+endsnippet
+
+snippet exatig
+(* exa_tig="true" *)
+endsnippet
+
+snippet asyncreg
+(* ASYNC_REG="true" *)
+endsnippet
+
+snippet always
+always @ (posedge $1) begin
+
+end
+endsnippet
+
+snippet always_n
+always @ (negedge $1) begin
+
+end
+endsnippet
+
+snippet always_l
+always @ () begin
+
+end
+endsnippet
+
+snippet always_c
+always @* begin
+
+end
+endsnippet
+
+snippet gray_min_cdc
+reg [1:0] gray_$1 = 0, next_gray_$1 = 0, gray_$2 = 0, next_gray_$2 = 0;
+reg				incr_$1 = 0, incr_$2 = 0;
+
+always @* begin
+  next_gray_$1 = gray_$1;
+  case(gray_$1)
+    2'b00 : next_gray_$1 = 2'01;
+    2'b01 : next_gray_$1 = 2'11;
+    2'b11 : next_gray_$1 = 2'10;
+    2'b10 : next_gray_$1 = 2'00;
+  endcase
+end
+
+always @* begin
+  next_gray_$2 = gray_$2;
+  case(gray_$2)
+    2'b00 : next_gray_$2 = 2'01;
+    2'b01 : next_gray_$2 = 2'11;
+    2'b11 : next_gray_$2 = 2'10;
+    2'b10 : next_gray_$2 = 2'00;
+  endcase
+end
+
+always @(posedge clk_$1) begin
+	if () // reset
+		gray_$1	<= 2'b00;
+	else if (incr_$1)
+		gray_$1	<= next_gray_$1;
+end
+
+always @(posedge clk_$2) begin
+	if () // reset
+		gray_$2	<= 2'b00;
+	else if (incr_$2)
+		gray_$2	<= next_gray_$2;
+end
+endsnippet

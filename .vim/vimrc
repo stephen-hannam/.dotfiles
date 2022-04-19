@@ -1,0 +1,348 @@
+set nocompatible              " be iMproved, required
+set bg=dark
+set mouse=a
+set ruler
+set number
+set numberwidth=6
+set laststatus=2
+set tabstop=4           " 4 space tab
+set expandtab           " use spaces for tabs
+set softtabstop=4       " 4 space tab
+set shiftwidth=4
+set modelines=1
+set cmdheight=2
+set showcmd
+set showmode
+set hlsearch
+set autoindent
+set wildmenu
+set wildmode=list:full
+set lazyredraw
+set showmatch
+set incsearch
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldcolumn=3
+set splitright
+set number relativenumber
+set gdefault
+set ignorecase
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+set pastetoggle=<F2> "F2 before pasting to preserve indentation
+set autowrite
+set autoread
+set hidden
+set cursorline
+
+hi cursorline cterm=NONE ctermbg=16 ctermfg=NONE
+hi cursorcolumn cterm=NONE ctermbg=16 ctermfg=NONE
+hi Search cterm=NONE ctermbg=11 ctermfg=16
+
+highlight LineNr ctermfg=darkgrey
+highlight CursorLineNr ctermfg=magenta ctermbg=16
+highlight LineNr ctermbg=0
+
+au BufNewFile,BufRead *.sv,*.svh,*.vh,*.v so ~/.vim/syntax/verilog_systemverilog.vim
+
+augroup AutoSaveFolds
+  autocmd!
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview
+augroup END
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
+
+" Save whenever switching windows or leaving vim. This is useful when running
+" the tests inside vim without having to save all files first.
+au FocusLost,WinLeave * :silent! wa
+
+"update dir to current file
+autocmd BufEnter * silent! cd %:p:h
+
+" automatically delete all trailing whitespace on save.
+"autocmd BufWritePre * %s/\s\+$//e
+
+" Trigger autoread when changing buffers or coming back to vim in terminal.
+au FocusGained,BufEnter * :silent! !
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+
+syntax on
+filetype plugin on
+
+"if has ("autocmd")
+"    " File type detection. Indent based on filetype. Recommended.
+"    filetype plugin indent on
+"endif
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall --sync | source ~/.vim/vimrc
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'vhda/verilog_systemverilog.vim'
+Plug 'wellle/visual-split.vim'
+Plug 'wellle/tmux-complete.vim'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'vim-scripts/marvim'
+"Plug 'preservim/nerdtree'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'vim-scripts/verilog_emacsauto.vim'
+Plug 'luochen1990/rainbow'
+Plug 'godlygeek/tabular'
+Plug 'vim-scripts/vim-auto-save'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'altercation/vim-colors-solarized'
+"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+"Plug 'lervag/vimtex'
+"Plug 'Yggdroot/indentLine'
+Plug 'majutsushi/tagbar'
+"Plug 'elzr/vim-json'
+Plug 'wincent/terminus'
+Plug 'wincent/command-t'
+"Plug 'sirtaj/vim-openscad'
+
+" Initialize plugin system
+call plug#end()
+
+"""""""" YCM
+
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_filetype_specific_completion_to_disable = {
+      \ 'gitcommit': 1
+      \}
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Left>']
+let g:ycm_key_list_stop_completion = ['<Up>']
+"""""""""""""
+
+"""""""" UltiSnips
+
+let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+""""""""""""""""""
+
+""""""""" Airline
+
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail_improved' "smarter tab formatter
+let g:airline_theme='raven' "'distinguished'  'deus'
+""""""""""""""""""
+
+""""""""" Rainbow
+
+let g:rainbow_active=1 "mark opening/closing parens with same colour
+let g:rainbow_conf={
+	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+	\		'html': {
+	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
+""""""""""""""""""
+
+"""""""""" NerdTree
+
+"map <C-n> :NERDTreeToggle<CR>
+"" close Vim if nerdtree is the only tab open
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"" open nerdtree automatically if Vim was used to open a directory
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+"" don't open nerdtree if Vim is opening a saved session
+""" ie: vim -S saved_session.vim
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+"" open nerdtree automatically if Vim was opened without specifying a file
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" highlight different files based on file type
+"function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+" 	exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+" 	exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+"endfunction
+"
+"call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+"call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+"call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+"call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+"call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+""""""""""""""""""
+
+let g:auto_save=1  " enable AutoSave on Vim startup
+let g:auto_save_no_updatetime=1  " do not change the 'updatetime' option
+let g:auto_save_in_insert_mode=0  " do not save while in insert mode
+let g:auto_save_silent=1  " do not display the auto-save notification
+
+let mapleader=","
+
+
+nnoremap <silent><Right> e
+nnoremap <silent><Left> b
+
+nnoremap <silent><leader><space> :nohlsearch<CR>
+
+" space open/closes folds
+nnoremap <space> za
+
+nnoremap j gj
+nnoremap k gk
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Toggle mouse mode
+map <F7> <ESC>:exec &mouse!=""? "set mouse=" : "set mouse=a"<CR>
+" exit vim entirely if NERDtree is the only buffer left open
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"if exists(":Tabularize")
+  nnoremap <leader>+ :Tabularize /\zs[+<>/!]\@<!+[+<>/!]\@!.*/<CR>
+  vnoremap <leader>+ :Tabularize /\zs[+<>/!]\@<!+[+<>/!]\@!.*/<CR>
+  nnoremap <leader>= :Tabularize /\zs[=<>/!]\@<!=[=<>/!]\@!.*/<CR>
+  vnoremap <leader>= :Tabularize /\zs[=<>/!]\@<!=[=<>/!]\@!.*/<CR>
+  nnoremap <leader>< :Tabularize /<=<CR>
+  vnoremap <leader>< :Tabularize /<=<CR>
+  nnoremap <leader>> :Tabularize /=><CR>
+  vnoremap <leader>> :Tabularize /=><CR>
+  nnoremap <leader>: :Tabularize /\zs[:<>/!]\@<!:[:<>/!]\@!.*/<CR>
+  vnoremap <leader>: :Tabularize /\zs[:<>/!]\@<!:[:<>/!]\@!.*/<CR>
+  nnoremap <leader>] :Tabularize /]\zs <CR>
+  vnoremap <leader>] :Tabularize /]\zs <CR>
+  nnoremap <leader>( :Tabularize /\zs[(<>/!]\@<!([(<>/!]\@!.*/<CR>
+  vnoremap <leader>( :Tabularize /\zs[(<>/!]\@<!([(<>/!]\@!.*/<CR>
+"endif
+
+" surround a word with various punctuation symbols
+nnoremap <leader>' ciw'<C-r>"'<Esc>
+nnoremap <leader>" ciw"<C-r>""<Esc>
+nnoremap <leader>) ciw(<C-r>")<Esc>
+nnoremap <leader>[ ciw[<C-r>"]<Esc>
+nnoremap <leader>{ ciw{<C-r>"}<Esc>
+
+" s and S insert a single char then back to Normal mode
+nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+
+" delete or yank whole word no matter where in word
+nnoremap dw diw
+nnoremap yw yiw
+
+" toggle capitalization of entire word
+nnoremap cw g~iw
+" UPPER case the entire word
+nnoremap Uw gUiw
+" for LOWER case entire word, Uw, then cw
+
+" backspace goes to ^ in normal mode
+nnoremap <Bs> ^
+
+"Use enter to create new lines w/o entering insert mode
+nnoremap <cr> o<Esc>
+
+" resize panes
+map <silent> <S-Right> :vertical resize -5<cr>
+map <silent> <S-Left> :vertical resize +5<cr>
+map <silent> <S-Up> :resize -5<cr>
+map <silent> <S-Down> :resize +5<cr>
+
+nmap <Leader>w <Esc>:call Count(expand("<cword>"))<CR>
+
+command! -nargs=? -range Dec2hex call s:Dec2hex(<line1>, <line2>, '<args>')
+function! s:Dec2hex(line1, line2, arg) range
+  if empty(a:arg)
+    if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
+      let cmd = 's/\%V\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
+    else
+      let cmd = 's/\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
+    endif
+    try
+      execute a:line1 . ',' . a:line2 . cmd
+    catch
+      echo 'Error: No decimal number found'
+    endtry
+  else
+    echo printf('%x', a:arg + 0)
+  endif
+endfunction
+
+command! -nargs=? -range Hex2dec call s:Hex2dec(<line1>, <line2>, '<args>')
+function! s:Hex2dec(line1, line2, arg) range
+  if empty(a:arg)
+    if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
+      let cmd = 's/\%V0x\x\+/\=submatch(0)+0/g'
+    else
+      let cmd = 's/0x\x\+/\=submatch(0)+0/g'
+    endif
+    try
+      execute a:line1 . ',' . a:line2 . cmd
+    catch
+      echo 'Error: No hex number starting "0x" found'
+    endtry
+  else
+    echo (a:arg =~? '^0x') ? a:arg + 0 : ('0x'.a:arg) + 0
+  endif
+endfunction
+
+" Count number of occurances of a word
+function Count(word)
+    let count_word = "%s/" . a:word . "//gn"
+    execute count_word
+endfunction
