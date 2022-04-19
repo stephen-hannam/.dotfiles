@@ -111,9 +111,9 @@ fi
 
 source $HOME/.zsh_aliases
 
-export PATH=/home/srh/.local/bin:$PATH
-export PATH=/home/srh/.opam/default/bin:$PATH
-export PATH=/home/srh/doom-emacs/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.opam/default/bin:$PATH
+export PATH=$HOME/doom-emacs/bin:$PATH
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -188,8 +188,8 @@ function sshagent_init {
     unset agentsocket
 
     # Finally, show what keys are currently in the agent
-    ssh-add -l || ssh-add /home/srh/.ssh/id_rsa
-    ssh-add -l || ssh-add /home/srh/.ssh/id_ed25519
+    ssh-add -l || ssh-add $HOME/.ssh/id_rsa
+    ssh-add -l || ssh-add $HOME/.ssh/id_ed25519
 }
 alias sagent="sshagent_init"
 
