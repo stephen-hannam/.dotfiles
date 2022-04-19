@@ -1,0 +1,136 @@
+alias history='fc -li 1'
+
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# some more ls aliases
+llfunc(){
+	case $# in
+		1) ls -ahlF --group-directories-first | less -p "$1" -R ;;
+		2) ls -ahlF --group-directories-first "$1" | less -p "$2" -R ;;
+		*) ls -ahlF --group-directories-first | less -R ;;
+	esac
+}
+alias ll='llfunc'
+
+alias lu='du -sch .[!.]* * 2>/dev/null | sort -h'
+alias lf='find -maxdepth 1 -type f -exec du -sch {} + 2>/dev/null | sort -h'
+alias lt='ls -lt | sed -e "s/^.\{10\}[ ]*[0-9]*[ ]*\w*[ ]*\w*[ ]*[0-9]*//g"'
+alias la='ls -A'
+alias l='ls -CF'
+alias clc='clear; cdls .'
+
+alias mv='mv -v'
+alias rm='rm -v'
+alias cp='cp -iv'
+alias ln='ln -v'
+
+alias less='less -R'
+
+# perform 'ls' after 'cd' if successful.
+cdls() {
+  if [ $# -eq 0 ]; then
+    clear
+    FARG=${HOME}
+  else
+    FARG="$*"
+  fi
+  builtin cd "$FARG"
+  SUCCESS=$?
+  if [ "$SUCCESS" -eq 0 ]; then
+    ls -ACF --group-directories-first
+  fi
+}
+alias cd='cdls'
+
+cdun(){
+	if [ $# -eq 0 ]; then
+		cdls ..
+	else
+		if [[ $1 == ?(-)+([0-9]) ]]; then
+			local x=''
+			for i in $(seq ${1:-1}); do
+				x="$x../"
+			done
+			cdls $x
+		fi
+	fi
+}
+alias ..='cdun'
+
+alias x='exit'
+
+the_pag(){
+  ps aux | grep -i $1 | grep -v grep
+}
+alias pag='the_pag '
+
+alias c+x='chmod +x '
+
+alias c-x='chmod -x '
+
+alias mown='sudo chown -R $USER:users '
+
+vivg(){
+	cd
+	vivado -jvm -patch-module=java.desktop=/data/work/stephen/AR72614_vivado_2019_2_preliminary_rev2/vivado/lib/classes/AR72614/AR72614.jar
+}
+
+alias vivadog='vivg'
+alias filterv='filter.pl'
+alias chip='/home/shannam/Programs/chipvault_src_files/cv.pl'
+
+alias stephen='cd /data/work/stephen'
+alias stephen2='cd /data/work/stephen2'
+alias stephen3='cd /data/work/stephen3'
+alias stephen4='cd /data/work/stephen4'
+alias stephen5='cd /data/work/stephen5'
+alias fpga='cd /data/work/stephen/fpga-firmware'
+alias fpga2='cd /data/work/stephen2/fpga-firmware'
+alias fpga3='cd /data/work/stephen3/fpga-firmware'
+alias fpga4='cd /data/work/stephen4/fpga-firmware'
+alias fpga5='cd /data/work/stephen5/fpga-firmware'
+alias testing='cd /data/work/stephen/exanic-software/testing/automated/'
+
+viv_def(){
+	/usr/local/bin/stephen/run-vivado-2018.3.sh $@
+}
+#alias vivado='viv_def'
+alias src-viv='source /data/Xilinx/Vivado/2018.3/.settings64-Vivado.sh || source /data/xilinx/Vivado/2018.3/.settings64-Vivado.sh && which vivado'
+alias src-viv192='source /data/Xilinx/Vivado/2019.2/.settings64-Vivado.sh || source /data/xilinx/Vivado/2019.2/.settings64-Vivado.sh && which vivado'
+alias src-viv202='source /data/Xilinx/Vivado/2020.2/.settings64-Vivado.sh || source /data/xilinx/Vivado/2020.2/.settings64-Vivado.sh && which vivado'
+
+tidy_up_ip_folders(){
+	if [ -d ./ip/ ]; then
+		pushd ip
+		for f in `ls -d --color=none *`; do
+			pushd $f
+			rm -rf ^*.(xci|tcl)
+			popd
+		done
+		popd
+	fi
+}
+
+tidy_up_vivados_mess(){
+	rm vivado*
+	rm -rf .Xil
+	rm -rf hd_visual
+	rm -rf ip_user_files
+	rm -rf managed_ip_project
+	rm .XIC.lock
+	rm -rf .Xilinx
+	rm -f webtalk*
+	rm -f usage_statistics_webtalk*
+	rm -f tight_setup_hold_pins.txt
+	rm -f iter_*
+	tidy_up_ip_folders &>/dev/null
+}
+alias tv='tidy_up_vivados_mess'
+
+alias khup='kill -s SIGTERM `lsof -t nohup.out`'
+
+alias dmacs='emacs --daemon'
+alias em='emacsclient -cn -a "vim" "$@"'
+alias kmacs='killall emacs'
+
+alias gpgp='gpg -c --no-symkey-cache --cipher-algo AES256'
