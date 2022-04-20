@@ -77,9 +77,9 @@ than having to call `add-to-list' multiple times."
       windmove-wrap-around t
       tab-width 4)
 
-(setq-default indent-tabs-mode nil
-              tab-always-indent nil
-              indent-tabs-mode nil
+(setq-default indent-tabs-mode t
+              tab-always-indent 'complete
+              indent-tabs-mode t
               tab-width 4)
 
 (set-charset-priority 'unicode)
@@ -403,27 +403,27 @@ when point is at #+BEGIN_SRC or #+END_SRC."
                    (beginning-of-line)
                    (looking-at ".*#\\+\\(begin\\|end\\)_src"))))))))
 
-(use-package aggressive-indent
-  :defer 1
-  :config
-  (global-aggressive-indent-mode 1)
-  ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-  ;; if you think it's annoying that lines jump around in c++-mode because you haven't typed the ; yet
-  (add-to-list
-   'aggressive-indent-dont-indent-if
-   '(and (derived-mode-p 'c++-mode)
-         (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
-                             (thing-at-point 'line)))))
-  (add-to-list
-   'aggressive-indent-dont-indent-if
-   '(derived-mode-p 'verilog-mode))
-  (srh/add-to-list-multiple
-   'aggressive-indent-protected-commands
-   '(undo-tree-visualize undo-tree-visualize-undo undo-tree-visualize-redo))
-  (add-hook 'org-src-mode-hook '(add-to-list
-                                 'aggressive-indent-dont-indent-if
-                                 '(ersatz-org-in-src-block-p)))
-  )
+;; (use-package aggressive-indent
+;;   :defer 1
+;;   :config
+;;   (global-aggressive-indent-mode 1)
+;;   ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+;;   ;; if you think it's annoying that lines jump around in c++-mode because you haven't typed the ; yet
+;;   (add-to-list
+;;    'aggressive-indent-dont-indent-if
+;;    '(and (derived-mode-p 'c++-mode)
+;;          (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+;;                              (thing-at-point 'line)))))
+;;   (add-to-list
+;;    'aggressive-indent-dont-indent-if
+;;    '(derived-mode-p 'verilog-mode))
+;;   (srh/add-to-list-multiple
+;;    'aggressive-indent-protected-commands
+;;    '(undo-tree-visualize undo-tree-visualize-undo undo-tree-visualize-redo))
+;;   (add-hook 'org-src-mode-hook '(add-to-list
+;;                                  'aggressive-indent-dont-indent-if
+;;                                  '(ersatz-org-in-src-block-p)))
+;;   )
 
 ;; TODO: key bindings for smartparens - in a hydra or general-leader-key?
 (use-package smartparens
@@ -801,10 +801,6 @@ when point is at #+BEGIN_SRC or #+END_SRC."
 
 (use-package libgit
   :after magit
-  )
-
-(use-package magit-libgit
-  :after (magit libgit)
   )
 
 (defun srh/org-mode-setup ()
@@ -1353,13 +1349,13 @@ _P_  Playground
 
 _._  %s(file-name-directory (or buffer-file-name load-file-name (concat \"file-name-directory for \" (format \"%s\" (current-buffer)) \" not found/unknown\")))
 "
-  ("w" (dired-other-window "/data/shannam/Work"))
-  ("E" (dired-other-window "~/.emacs.d"))
-  ("d" (dired-other-window "~/Documents"))
-  ("p" (dired-other-window "~/Projects"))
-  ("P" (dired-other-window "~/Playground"))
+  ("w" (evil-window-vsplit nil "/data/shannam/Work"))
+  ("E" (evil-window-vsplit nil  "~/.emacs.d"))
+  ("d" (evil-window-vsplit nil  "~/Documents"))
+  ("p" (evil-window-vsplit nil  "~/Projects"))
+  ("P" (evil-window-vsplit nil  "~/Playground"))
   ("t" (find-file-other-window srh/tasksfile))
-  ("." (dired-other-window "."))
+  ("." (evil-window-vsplit nil "."))
   ("q" (message ""))
   ("<escape>" (message ""))
   ("RET" (message "") :color pink)
