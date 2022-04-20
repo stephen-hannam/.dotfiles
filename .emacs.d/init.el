@@ -137,6 +137,7 @@ than having to call `add-to-list' multiple times."
 
 (global-set-key (kbd "C-h .") nil)
 (global-set-key (kbd "M-.") nil)
+(global-set-key (kbd "<pause>") nil)
 
 ;; Navigate through buffers
 (global-set-key (kbd "M-[") 'previous-buffer)
@@ -1579,9 +1580,12 @@ _-_ decrease
   )
 
 ;; I like treating - and _ as parts of the word in certain cases
-(modify-syntax-entry ?_ "w" prog-mode-syntax-table)
+(modify-syntax-entry ?- "w" (standard-syntax-table))
+(modify-syntax-entry ?_ "w" (standard-syntax-table))
 (modify-syntax-entry ?- "w" emacs-lisp-mode-syntax-table)
 (modify-syntax-entry ?_ "w" emacs-lisp-mode-syntax-table)
+(modify-syntax-entry ?- "w" c-mode-syntax-table)
+(modify-syntax-entry ?_ "w" c-mode-syntax-table)
 (modify-syntax-entry ?- "w" help-mode-syntax-table)
 (modify-syntax-entry ?_ "w" help-mode-syntax-table)
 (with-eval-after-load 'org
