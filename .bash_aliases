@@ -181,34 +181,10 @@ alias c-x='chmod -x '
 
 alias mown='sudo chown -R $USER:users '
 
-vivg(){
-	cd
-	vivado -jvm -patch-module=java.desktop=/data/work/stephen/AR72614_vivado_2019_2_preliminary_rev2/vivado/lib/classes/AR72614/AR72614.jar
-}
-
-alias vivadog='vivg'
-alias filterv='filter.pl'
-alias chip='$HOME/Programs/chipvault_src_files/cv.pl'
-
-alias stephen='cd /data/work/stephen'
-alias stephen2='cd /data/work/stephen2'
-alias stephen3='cd /data/work/stephen3'
-alias stephen4='cd /data/work/stephen4'
-alias stephen5='cd /data/work/stephen5'
-alias fpga='cd /data/work/stephen/fpga-firmware'
-alias fpga2='cd /data/work/stephen2/fpga-firmware'
-alias fpga3='cd /data/work/stephen3/fpga-firmware'
-alias fpga4='cd /data/work/stephen4/fpga-firmware'
-alias fpga5='cd /data/work/stephen5/fpga-firmware'
-alias testing='cd /data/work/stephen/exanic-software/testing/automated/'
-
 viv_def(){
 	/usr/local/bin/stephen/run-vivado-2018.3.sh $@
 }
 #alias vivado='viv_def'
-alias src-viv='source /data/Xilinx/Vivado/2018.3/.settings64-Vivado.sh || source /data/xilinx/Vivado/2018.3/.settings64-Vivado.sh && which vivado'
-alias src-viv192='source /data/Xilinx/Vivado/2019.2/.settings64-Vivado.sh || source /data/xilinx/Vivado/2019.2/.settings64-Vivado.sh && which vivado'
-alias src-viv202='source /data/Xilinx/Vivado/2020.2/.settings64-Vivado.sh || source /data/xilinx/Vivado/2020.2/.settings64-Vivado.sh && which vivado'
 
 verilog_template(){
 	local TEMPLATE=
@@ -277,3 +253,5 @@ alias h2d='hex2dec'
 
 # want to add deletion of non-xci-files in ip folder to tv alias
 # find ./ip/ -mindepth 2 \! -name *.xci -delete
+
+[ -d $HOME/.local/share/aliases/$HOST/.bash_aliases ] && source $HOME/.local/share/aliases/$HOST/.bash_aliases || echo "No local aliases to source for $HOST"
