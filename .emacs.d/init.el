@@ -412,6 +412,7 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   )
 
 ;; TODO: key bindings for smartparens - in a hydra or general-leader-key?
+;; FIXME: this shit is BROKEN, wrapping and slurping can fuck up entire blocks of text, generally it's shit and sucks
 (use-package smartparens
   :defer 1
   :delight
@@ -1102,6 +1103,7 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   (set-face-attribute 'swap-regions-selection nil :background "black")
   )
 
+;; TODO: replace with ivy-yasnippet
 (use-package yasnippet
   :hook
   (prog-mode . yas-minor-mode)
@@ -1142,6 +1144,7 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   (define-key flycheck-mode-map flycheck-keymap-prefix flycheck-command-map)
   )
 
+;; TODO: see if you can get rid of this or replace with something better
 ;; NOTE: sudo yum install rpmdevtools, sudo apt-get install devscripts
 (use-package flycheck-checkbashisms
   :after flycheck
@@ -1353,6 +1356,7 @@ Current pattern: %s(replace-regexp-in-string \"%\" \"%%\" (or (caar evil-mc-patt
   )
 
 ;; TODO: setup machine depedendent hydra-defs
+;; ie: for work-stations, folders with fpga-firmware, exanic-software, etc
 (defhydra hydra-folder-shortcuts (
                                   :exit t
                                   :hint nil)
