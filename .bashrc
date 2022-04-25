@@ -2,9 +2,11 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-if [[ -x `which zsh 2>/dev/null` ]]; then
-  zsh;
-  exit 0;
+if [[ $- == *i* ]]; then
+  if [[ -x `which zsh 2>/dev/null` ]]; then
+    zsh;
+    exit 0;
+  fi
 fi
 
 if [[ -x `which most &>/dev/null` ]]; then
