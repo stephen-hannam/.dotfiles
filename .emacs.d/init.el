@@ -412,6 +412,7 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   )
 
 ;; TODO: key bindings for smartparens - in a hydra or general-leader-key?
+;; TODO: make smart-parens wrap current word if no space between parens and word - forwards and backwards
 ;; FIXME: this shit is BROKEN, wrapping and slurping can fuck up entire blocks of text, generally it's shit and sucks
 (use-package smartparens
   :defer 1
@@ -586,9 +587,9 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   (after-init . global-anzu-mode)
   )
 
-(setq evil-want-keybinding nil)
 (use-package evil
   :init
+  (setq evil-want-keybinding nil)
   (setq evil-want-integration t)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
@@ -615,6 +616,7 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   (unbind-key "C-." 'evil-normal-state-map)
   )
 
+;; TODO: make highlight apply across all visible buffers when used
 ;; highlight search persist and quick removal
 (use-package evil-search-highlight-persist
   :defer t
@@ -1248,6 +1250,7 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   (clm/open-command-log-buffer)
   )
 
+;; TODO: replace all highlighting with Modi's highlighting which uses highlight-global, volatile-highlights, & auto-highlight-symbol
 (defun srh/evil-nohl ()
   (interactive)
   (if (equal evil-search-module 'evil-search)
