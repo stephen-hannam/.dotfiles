@@ -254,4 +254,4 @@ alias h2d='hex2dec'
 # want to add deletion of non-xci-files in ip folder to tv alias
 # find ./ip/ -mindepth 2 \! -name *.xci -delete
 
-[ -d $HOME/.local/share/aliases/$HOST/.bash_aliases ] && source $HOME/.local/share/aliases/$HOST/.bash_aliases || echo "No local aliases to source for $HOST"
+[ -f $HOME/.local/share/aliases/$HOST/.bash_aliases ] && source $HOME/.local/share/aliases/$HOST/.bash_aliases || echo "No local aliases to source for $HOST"

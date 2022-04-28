@@ -111,4 +111,4 @@ alias kmacs='killall emacs'
 
 alias gpgp='gpg -c --no-symkey-cache --cipher-algo AES256'
 
-[ -d $HOME/.local/share/aliases/$HOST ] && source $HOME/.local/share/aliases/$HOST/.zsh_aliases || echo "No local aliases to source for $HOST"
+[ -f $HOME/.local/share/aliases/$HOST/.zsh_aliases ] && source $HOME/.local/share/aliases/$HOST/.zsh_aliases || echo "No local aliases to source for $HOST"
