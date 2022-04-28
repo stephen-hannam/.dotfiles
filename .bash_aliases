@@ -238,8 +238,7 @@ alias tv='tidy_up_vivados_mess'
 
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
 
-alias em='emacsclient -cn -a "vim" "$@"'
-
+alias em='emacsclient -cn -a "vim" -s stemacs'
 alias dmacs='emacs --daemon'
 alias kmacs='killall emacs'
 

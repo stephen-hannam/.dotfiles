@@ -105,8 +105,8 @@ alias tv='tidy_up_vivados_mess'
 
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
 
+alias em='emacsclient -cn -a "vim" -s stemacs'
 alias dmacs='emacs --daemon'
-alias em='emacsclient -cn -a "vim" '
 alias kmacs='killall emacs'
 
 alias gpgp='gpg -c --no-symkey-cache --cipher-algo AES256'
