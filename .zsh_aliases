@@ -106,9 +106,16 @@ alias tv='tidy_up_vivados_mess'
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
 
 alias em='emacsclient -cn -a "vim" -s stemacs'
+alias nw='emacsclient -nw -a "vim" -s stemacs'
 alias dmacs='emacs --daemon'
 alias kmacs='killall emacs'
 
 alias gpgp='gpg -c --no-symkey-cache --cipher-algo AES256'
+
+hex2dec(){
+  hex=$1
+  echo "ibase=16; ${hex:u}" | bc
+}
+alias h2d='hex2dec'
 
 [ -f $HOME/.local/share/aliases/$HOST/.zsh_aliases ] && source $HOME/.local/share/aliases/$HOST/.zsh_aliases || echo "No local aliases to source for $HOST"
