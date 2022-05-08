@@ -1,0 +1,80 @@
+Existing problems:
+- smart-parens is all fucked up
+- key-bindings will interfere with terminator key-bindings in -nw mode
+- aggressive-indent fucks with the undo --> ditch aggressive for something better
+- search highlight/clear not happening across all visible buffers
+- tabularize adds extraneous white-space
+
+Switching from/to:
+- use-package to straight
+- doom-modeline -> telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
+- ivy/counsel/
+- aggressive-indent -> ? parinfer, evil-surround
+- smart-parens -> ? parinfer, evil-surround, dumbparens :),
+- company -> ? corfu, cape, dabbrev-*
+- ? dired -> treemacs ??
+
+Removing:
+- ivy-rich, ivy-*
+- counsel
+- veri-kompass
+
+Definitely retaining:
+- evil+
+- hydras
+- org+
+- all-the-icons+
+- solaire
+- beacon
+- rainbow+
+- which-key
+- magit+
+- swap regions
+- *anzu
+- helpful
+- "theming"
+    Extending and/or Fixing:
+    -- dired stuff -> dired-mode invoked hydra for lots of FS shortcuts
+    -- undo-tree
+    -- command-log-mode
+    -- ? smart-parens ... replace or fix ?
+    -- dired with dired-sidebar ?
+
+Adding (most likely):
+- key-chords: https://github.com/waymondo/use-package-chords
+- vertico + marginalia + embark + consult + orderless
+- perspective
+- ivy-yasnippet
+- avy
+- info+
+- direnv
+- treemacs
+- expand-region
+- ggtags (w uni-ctags)
+- git-gutter
+
+Redo:
+- take key-bindings from removed functionality and assign it elsewhere
+- key-bindings that go unused -> free or redo
+- LEADER KEYS - refactor into new categories, new category -> "navigation, windows and such"
+    -- 3 leaders: windows & navigation, projects & coding, text manipulation
+
+Consider obseleting:
+- general ... can I just use hydra?
+- dired ... in favor of treemacs ?
+
+Aims:
+- dash-board and org mode (etc) used to habitually organize work/life/study
+- common env from within which to view pdfs, images, and other common things
+- IDE like env for C/C++, Python, lisps, bash, tcl, verilog/systemverilog
+    -- needs to work just as well with remote servers, whether that's TRAMP based, sshfs based, etc.
+    -- peek preview of module decl esp. @ ports
+- increase text-based efficiency by putting closer at hand short-cuts for complex actions
+    -- swapping regions
+    -- incr/decr
+    -- form/manip table like text-forms
+    -- multiple cursors
+    -- auto-format and quick completions and snippets
+        --- esp. init templates for new files of type
+        --- quick format of module decl and inst in verilog
+
