@@ -26,7 +26,7 @@
   '(
     anzu
     evil evil-anzu
-    general hydra
+    hydra
     dired dired-single dired-subtree dired-hide-dotfiles
     all-the-icons all-the-icons-dired
     rainbow-mode rainbow-delimiters beacon solaire-mode

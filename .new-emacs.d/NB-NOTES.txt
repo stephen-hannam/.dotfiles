@@ -13,6 +13,7 @@ Switching from/to:
 - smart-parens -> ? parinfer, evil-surround, dumbparens :),
 - company -> ? corfu, cape, dabbrev-*
 - ? dired -> treemacs ??
+- general <- switch to everything in hydras!
 
 Removing:
 - ivy-rich, ivy-*
