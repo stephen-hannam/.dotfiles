@@ -249,8 +249,3 @@ hex2dec(){
   echo "ibase=16; ${hex^^}" | bc
 }
 alias h2d='hex2dec'
-
-# want to add deletion of non-xci-files in ip folder to tv alias
-# find ./ip/ -mindepth 2 \! -name *.xci -delete
-
-[ -f $HOME/.local/share/aliases/$HOST/.bash_aliases ] && source $HOME/.local/share/aliases/$HOST/.bash_aliases || echo "No local aliases to source for $HOST"

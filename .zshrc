@@ -195,4 +195,6 @@ alias sagent="sshagent_init"
 
 sshagent_init
 
+[ -f $HOME/.local/share/rcs/.zsh_extras ] && source $HOME/.local/share/rcs/.zsh_extras || echo "No local aliases to source for $HOST"
+
 cd ~

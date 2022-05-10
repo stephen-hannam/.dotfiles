@@ -19,3 +19,23 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+;; straight.el setup of standard packages from the standard repos; elpa, melpa, etc
+(mapcar 
+  #'straight-use-package
+  '(
+    anzu
+    evil evil-anzu
+    general hydra
+    dired dired-single dired-subtree dired-hide-dotfiles
+    all-the-icons all-the-icons-dired
+    rainbow-mode rainbow-delimiters beacon solaire-mode
+    which-key helpful
+    vertico orderless embark consult marginalia
+    magit libgit
+    swap-regions
+    sh-script ;; make executable after save if editing a script file
+    ))
+
+;; TODO: move the package config code to pkgs-init.el and call it from here
+

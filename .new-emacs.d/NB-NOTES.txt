@@ -53,6 +53,12 @@ Adding (most likely):
 - ggtags (w uni-ctags)
 - git-gutter
 
+Investigate:
+ - snails
+ - shell-pop
+ - golden-ratio
+ - volatile-highlights - highlight previously modified region
+
 Redo:
 - take key-bindings from removed functionality and assign it elsewhere
 - key-bindings that go unused -> free or redo
