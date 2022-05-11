@@ -4,9 +4,10 @@ Existing problems:
 - aggressive-indent fucks with the undo --> ditch aggressive for something better
 - search highlight/clear not happening across all visible buffers
 - tabularize adds extraneous white-space
+- TAB doesn't tab
 
 Cool ideas:
- - map caps_lock to escape if pressed alone, and ctrl if pressed with other keys ... !
+- map caps_lock to escape if pressed alone, and ctrl if pressed with other keys ... !
 
 Switching from/to:
 - use-package to straight
@@ -24,9 +25,11 @@ Removing:
 - veri-kompass
 
 Definitely retaining:
-- ? autorevert ?
+- stuff to make theming customization work with daemon mode
+- ? autorevert, dash ?
 - evil+
-- hydras
+- hydras <-- also use conditional-hydras! -- see the github wiki on hydra
+    --> also, simplify docstring with :columns (et al) attrs
 - org+
 - all-the-icons+
 - solaire
@@ -49,7 +52,7 @@ Adding (most likely):
 - key-chords: https://github.com/waymondo/use-package-chords
 - vertico + marginalia + embark + consult + orderless
 - perspective -- project "work-spaces"
-- ivy-yasnippet
+- ivy-yasnippet OR skeletons + abbrevmode + conditional hydras
 - avy
 - info+
 - direnv
@@ -57,12 +60,15 @@ Adding (most likely):
 - expand-region
 - ggtags (w uni-ctags)
 - git-gutter
+- auto-insert <-- initial file template based on file extension when creating file
 
 Investigate:
- - snails
- - shell-pop
- - golden-ratio
- - volatile-highlights - highlight previously modified region
+- which-key-posframe
+- lispy
+- snails
+- shell-pop
+- golden-ratio
+- volatile-highlights - highlight previously modified region
 
 Redo:
 - take key-bindings from removed functionality and assign it elsewhere
