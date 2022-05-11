@@ -5,6 +5,9 @@ Existing problems:
 - search highlight/clear not happening across all visible buffers
 - tabularize adds extraneous white-space
 
+Cool ideas:
+ - map caps_lock to escape if pressed alone, and ctrl if pressed with other keys ... !
+
 Switching from/to:
 - use-package to straight
 - doom-modeline -> telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
