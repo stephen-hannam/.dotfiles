@@ -36,7 +36,7 @@ Definitely retaining:
 - "theming"
     Extending and/or Fixing:
     -- dired stuff -> dired-mode invoked hydra for lots of FS shortcuts
-    -- undo-tree
+    -- undo-tree --> in side-bar, something sized just wide enough
     -- command-log-mode
     -- ? smart-parens ... replace or fix ?
     -- dired with dired-sidebar ?
@@ -44,7 +44,7 @@ Definitely retaining:
 Adding (most likely):
 - key-chords: https://github.com/waymondo/use-package-chords
 - vertico + marginalia + embark + consult + orderless
-- perspective
+- perspective -- project "work-spaces"
 - ivy-yasnippet
 - avy
 - info+
@@ -69,6 +69,12 @@ Redo:
 Consider obseleting:
 - general ... can I just use hydra?
 - dired ... in favor of treemacs ?
+
+My own vimrc customizations:
+- tabularize -- almost there, still an annoying extra whitespace issue
+- enter in normal mode adds blank line
+- key bindings in general
+- window splitting and resizing bindings
 
 Aims:
 - dash-board and org mode (etc) used to habitually organize work/life/study

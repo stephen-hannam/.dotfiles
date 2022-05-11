@@ -6,3 +6,5 @@
 ;; https://github.com/minad/consult
 ;; -- consult-line: alt to swiper
 ;; -- consult-buffer: nice buffer switching
+
+(provide 'pkgs-init)
