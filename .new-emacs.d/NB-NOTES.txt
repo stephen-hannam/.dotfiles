@@ -21,6 +21,7 @@ Removing:
 - veri-kompass
 
 Definitely retaining:
+- ? autorevert ?
 - evil+
 - hydras
 - org+
