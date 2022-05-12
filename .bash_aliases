@@ -2,6 +2,18 @@
 
 alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+dot_clone_(){
+  if [ $# -eq 0 ]; then
+    repo="stephen-hannam"
+  else
+    repo=$1
+  fi
+  git clone --separate-git-dir=$HOME/.dotfiles git@github.com:${repo}/.dotfiles.git dotfiles-tmp
+  rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
+  rm -rf dotfiles-tmp
+}
+alias dotclone='dot_clone_'
+
 path_virt_env(){
 	local LOC_ENV=
 	if [ ${#CONDA_DEFAULT_ENV} -gt 0 ];  then
