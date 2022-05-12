@@ -10,7 +10,6 @@
 (global-set-key (kbd "M-]") 'next-buffer)
 (global-set-key (kbd "<f12>") 'swiper)
 
-
 (define-key key-translation-map (kbd "<capslock>") (kbd "<escape>"))
 ;; set keys to insert math symbol
 (define-key key-translation-map (kbd "<f9> a") (kbd "α"))

@@ -24,7 +24,7 @@
 (mapcar 
   #'straight-use-package
   '(
-    anzu
+    anzu avy
     evil evil-anzu
     hydra
     dired dired-single dired-subtree dired-hide-dotfiles

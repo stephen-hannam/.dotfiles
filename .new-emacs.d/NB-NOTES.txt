@@ -55,6 +55,7 @@ Adding (most likely):
 - ivy-yasnippet OR skeletons + abbrevmode + conditional hydras
     -- skeletons etc: https://www.gnu.org/software/emacs/manual/html_node/autotype/Wrapping-Skeletons.html
 - avy
+- sly
 - info+
 - direnv
 - treemacs
