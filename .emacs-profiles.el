@@ -9,6 +9,13 @@
 	       (env . (("DOOMDIR" . "~/.doom.d")))
 	     ))
 
+ ("spacemacs" . ((user-emacs-directory . "~/spacemacs")
+                 (server-name . "spacemacs")
+                 (env . (("SPACEMACSDIR" . "~/.spacemacs.d")))
+                 ))
+
+("prelude" . ((user-emacs-directory . "~/prelude-emacs")))
+
 ("modi" . ((user-emacs-directory . "~/.modi-emacs.d")))
 
 ;; for experimenting, just a basic vanilla config
