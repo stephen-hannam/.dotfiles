@@ -1,5 +1,7 @@
 #set -euo pipefail
 
+alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 path_virt_env(){
 	local LOC_ENV=
 	if [ ${#CONDA_DEFAULT_ENV} -gt 0 ];  then

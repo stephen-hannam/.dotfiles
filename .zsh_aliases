@@ -1,6 +1,6 @@
 alias history='fc -li 1'
 
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # some more ls aliases
 llfunc(){
