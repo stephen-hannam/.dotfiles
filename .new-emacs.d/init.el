@@ -27,7 +27,7 @@
     anzu avy
     evil evil-anzu
     hydra
-    dired dired-single dired-subtree dired-hide-dotfiles
+    dired-single dired-subtree dired-hide-dotfiles
     all-the-icons all-the-icons-dired
     rainbow-mode rainbow-delimiters beacon solaire-mode
     which-key helpful
