@@ -42,6 +42,7 @@
   (evil-ex-define-cmd "quit" 'evil-quit)
   (global-undo-tree-mode)
   (turn-on-undo-tree-mode)
+  (advice-add 'evil-operator-range :around #'usr/evil-motion-range)
   )
 
 
