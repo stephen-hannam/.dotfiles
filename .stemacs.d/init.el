@@ -123,7 +123,7 @@ than having to call `add-to-list' multiple times."
   )
 
 (defconst stemacs-private-dir
-  (if-let (stemacsdir (getenv-internal "STEMACSDIR"))
+  (if-let (stemacsdir (getenv-internal "EMACSDIR"))
       (expand-file-name (file-name-as-directory stemacsdir))
     (or (let ((xdgdir
                (expand-file-name "stemacs/"
