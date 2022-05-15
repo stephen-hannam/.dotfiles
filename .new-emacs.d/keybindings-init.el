@@ -54,6 +54,56 @@
 (define-key key-translation-map (kbd "<f9> 6") (kbd "◆"))
 (define-key key-translation-map (kbd "<f9> I") (kbd "∞"))
 
+(defun usr/evil-motion-range (orig-fun &rest args)
+    "makes certain Vim like operator-state sequences operate on entire word
+    yw -> yiw, dw -> diw
+    this will only apply to the below specified commands; evil-yank/delete/change
+    source : https://stackoverflow.com/questions/37238920/key-mapping-in-evil-mode-emacs"
+  (if (not (memq this-command '(evil-yank evil-delete)))
+      (apply orig-fun args)
+    (let* ((orig-keymap evil-operator-state-local-map)
+           (evil-operator-state-local-map (copy-keymap orig-keymap)))
+      (define-key evil-operator-state-local-map "w" "iw")
+      (apply orig-fun args))))
+
+(defun usr/delete-window-maybe-kill-buffer-maybe-delete-frame ()
+  (interactive)
+  (if (eq (count-windows) 1)
+      (evil-ex-call-command nil "quit" nil)
+    (delete-window-maybe-kill-buffer))
+  )
+
+(with-eval-after-load 'evil
+  (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
+  (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
+  (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
+  (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
+  (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
+  (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
+  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
+  (evil-define-key '(normal visual) 'global (kbd "!") 'srh/mc-toggle-cursors)
+  (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
+  (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
+  (evil-define-key '(normal) 'global (kbd "r") 'evil-replace-state)
+  (evil-define-key '(normal) 'global (kbd "<left>") 'evil-backward-word-begin)
+  (evil-define-key '(normal) 'global (kbd "<right>") 'evil-forward-word-end)
+  (evil-define-key '(normal) 'global (kbd "S-<up>") 'evil-backward-paragraph)
+  (evil-define-key '(normal) 'global (kbd "S-<down>") 'evil-forward-paragraph)
+  (evil-define-key '(normal visual insert) 'global (kbd "C-<up>")
+    (lambda() (interactive) (scroll-other-window-down 1)))
+  (evil-define-key '(normal visual insert) 'global (kbd "C-<down>")
+    (lambda() (interactive) (scroll-other-window-down -1)))
+  (evil-define-key '(normal) 'global (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
+  ;; :q should kill the current buffer rather than quitting emacs entirely
+  (evil-ex-define-cmd "q" 'usr/delete-window-maybe-kill-buffer-maybe-delete-frame)
+  (evil-ex-define-cmd "aq" 'kill-other-buffers)
+  ;; Need to type out :quit to close emacs
+  (evil-ex-define-cmd "quit" 'evil-quit)
+  (global-undo-tree-mode)
+  (turn-on-undo-tree-mode)
+  (advice-add 'evil-operator-range :around #'usr/evil-motion-range)
+  )
+
 (setq evil-emacs-state-cursor '("#81a2be" box))
 (setq evil-normal-state-cursor '("#81a2be" box))
 (setq evil-visual-state-cursor '("orange" box))

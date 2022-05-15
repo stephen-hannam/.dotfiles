@@ -53,6 +53,23 @@
           (if (file-directory-p xdgdir) xdgdir))
         "~/.emacs.d/")))
 
+(add-to-list 'load-path (concat emacs-private-dir "load-files"))
+
+(require 'cl)
+(require 'move-border)
+(require 'tabularize)
+(require 'misc-cmds)
+(require 'user-misc-cmds)
+(require 'text-manips)
+(require 'interaction-log)
+
+(usr/add-to-list-multiple 'auto-mode-alist '(
+                                             ("\\.*rc$" . conf-unix-mode)
+                                             ("\\.bash*" . conf-unix-mode)
+                                             ("/etc/**/bash*" . conf-unix-mode)
+                                             ("~/\\.*" . conf-unix-mode)
+                                             ))
+
 ;; straight.el setup of standard packages from the standard repos; elpa, melpa, etc
 (mapcar 
   #'straight-use-package
@@ -70,17 +87,9 @@
     sh-script ;; make executable after save if editing a script file
     ))
 
-(add-to-list 'load-path (concat emacs-private-dir "load-files"))
-
-(require 'cl)
-(require 'move-border)
-(require 'tabularize)
-(require 'misc-cmds)
-(require 'text-manips)
-(require 'interaction-log)
-
-(require 'keybindings-init)
 (require 'pkgs-init)
+;;(require 'keybindings-init)
+;;(require 'hydras-init)
 
 ;; TODO: move the package config code to pkgs-init.el and call it from here
 
