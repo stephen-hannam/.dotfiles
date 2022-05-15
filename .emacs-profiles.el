@@ -1,6 +1,6 @@
 (("stemacs" . ((user-emacs-directory . "~/.stemacs.d")
 	           (server-name . "stemacs")
-	           (env . (("STEMACSDIR" . "~/.stemacs.d")))
+	           (env . (("EMACSDIR" . "~/.stemacs.d")))
 	       ))
 
 ;; emacs distribution: DOOM-emacs
