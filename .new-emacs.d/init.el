@@ -53,13 +53,6 @@
           (if (file-directory-p xdgdir) xdgdir))
         "~/.emacs.d/")))
 
-(usr/add-to-list-multiple 'auto-mode-alist '(
-                                             ("\\.*rc$" . conf-unix-mode)
-                                             ("\\.bash*" . conf-unix-mode)
-                                             ("/etc/**/bash*" . conf-unix-mode)
-                                             ("~/\\.*" . conf-unix-mode)
-                                             ))
-
 ;; straight.el setup of standard packages from the standard repos; elpa, melpa, etc
 (mapcar 
   #'straight-use-package
@@ -91,6 +84,13 @@
 (require 'pkgs-init)
 ;;(require 'keybindings-init)
 ;;(require 'hydras-init)
+
+(usr/add-to-list-multiple 'auto-mode-alist '(
+                                             ("\\.*rc$" . conf-unix-mode)
+                                             ("\\.bash*" . conf-unix-mode)
+                                             ("/etc/**/bash*" . conf-unix-mode)
+                                             ("~/\\.*" . conf-unix-mode)
+                                             ))
 
 ;; TODO: move the package config code to pkgs-init.el and call it from here
 
