@@ -179,3 +179,28 @@
 
 (evil-collection-define-key 'normal 'dired-mode-map
   "h" 'dired-hide-dotfiles-mode)
+
+;; TODO: make use of double-tap bindings
+;; NOTE: I think key-chord let's you do the same thing ... 
+;; ... (key-chord-define-global ',,' 'indent-for-comment)   OR
+;; ... (key-chord-define-global 'QQ' "The ")
+;; ^^^ called ONE-key-chord (max 1/3 sec btw presses)
+(setq doubletap-flag nil)
+
+(defun doubletap (doubletap-key1 doubletap-key2 doubletap-wait doubletap-function)
+  (setq doubletap-flag 't)
+   (let ((doubletap-event (read-event nil nil doubletap-wait)))
+     (if doubletap-event
+       (if (equal doubletap-event doubletap-key2)
+         (progn (setq doubletap-flag nil) (funcall doubletap-function))
+       (setq unread-command-events
+             (append (list doubletap-key1 doubletap-event) unread-command-events)) )
+     (setq unread-command-events
+           (append (list doubletap-key1) unread-command-events)) )))
+
+;;(defun doubletap-j-j-godmodeall () (interactive)
+;;       (if doubletap-flag
+;;         (progn (setq doubletap-flag nil) (funcall 'self-insert-command 1))
+;;         (doubletap 106 106 0.3 'god-mode-all)))
+;;
+;;(global-set-key (kbd "j") 'doubletap-j-j-godmodeall)
