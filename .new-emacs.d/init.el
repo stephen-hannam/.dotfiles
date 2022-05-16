@@ -28,6 +28,9 @@
          (display-buffer-reuse-mode-window display-buffer-pop-up-window)
          (mode apropos-mode help-mode helpful-mode Info-mode Man-mode))))
 
+(global-prettify-symbols-mode 1) ;; shows "lambda" as "λ"
+(defalias 'yes-or-no-p 'y-or-n-p)
+(add-hook 'emacs-lisp-mode-hook (lambda() (setq mode-name " ξ ")))
 ;; straight.el - bootstrap straight package manager if need be
 
 (defvar bootstrap-version)
@@ -57,17 +60,38 @@
 (mapcar 
   #'straight-use-package
   '(
-    anzu avy
-    evil evil-anzu
+    anzu
+    avy
+    evil
+    evil-mc
+    evil-numbers
+    evil-nerd-commenter
+    evil-anzu
+    evil-collection
+    evil-surround
     hydra
-    dired-single dired-subtree dired-hide-dotfiles
-    all-the-icons all-the-icons-dired
-    rainbow-mode rainbow-delimiters beacon solaire-mode
-    which-key helpful
-    vertico orderless embark consult marginalia
-    magit libgit
+    dired-single
+    dired-subtree
+    dired-hide-dotfiles
+    all-the-icons
+    all-the-icons-dired
+    rainbow-mode
+    rainbow-delimiters
+    beacon
+    solaire-mode
+    pdf-tools
+    which-key
+    helpful
+    vertico
+    orderless
+    embark
+    consult
+    marginalia
+    magit
+    libgit
     swap-regions
-    sh-script ;; make executable after save if editing a script file
+    ;; make executable after save if editing a script file
+    sh-script
     ))
 
 (add-to-list 'load-path (concat emacs-private-dir "load-files"))
