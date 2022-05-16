@@ -53,16 +53,6 @@
           (if (file-directory-p xdgdir) xdgdir))
         "~/.emacs.d/")))
 
-(add-to-list 'load-path (concat emacs-private-dir "load-files"))
-
-(require 'cl)
-(require 'move-border)
-(require 'tabularize)
-(require 'misc-cmds)
-(require 'user-misc-cmds)
-(require 'text-manips)
-(require 'interaction-log)
-
 (usr/add-to-list-multiple 'auto-mode-alist '(
                                              ("\\.*rc$" . conf-unix-mode)
                                              ("\\.bash*" . conf-unix-mode)
@@ -86,6 +76,17 @@
     swap-regions
     sh-script ;; make executable after save if editing a script file
     ))
+
+(add-to-list 'load-path (concat emacs-private-dir "load-files"))
+(add-to-list 'load-path (concat emacs-private-dir "load-inits"))
+
+(require 'cl)
+(require 'move-border)
+(require 'tabularize)
+(require 'misc-cmds)
+(require 'user-misc-cmds)
+(require 'text-manips)
+(require 'interaction-log)
 
 (require 'pkgs-init)
 ;;(require 'keybindings-init)
