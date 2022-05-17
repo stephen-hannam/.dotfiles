@@ -10,7 +10,7 @@ Cool ideas:
 - map caps_lock to escape if pressed alone, and ctrl if pressed with other keys ... !
 
 Switching from/to:
-- use-package to straight
+- use-package to straight <-- BUT, decided I'll still use use-package with straight for easier package config
 - doom-modeline -> telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
 - ivy/counsel/
 - aggressive-indent -> ? parinfer, evil-surround
