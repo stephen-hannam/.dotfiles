@@ -9,10 +9,15 @@ Existing problems:
 Cool ideas:
 - map caps_lock to escape if pressed alone, and ctrl if pressed with other keys ... !
 
+Config improvements:
+- use of early init
+- set gc thresh back to something smaller at end of init
+- for duration of init load set file-name-handler-alist to nil; TODO: more research on what this does
+
 Switching from/to:
 - use-package to straight <-- BUT, decided I'll still use use-package with straight for easier package config
-- doom-modeline -> telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
-- ivy/counsel/
+- doom-modeline -> ||| spaceline |||, OR (but prob not) telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
+- ivy/counsel/ -> vertico, orderless, etc
 - aggressive-indent -> ? parinfer, evil-surround
 - smart-parens -> ? parinfer, evil-surround, dumbparens :),
 - company -> ? corfu, cape, dabbrev-*
@@ -48,21 +53,31 @@ Definitely retaining:
     -- ? smart-parens ... replace or fix ?
     -- dired with dired-sidebar ?
 
+Better themes:
+- zerodark-theme
+- wilmersdorf-emacs-theme aka doom-wilmersdorf
+    -- supports solaire-mode
+
 Adding (most likely):
+- ? whicher <-- install binaries on which other packages depend ?
+- s? ave-place <-- save place of cursor in file --> can it be done with built-ins?
+- async
 - key-chords: https://github.com/waymondo/use-package-chords
 - vertico + marginalia + embark + consult + orderless
 - perspective -- project "work-spaces"
 - ivy-yasnippet OR skeletons + abbrevmode + conditional hydras
     -- skeletons etc: https://www.gnu.org/software/emacs/manual/html_node/autotype/Wrapping-Skeletons.html
+    -- does ivy-yasnippet have ivy as a prereq?
 - avy
 - sly
 - info+
 - direnv
 - treemacs
-- expand-region
+- expand-region <- quick way of precisely successively, hierarchically marking what is at point
 - ggtags (w uni-ctags)
-- git-gutter
+- ? git-gutter <-- is it provided by spaceline?
 - auto-insert <-- initial file template based on file extension when creating file
+- dashboard
 
 Investigate:
 - which-key-posframe
