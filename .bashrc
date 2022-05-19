@@ -179,6 +179,7 @@ export XILINXD_LICENSE_FILE=2100@exabuild001.cisco.com
 export PIPENV_IGNORE_VIRTUALENVS=1
 
 export PATH=$HOME/.local/bin:$HOME/.opam/default/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 export ADS_HOSTS="2822 5399 8174 7891 5706 893 6886 9066 7148 5856"
 export ADS_HOSTS_192="2822 5399 8174 7891 5706"
@@ -254,6 +255,6 @@ alias sagent="sshagent_init"
 
 sshagent_init
 
-[ -f $HOME/.local/share/rcs/.bash_extras ] && source $HOME/.local/share/rcs/.bash_extras || echo "No local aliases to source for $HOST"
+[ -f $HOME/.local/share/rcs/.bash_extras ] && source $HOME/.local/share/rcs/.bash_extras || echo "No local extras to source for $HOST"
 
 cd ~
