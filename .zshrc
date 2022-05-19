@@ -111,6 +111,7 @@ fi
 
 source $HOME/.zsh_aliases
 
+export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.opam/default/bin:$PATH
 export PATH=$HOME/doom-emacs/bin:$PATH
