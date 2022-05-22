@@ -8,8 +8,37 @@
 ;; -- consult-buffer: nice buffer switching
 
 ;; evil
-(with-eval-after-load 'evil
+(use-package evil
+  :init
   (setq evil-want-keybinding nil)
+  (setq evil-want-integration t)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (setq evil-want-fine-undo t)
+  (setq evil-undo-system 'undo-tree)
+  :config
+  (evil-mode 1)
+  ;; much more vim like search interface when ex-mode / is used
+  (evil-select-search-module 'evil-search-module 'evil-search)
+  (evil-set-initial-state 'message-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal)
+  )
+
+(use-package evil-anzu
+  :after evil
+  )
+
+(use-package evil-collection
+  :after (evil general)
+  :config
+  (evil-collection-init)
+  (unbind-key "C-." 'evil-normal-state-map)
+  )
+
+(with-eval-after-load 'evil
+  (setq evil-want-keybinding nil) ;; what does this do?
   (setq evil-want-integration t)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
@@ -50,5 +79,4 @@
         (evil-maybe-remove-spaces nil))))
   )
 
-(evil-mode t)
 (provide 'pkgs-init)

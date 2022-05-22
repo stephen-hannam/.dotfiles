@@ -88,7 +88,14 @@
                                          "~/.config"))))
               (if (file-directory-p xdgdir) xdgdir))
             "~/.emacs.d/")))
-    
+
+    ;; Install use-package
+    (straight-use-package 'use-package)
+
+    ;; Configure use-package to use straight.el by default
+    (use-package straight
+        :custom (straight-use-package-by-default t))
+
     ;; straight.el setup of standard packages from the standard repos; elpa, melpa, etc
     (mapcar 
       #'straight-use-package
@@ -102,12 +109,15 @@
         evil-anzu
         evil-collection
         evil-surround
+        idle-highlight-in-visible-buffers-mode
         hydra
-        dired-single
-        dired-subtree
-        dired-hide-dotfiles
+        major-mode-hydra ;; pretty-hydra
         all-the-icons
         all-the-icons-dired
+        dired-single
+        dired-subtree
+        dired-sidebar
+        dired-hide-dotfiles
         rainbow-mode
         rainbow-delimiters
         beacon

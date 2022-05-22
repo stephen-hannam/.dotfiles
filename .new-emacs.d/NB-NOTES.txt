@@ -23,6 +23,7 @@ Switching from/to:
 - company -> ? corfu, cape, dabbrev-*
 - ? dired -> treemacs ??
 - general <- switch to everything in hydras!
+- evil persistent highlighting -> idle-highlight-in-visible-buffers-mode
 
 Removing:
 - ivy-rich, ivy-*
@@ -72,7 +73,7 @@ Adding (most likely):
 - sly
 - info+
 - direnv
-- treemacs
+- major-mode-hydra -- pretty-hydra
 - expand-region <- quick way of precisely successively, hierarchically marking what is at point
 - ggtags (w uni-ctags)
 - ? git-gutter <-- is it provided by spaceline?
