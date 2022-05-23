@@ -74,13 +74,15 @@ than having to call `add-to-list' multiple times."
 (setq show-paren-when-point-inside-paren t
       show-paren-delay 0
       show-paren-style 'mixed
-      windmove-wrap-around t
-      tab-width 4)
+      windmove-wrap-around t)
 
-(setq-default indent-tabs-mode t
+(setq-default indent-tabs-mode nil
               tab-always-indent 'complete
-              indent-tabs-mode t
               tab-width 4)
+
+(setq indent-tabs-mode nil
+      tab-always-indent 'complete
+      tab-width 4)
 
 (set-charset-priority 'unicode)
 (setq locale-coding-system 'utf-8)
@@ -113,6 +115,31 @@ than having to call `add-to-list' multiple times."
                 ))
   (add-hook mode (lambda() (display-line-numbers-mode 0)))
   )
+
+(defun my-insert-tab-char ()
+  "insert a tab char. (ASCII 9, \t) -- or n spaces"
+  (interactive)
+  ;; TODO: check a custom var for num spaces to insert, hooks to control that var
+  ;; depending on the mode
+  (insert "    ")
+)
+
+;;(defun my-backspace ()
+;;  "if tab, remove tab, if ws, remove ws"
+;;  (interactive)
+;;)
+
+(global-set-key (kbd "TAB") 'my-insert-tab-char)
+(global-set-key (kbd "<tab>") 'my-insert-tab-char)
+
+(global-set-key (kbd "C-h .") nil)
+(global-set-key (kbd "M-.") nil)
+(global-set-key (kbd "<pause>") nil)
+
+;; Navigate through buffers
+(global-set-key (kbd "M-[") 'previous-buffer)
+(global-set-key (kbd "M-]") 'next-buffer)
+(global-set-key (kbd "<f12>") 'swiper)
 
 ;; enable line high-lighting only for some modes
 (dolist (mode '(
@@ -148,15 +175,6 @@ whichever is found first. Must end in a slash.")
 (setq ilog-print-lambdas t)
 
 (define-key global-map [remap quit-window] 'delete-window-maybe-kill-buffer)
-
-(global-set-key (kbd "C-h .") nil)
-(global-set-key (kbd "M-.") nil)
-(global-set-key (kbd "<pause>") nil)
-
-;; Navigate through buffers
-(global-set-key (kbd "M-[") 'previous-buffer)
-(global-set-key (kbd "M-]") 'next-buffer)
-(global-set-key (kbd "<f12>") 'swiper)
 
 (defun srh/sp-forward-slurp-maybe ()
   (interactive)
@@ -418,12 +436,12 @@ when point is at #+BEGIN_SRC or #+END_SRC."
                    (beginning-of-line)
                    (looking-at ".*#\\+\\(begin\\|end\\)_src"))))))))
 
-(use-package aggressive-indent
-  :defer 1
-  :config
-  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-  (add-hook 'python-mode-hook #'aggressive-indent-mode)
-  )
+;; (use-package aggressive-indent
+;;   :defer 1
+;;   :config
+;;   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+;;   (add-hook 'python-mode-hook #'aggressive-indent-mode)
+;;   )
 
 ;; TODO: key bindings for smartparens - in a hydra or general-leader-key?
 ;; TODO: make smart-parens wrap current word if no space between parens and word - forwards and backwards
@@ -1012,25 +1030,25 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   )
 
 ;; NOTE: company-manual-begin can be used to bring up completions
-(use-package company
-  :hook (
-         (lsp-mode . company-mode)
-         (prog-mode . company-mode)
-         )
-  :bind ((:map company-active-map
-               ("<tab>" . company-complete-common-or-cycle)
-               ("<f12>" . company-filter-candidates)
-               )
-         )
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.1)
-  (company-require-match nil)
-  (company-abort-on-unique-match nil)
-  (company-transformers '(company-sort-by-backend-importance))
-  (company-selection-wrap-around t)
-  )
-(global-company-mode)
+;;(use-package company
+;;  :hook (
+;;         (lsp-mode . company-mode)
+;;         (prog-mode . company-mode)
+;;         )
+;;  :bind ((:map company-active-map
+;;               ("<tab>" . company-complete-common-or-cycle)
+;;               ("<f12>" . company-filter-candidates)
+;;               )
+;;         )
+;;  :custom
+;;  (company-minimum-prefix-length 1)
+;;  (company-idle-delay 0.1)
+;;  (company-require-match nil)
+;;  (company-abort-on-unique-match nil)
+;;  (company-transformers '(company-sort-by-backend-importance))
+;;  (company-selection-wrap-around t)
+;;  )
+;;(global-company-mode)
 
 (use-package markdown-mode
   :defer 1
@@ -1128,14 +1146,14 @@ when point is at #+BEGIN_SRC or #+END_SRC."
   )
 ;; Add yasnippet support for all company backends
 ;; https://github.com/syl20bnr/spacemacs/pull/179
-(defvar company-mode/enable-yas t
-  "Enable yasnippet for all backends.")
-(defun company-mode/backend-with-yas (backend)
-  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-      backend
-    (append (if (consp backend) backend (list backend))
-            '(:with company-yasnippet))))
-(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+;;(defvar company-mode/enable-yas t
+;;  "Enable yasnippet for all backends.")
+;;(defun company-mode/backend-with-yas (backend)
+;;  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+;;      backend
+;;    (append (if (consp backend) backend (list backend))
+;;            '(:with company-yasnippet))))
+;;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
 (defun disable-flycheck-in-org-src-block ()
   (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc)))

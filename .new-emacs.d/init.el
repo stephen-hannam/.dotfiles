@@ -97,7 +97,7 @@
         :custom (straight-use-package-by-default t))
 
     ;; straight.el setup of standard packages from the standard repos; elpa, melpa, etc
-    (mapcar 
+    (mapc
       #'straight-use-package
       '(
         anzu
@@ -109,6 +109,7 @@
         evil-anzu
         evil-collection
         evil-surround
+        highlight-indent-guides
         idle-highlight-in-visible-buffers-mode
         hydra
         major-mode-hydra ;; pretty-hydra
