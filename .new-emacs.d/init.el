@@ -1,4 +1,5 @@
 (let ((file-name-handler-alist nil))
+    (require 'subr-x)
     (defconst emacs-private-dir
       (if-let (emacsdir (getenv-internal "EMACSDIR"))
           (expand-file-name (file-name-as-directory emacsdir))
