@@ -1,5 +1,6 @@
 ;; vterm, `zsh plugins',
 ;; most of this initially coming from: https://config.daviwil.com/emacs
+;; also look in to: http://rawsyntax.com/blog/learn-emacs-zsh-and-multi-term/
 
 (use-package vterm
   :commands vterm
