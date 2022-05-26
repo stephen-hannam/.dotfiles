@@ -17,7 +17,7 @@ Config improvements:
 Switching from/to:
 - use-package to straight <-- BUT, decided I'll still use use-package with straight for easier package config
 - doom-modeline -> ||| spaceline |||, OR (but prob not) telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
-- ivy/counsel/ -> vertico, orderless, etc
+- ivy/swiper/counsel/ -> vertico, orderless, consult, embark, marginalia, etc
 - aggressive-indent -> ? parinfer, evil-surround
 - smart-parens -> ? parinfer, evil-surround, dumbparens :),
 - company -> ? corfu, cape, dabbrev-*
@@ -61,7 +61,7 @@ Better themes:
 
 Adding (most likely):
 - ? whicher <-- install binaries on which other packages depend ?
-- s? ave-place <-- save place of cursor in file --> can it be done with built-ins?
+- ? save-place <-- save place of cursor in file --> can it be done with built-ins?
 - async
 - key-chords: https://github.com/waymondo/use-package-chords
 - vertico + marginalia + embark + consult + orderless
@@ -81,6 +81,7 @@ Adding (most likely):
 - dashboard
 
 Investigate:
+- ace-window
 - which-key-posframe
 - lispy
 - snails

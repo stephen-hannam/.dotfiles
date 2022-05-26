@@ -164,6 +164,24 @@
   (evil-ex-define-cmd "quit" 'evil-quit)
   )
 
+(with-eval-after-load 'evil-collection
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "<kp-0>") 'dired-up-directory)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "o") 'dired-find-file-other-window)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "e") 'dired-create-empty-file)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "G") 'dired-do-chgrp)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "k") '(lambda() (interactive) (dired-do-kill-lines 1)))
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "F") '(lambda() (interactive) (dired-do-find-marked-files)))
+  (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
+    (kbd "<right>") 'image-dired-forward-image)
+  (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
+    (kbd "<left>") 'image-dired-backward-image)
+  )
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "M-S-<up>") nil)
   (define-key org-mode-map (kbd "M-S-<down>") nil)

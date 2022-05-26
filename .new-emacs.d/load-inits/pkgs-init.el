@@ -8,5 +8,7 @@
 ;; -- consult-buffer: nice buffer switching
 
 (require 'evil-init)
+(require 'hydras-init)
+(require 'completions-init)
 
 (provide 'pkgs-init)

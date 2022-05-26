@@ -43,6 +43,9 @@
     ;; Install use-package
     (straight-use-package 'use-package)
 
+    ;; Load the helper package for commands like `straight-x-clean-unused-repos'
+    (require 'straight-x)
+
     ;; Configure use-package to use straight.el by default
     (use-package straight
         :custom (straight-use-package-by-default t))

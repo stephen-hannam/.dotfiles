@@ -53,6 +53,13 @@ Called via the `after-load-functions' special hook."
       (add-to-list 'minor-mode-map-alist mykeys))))
 (add-hook 'after-load-functions 'my-keys-have-priority)
 
+(defun common-init-calls ()
+  (set-face-attribute 'default nil
+                      :font  "Fira Code Retina"
+                      :weight 'normal
+                      :height srh/default-font-size)
+  )
+
 (defun client-frame-init ()
   (common-init-calls)
   (message "emacs client post-frame init complete!")
