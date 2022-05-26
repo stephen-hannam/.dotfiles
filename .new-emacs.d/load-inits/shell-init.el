@@ -1,0 +1,25 @@
+;; vterm, `zsh plugins',
+;; most of this initially coming from: https://config.daviwil.com/emacs
+
+(use-package vterm
+  :commands vterm
+  :config
+  (setq vterm-max-scrollback 10000)
+  )
+
+(use-package esh-autosuggest
+  :hook (eshell-mode . esh-autosuggest-mode)
+  :config
+  (setq esh-autosuggest-delay 0.5)
+  (set-face-foreground 'company-preview-common "#4b5668")
+  (set-face-background 'company-preview nil)
+  )
+
+(use-package eshell-syntax-highlighting
+  :after esh-mode
+  :config
+  (eshell-syntax-highlighting-global-mode +1)
+  )
+
+
+(provide 'shell-init)
