@@ -9,10 +9,6 @@
   cycle_prev = ""
   go_next = ""
   go_prev = ""
-  go_up = ""
-  go_down = ""
-  go_left = ""
-  go_right = ""
   rotate_cw = ""
   rotate_ccw = ""
   split_horiz = <Primary><Shift>e
