@@ -43,7 +43,7 @@
     (straight-use-package 'use-package)
 
     ;; Load the helper package for commands like `straight-x-clean-unused-repos'
-    (require 'straight-x)
+   (require 'straight-x)
 
     ;; Configure use-package to use straight.el by default
     (use-package straight
@@ -68,10 +68,12 @@
         major-mode-hydra ;; pretty-hydra
         all-the-icons
         all-the-icons-dired
+        spaceline-all-the-icons
         dired-single
         dired-subtree
         dired-sidebar
         dired-hide-dotfiles
+        spaceline
         rainbow-mode
         rainbow-delimiters
         beacon
