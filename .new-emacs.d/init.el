@@ -10,7 +10,6 @@
               (if (file-directory-p xdgdir) xdgdir))
             "~/.emacs.d/")))
 
-    (add-to-list 'load-path emacs-private-dir)
     (add-to-list 'load-path (concat emacs-private-dir "el-files"))
     (add-to-list 'load-path (concat emacs-private-dir "load-inits"))
 

@@ -260,4 +260,4 @@ _-_ decrease
   )
 
 
-(provide hydras-init)
+(provide 'hydras-init)

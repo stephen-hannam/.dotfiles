@@ -57,7 +57,7 @@ Called via the `after-load-functions' special hook."
   (set-face-attribute 'default nil
                       :font  "Fira Code Retina"
                       :weight 'normal
-                      :height srh/default-font-size)
+                      :height usr/default-font-size)
   )
 
 (defun client-frame-init ()
@@ -67,7 +67,7 @@ Called via the `after-load-functions' special hook."
 
 (defun standalone-frame-init ()
   (common-init-calls)
-  (load-theme 'doom-tomorrow-night t)
+  ;;(load-theme 'doom-tomorrow-night t)
   (message "emacs standalone post-frame init complete!")
   )
 
