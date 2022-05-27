@@ -12,8 +12,6 @@
   :hook (eshell-mode . esh-autosuggest-mode)
   :config
   (setq esh-autosuggest-delay 0.5)
-  (set-face-foreground 'company-preview-common "#4b5668")
-  (set-face-background 'company-preview nil)
   )
 
 (use-package eshell-syntax-highlighting

@@ -182,6 +182,7 @@
   (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
     (kbd "<left>") 'image-dired-backward-image)
   )
+
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "M-S-<up>") nil)
   (define-key org-mode-map (kbd "M-S-<down>") nil)
