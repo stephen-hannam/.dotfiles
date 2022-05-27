@@ -10,5 +10,6 @@
 (require 'evil-init)
 ;;(require 'hydras-init)
 (require 'completions-init)
+(require 'help-init)
 
 (provide 'pkgs-init)
