@@ -11,5 +11,6 @@
 ;;(require 'hydras-init)
 (require 'completions-init)
 (require 'help-init)
+(require 'skin-init)
 
 (provide 'pkgs-init)
