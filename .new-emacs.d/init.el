@@ -21,9 +21,6 @@
     (require 'text-manips)
     (require 'interaction-log)
     
-    (require 'settings)
-    (require 'hooks)
-
     ;; straight.el - bootstrap straight package manager if need be
     
     (defvar bootstrap-version)
@@ -73,6 +70,9 @@
         dired-subtree
         dired-sidebar
         dired-hide-dotfiles
+        spacegray-theme
+        spacemacs-theme
+        doom-themes
         spaceline
         rainbow-mode
         rainbow-delimiters
@@ -94,6 +94,9 @@
         ))
     
     (require 'pkgs-init)
+    (require 'settings)
+    (require 'hooks)
+
     ;;(require 'keybindings-init)
     ;;(require 'hydras-init)
 

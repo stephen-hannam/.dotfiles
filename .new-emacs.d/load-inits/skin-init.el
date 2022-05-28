@@ -23,19 +23,44 @@
   (spaceline-emacs-theme 'date 'time)
     )
 
+;;(use-package doom-modeline
+;;  :hook (after-init . doom-modeline-mode)
+;;  :custom
+;;  (doom-modeline-height 30)
+;;  (doom-modeline-icon (display-graphic-p))
+;;  )
+
+;;(use-package doom-themes
+;;  :after solaire-mode
+;;  :hook
+;;  (server-after-make-frame . (lambda () (load-theme
+;;					                'doom-tomorrow-night t)))
+;;  )
+
+(use-package spacemacs-theme
+  :defer t
+  :after solaire-mode
+  :hook
+  (server-after-make-frame . (lambda () (load-theme 'spacemacs-dark t)))
+  :init
+  (load-theme 'spacemacs-dark t)
+  )
+
 ;;(use-package spaceline-all-the-icons
 ;;  :after spaceline
 ;;  :config (spaceline-all-the-icons-theme)
 ;;  )
 
-;;(use-package solaire-mode
-;;  :hook
-;;  (after-make-frame-functions .  (lambda () (load-theme 'doom-tomorrow-night t)
-;;                                   (solaire-mode-swap-faces-maybe)))
-;;  (minibuffer-setup . solaire-mode-fix-minibuffer)
-;;  :custom  
-;;  (solaire-global-mode +1)
-;;  )
+(use-package solaire-mode
+  :hook
+  ;;(after-make-frame-functions .  (lambda () (load-theme 'doom-tomorrow-night t)
+  ;;                                 (solaire-mode-swap-faces-maybe)))
+  (after-make-frame-functions .  (lambda () (load-theme 'spacemacs-dark t)
+                                   (solaire-mode-swap-faces-maybe)))
+  (minibuffer-setup . solaire-mode-fix-minibuffer)
+  :custom  
+  (solaire-global-mode +1)
+  )
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode)

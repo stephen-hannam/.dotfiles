@@ -68,6 +68,7 @@ Called via the `after-load-functions' special hook."
 (defun standalone-frame-init ()
   (common-init-calls)
   ;;(load-theme 'doom-tomorrow-night t)
+  (load-theme 'spacemacs-dark t)
   (message "emacs standalone post-frame init complete!")
   )
 
@@ -78,6 +79,5 @@ Called via the `after-load-functions' special hook."
                 (client-frame-init)))
   (standalone-frame-init)
   )
-
 
 (provide 'hooks)
