@@ -39,4 +39,14 @@ than having to call `add-to-list' multiple times."
   (define-key evil-insert-state-map keys action)
 )
 
+(defun usr/stand-in-function (&optional msg ret)
+  (interactive)
+  (when msg (message "%s" msg))
+  (let ((fret))
+    (if ret
+        (setq fret ret)
+      (setq fret t))
+    fret)
+)
+
 (provide 'user-misc-cmds)

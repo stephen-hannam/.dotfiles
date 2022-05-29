@@ -62,7 +62,7 @@
     (define-key key-translation-map (kbd "<f9> 6") (kbd "◆"))
     (define-key key-translation-map (kbd "<f9> I") (kbd "∞"))
     )
-  )
+)
 
 (add-hook 'after-init-hook #'set-extended-char-shortcuts)
 
@@ -100,7 +100,7 @@
   (if (eq (count-windows) 1)
       (evil-ex-call-command nil "quit" nil)
     (delete-window-maybe-kill-buffer))
-  )
+)
 
 (with-eval-after-load 'evil
   (unbind-key "C-." 'evil-normal-state-map)
@@ -152,23 +152,23 @@
   (evil-ex-define-cmd "aq" 'kill-other-buffers)
   ;; Need to type out :quit to close emacs
   (evil-ex-define-cmd "quit" 'evil-quit)
-  )
+)
 
 (with-eval-after-load 'evil-nerd-commenter
   (evil-define-key '(normal visual insert) 'global  (kbd "M-/") 'evilnc-comment-or-uncomment-lines)
-  )
+)
 
 (with-eval-after-load 'evil-numbers
   (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
   (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
   (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
   (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
-  )
+)
 
 (with-eval-after-load 'evil-mc
   (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
   (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
-  )
+)
 
 (with-eval-after-load 'evil-collection
   (evil-collection-define-key 'normal 'dired-mode-map
@@ -187,7 +187,7 @@
     (kbd "<right>") 'image-dired-forward-image)
   (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
     (kbd "<left>") 'image-dired-backward-image)
-  )
+)
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "M-S-<up>") nil)
@@ -207,17 +207,17 @@
   (define-key org-mode-map [C-right] 'org-metaright)
   (define-key org-mode-map [C-left] 'org-metaleft)
   (define-key org-mode-map (kbd "M-\\") 'org-toggle-checkbox)
-  ) 
+) 
 
 (with-eval-after-load 'evil-collection
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-hide-dotfiles-mode)
-  )
+)
 
-(with-eval-after-load 'dired
+(with-eval-after-load 'dired-subtree
   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
-  )
+)
 
 ;; I like treating - and _ as parts of the word in certain cases
 (modify-syntax-entry ?- "w" (standard-syntax-table))
@@ -294,10 +294,7 @@ point reaches the beginning or end of the buffer, stop there."
       (move-beginning-of-line 1))))
 
 ;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line]
-                'smarter-move-beginning-of-line)
+(global-set-key [remap move-beginning-of-line] 'smarter-move-beginning-of-line)
 
 ;; remap home to `smarter-move-beginning-of-line'
-(global-set-key [remap evil-beginning-of-line]
-                'smarter-move-beginning-of-line)
-
+(global-set-key [remap evil-beginning-of-line] 'smarter-move-beginning-of-line)
