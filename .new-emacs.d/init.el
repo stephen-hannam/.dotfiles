@@ -51,7 +51,7 @@
       #'straight-use-package
       '(
         anzu
-        avy
+        avy	
         evil
         evil-mc
         evil-numbers
@@ -81,10 +81,13 @@
         pdf-tools
         which-key
         helpful
+	ace-window
         vertico
         orderless
         embark
+        embark-consult
         consult
+        consult-dir
         marginalia
         magit
         libgit

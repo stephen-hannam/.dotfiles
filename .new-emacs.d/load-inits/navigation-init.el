@@ -2,7 +2,18 @@
 
 (use-package use-package-chords
   :disabled
-  :config (key-chord-mode 1)
-  )
+  :config 
+  (key-chord-mode 1)
+)
+
+(use-package ace-window
+  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+              aw-char-position 'left
+              aw-ignore-current nil
+              aw-leading-char-style 'char
+              aw-scope 'frame)
+  :bind (("M-o" . ace-window)
+         ("M-O" . ace-swap-window))
+)
 
 (provide 'navigation-init)

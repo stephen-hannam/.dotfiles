@@ -2,16 +2,24 @@
 ;; most of this initially coming from: https://config.daviwil.com/emacs
 ;; also look in to: http://rawsyntax.com/blog/learn-emacs-zsh-and-multi-term/
 
+(use-package sudo-edit
+  :defer t)
+
+(use-package sh-script
+  :ensure nil
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p)
+  )
+
 (use-package vterm
   :commands vterm
-  :config
-  (setq vterm-max-scrollback 10000)
+  :custom
+  (vterm-max-scrollback 10000)
   )
 
 (use-package esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode)
-  :config
-  (setq esh-autosuggest-delay 0.5)
+  :custom
+  (esh-autosuggest-delay 0.5)
   )
 
 (use-package eshell-syntax-highlighting
