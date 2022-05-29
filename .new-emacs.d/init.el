@@ -93,12 +93,13 @@
         sh-script
         ))
     
-    (require 'pkgs-init)
     (require 'settings)
-    (require 'hooks)
 
-    ;;(require 'keybindings-init)
+    (require 'pkgs-init)
     ;;(require 'hydras-init)
+    ;;(require 'keybindings-init)
+
+    (require 'hooks)
 
     (setq gc-cons-threshold 800000)
 )

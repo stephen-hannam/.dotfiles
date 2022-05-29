@@ -4,6 +4,8 @@
 
 (define-key global-map [remap quit-window] 'delete-window-maybe-kill-buffer)
 
+;; free up C-u for other purposes
+(global-set-key (kbd "C-M-u") 'universal-argument)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-h q") #'helpful-kill-buffers)
 
@@ -139,12 +141,6 @@
   (setq evil-operator-state-cursor '("red" hollow))
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
-  (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
-  (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
-  (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
-  (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
-  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
-  (evil-define-key '(normal visual) 'global (kbd "!") 'srh/mc-toggle-cursors)
   (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
   (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
   (evil-define-key '(normal) 'global (kbd "r") 'evil-replace-state)
@@ -158,10 +154,26 @@
     (lambda() (interactive) (scroll-other-window-down -1)))
   (evil-define-key '(normal) 'global (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
   ;; :q should kill the current buffer rather than quitting emacs entirely
-  (evil-ex-define-cmd "q" 'srh/delete-window-maybe-kill-buffer-maybe-delete-frame)
+  (evil-ex-define-cmd "q" 'usr/delete-window-maybe-kill-buffer-maybe-delete-frame)
   (evil-ex-define-cmd "aq" 'kill-other-buffers)
   ;; Need to type out :quit to close emacs
   (evil-ex-define-cmd "quit" 'evil-quit)
+  )
+
+(with-eval-after-load 'evil-nerd-commenter
+  (evil-define-key '(normal visual insert) 'global  (kbd "M-/") 'evilnc-comment-or-uncomment-lines)
+  )
+
+(with-eval-after-load 'evil-nerd-commenter
+  (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
+  (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
+  (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
+  (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
+  )
+
+(with-eval-after-load 'evil-mc
+  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
+  (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
   )
 
 (with-eval-after-load 'evil-collection

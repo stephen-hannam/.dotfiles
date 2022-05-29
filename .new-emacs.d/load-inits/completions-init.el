@@ -8,7 +8,7 @@
   (vertico-cycle t)
   :custom-face
   (vertico-current ((t (:background "#3a3f5a"))))
-  :init
+  :config
   (vertico-mode)
   )
 
@@ -16,19 +16,19 @@
   :after vertico
   :custom
   (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  :init
+  :config
   (marginalia-mode)
   )
 
 (use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion)))))
+  :custom
+  (completion-styles '(orderless))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles . (partial-completion)))))
   )
 
 (use-package marginalia
-  :init
+  :config
   (marginalia-mode)
   )
 

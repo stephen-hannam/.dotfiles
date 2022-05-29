@@ -2,7 +2,6 @@
       package-enable-at-startup nil
       native-comp-deferred-compilation nil)
 
-
 (setq-default inhibit-redisplay t
               inhibit-message t)
 (add-hook 'window-setup-hook

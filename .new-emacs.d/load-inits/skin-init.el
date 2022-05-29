@@ -21,7 +21,7 @@
     (format-time-string "%h %d"))
   (spaceline-toggle-time-on)
   (spaceline-emacs-theme 'date 'time)
-    )
+  )
 
 ;;(use-package doom-modeline
 ;;  :hook (after-init . doom-modeline-mode)
@@ -30,12 +30,9 @@
 ;;  (doom-modeline-icon (display-graphic-p))
 ;;  )
 
-;;(use-package doom-themes
-;;  :after solaire-mode
-;;  :hook
-;;  (server-after-make-frame . (lambda () (load-theme
-;;					                'doom-tomorrow-night t)))
-;;  )
+(use-package doom-themes
+  :defer t
+  )
 
 (use-package spacemacs-theme
   :defer t
@@ -68,12 +65,13 @@
 
 (use-package rainbow-mode
   :defer 1
-  :delight
+  :diminish
   :hook ((prog-mode text-mode) . rainbow-mode)
   )
 
 (use-package all-the-icons
-  :defer t)
+  :defer t
+  )
 
 (use-package all-the-icons-dired
   :after all-the-icons

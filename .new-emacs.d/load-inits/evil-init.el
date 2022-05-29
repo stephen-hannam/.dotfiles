@@ -44,7 +44,7 @@
 (use-package evil-nerd-commenter
   :defer t
   :after evil
-  :bind ("M-/" . evilnc-comment-or-uncomment-lines)
+  ;;:bind ("M-/" . evilnc-comment-or-uncomment-lines)
   )
 
 (with-eval-after-load 'evil-mc
@@ -80,6 +80,7 @@
            (evil-operator-state-local-map (copy-keymap orig-keymap)))
       (define-key evil-operator-state-local-map "w" "iw")
       (apply orig-fun args))))
+
 (with-eval-after-load 'evil
   (advice-add 'evil-operator-range :around #'srh/evil-motion-range)
   )

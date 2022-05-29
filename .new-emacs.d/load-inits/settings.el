@@ -2,9 +2,6 @@
 (setq read-process-output-max (* 1024 1024)
       lexical-binding t)
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
 (custom-set-variables
  '(default-frame-alist '((fullscreen . maximized)))) ;; start maximized
 
