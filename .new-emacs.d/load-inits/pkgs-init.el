@@ -6,6 +6,7 @@
 (require 'evil-init)
 ;;(require 'hydras-init)
 (require 'completions-init)
+(require 'navigation-init)
 (require 'help-init)
 (require 'skin-init)
 

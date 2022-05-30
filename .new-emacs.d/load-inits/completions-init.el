@@ -42,6 +42,7 @@
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
    ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-M-e" . embark-export)    ;; for exercises on 15 ways to use embark
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
   :init
