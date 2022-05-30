@@ -24,6 +24,7 @@ Switching from/to:
 - ? dired -> treemacs ??
 - general <- switch to everything in hydras!
 - evil persistent highlighting -> idle-highlight-in-visible-buffers-mode
+- evil & evil-* -> multistate: https://gitlab.com/matsievskiysv/multistate
 
 Removing:
 - ivy-rich, ivy-*
