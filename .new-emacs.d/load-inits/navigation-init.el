@@ -1,4 +1,5 @@
 ;; avy, 'dired-stuff', ggtags, dashboard, ?ace-window?, chords
+;; direx + popwin for sidebar action ? or direx-k
 
 (use-package use-package-chords
   :disabled

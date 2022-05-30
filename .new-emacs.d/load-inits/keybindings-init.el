@@ -103,7 +103,7 @@
 )
 
 (with-eval-after-load 'evil
-  (unbind-key "C-." 'evil-normal-state-map)
+  ;;(unbind-key "C-." 'evil-normal-state-map) -- ? solved in Gnome by Alt-F2 -> ibus-setup
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
   (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
