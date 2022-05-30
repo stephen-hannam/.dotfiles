@@ -6,6 +6,12 @@
   (key-chord-mode 1)
 )
 
+(use-package avy
+  :bind ("M-s" . avy-goto-char)
+)
+
+;; TODO: assess: (define-key isearch-mode-map (kbd "C-'") 'avy-isearch) <<- integrate avy with isearch
+
 (use-package ace-window
   :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
               aw-char-position 'left
