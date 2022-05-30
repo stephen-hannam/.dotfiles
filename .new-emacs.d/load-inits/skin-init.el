@@ -1,5 +1,10 @@
 ;; themes, mode-line, solaire, etc
 
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode 1)
+)
+
 ;; Add some visual flair to the modeline enhancements
 (use-package spaceline
   :config

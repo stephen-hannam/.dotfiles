@@ -70,6 +70,7 @@
         dired-subtree
         dired-sidebar
         dired-hide-dotfiles
+        git-gutter
         spacegray-theme
         spacemacs-theme
         doom-themes
