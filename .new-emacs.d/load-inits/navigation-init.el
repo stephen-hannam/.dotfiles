@@ -6,6 +6,8 @@
   (key-chord-mode 1)
 )
 
+;; TODO: look into winner-mode to manipulate windows configurations on a stack or in a linked-list ... etc
+
 (use-package avy
   :bind ("M-s" . avy-goto-char)
 )
