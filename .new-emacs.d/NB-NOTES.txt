@@ -80,6 +80,8 @@ Adding (most likely):
 - ? git-gutter <-- is it provided by spaceline?
 - auto-insert <-- initial file template based on file extension when creating file
 - dashboard
+- format-all +backends
+- icons-in-terminal
 
 Investigate:
 - ace-window

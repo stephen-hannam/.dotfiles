@@ -82,7 +82,7 @@
         pdf-tools
         which-key
         helpful
-	ace-window
+	    ace-window
         vertico
         orderless
         embark
@@ -93,6 +93,7 @@
         magit
         libgit
         swap-regions
+        format-all
         ;; make executable after save if editing a script file
         sh-script
         ))
