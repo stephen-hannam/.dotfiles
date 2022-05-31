@@ -74,7 +74,7 @@ Adding (most likely):
 - sly
 - info+
 - direnv
-- major-mode-hydra -- pretty-hydra
+- major-mode-hydra -- pretty-hydra <-- requires dash, hydra and s.el
 - expand-region <- quick way of precisely successively, hierarchically marking what is at point
 - ggtags (w uni-ctags)
 - ? git-gutter <-- is it provided by spaceline?

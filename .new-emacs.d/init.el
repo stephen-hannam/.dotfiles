@@ -62,6 +62,8 @@
         highlight-indent-guides
         idle-highlight-in-visible-buffers-mode
         hydra
+        dash ;; prereq for major-mode-hydra
+        s ;; string manip library - prereq for major-mode-hydra
         major-mode-hydra ;; pretty-hydra
         all-the-icons
         all-the-icons-dired
@@ -94,8 +96,7 @@
         libgit
         swap-regions
         format-all
-        ;; make executable after save if editing a script file
-        sh-script
+        sh-script ;; make executable after save if editing a script file
         ))
     
     (require 'settings)

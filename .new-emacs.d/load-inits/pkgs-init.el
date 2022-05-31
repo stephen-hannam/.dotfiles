@@ -1,4 +1,5 @@
 
+(use-package s)
 (use-package diminish
   :ensure nil
   )
