@@ -9,31 +9,30 @@
 (use-package spaceline
   :config
   (require 'spaceline-config)
-  (spaceline-spacemacs-theme)
   (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-global-off)
   (spaceline-toggle-buffer-encoding-off)
   (spaceline-toggle-buffer-encoding-abbrev-off)
-  (setq powerline-default-separator 'rounded)
+  (setq powerline-default-separator 'slant)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (spaceline-define-segment line-column
     "The current line and column numbers."
-    "l:%l c:%2c")
+    "l:%l c:%c")
   (spaceline-define-segment time
     "The current time."
     (format-time-string "%H:%M"))
   (spaceline-define-segment date
     "The current date."
     (format-time-string "%h %d"))
-  ;;(spaceline-toggle-time-on)
   (spaceline-emacs-theme 'date 'time)
 )
 
-;;(use-package doom-modeline
-;;  :hook (after-init . doom-modeline-mode)
-;;  :custom
-;;  (doom-modeline-height 30)
-;;  (doom-modeline-icon (display-graphic-p))
-;;  )
+(use-package all-the-icons)
+
+(use-package spaceline-all-the-icons
+  :after '(spaceline all-the-icons)
+  :config (spaceline-all-the-icons-theme)
+)
 
 (use-package doom-themes
   :defer t
@@ -47,11 +46,6 @@
   :init
   (load-theme 'spacemacs-dark t)
 )
-
-;;(use-package spaceline-all-the-icons
-;;  :after spaceline
-;;  :config (spaceline-all-the-icons-theme)
-;;  )
 
 (use-package solaire-mode
   :hook
@@ -74,12 +68,8 @@
   :hook ((prog-mode text-mode) . rainbow-mode)
 )
 
-(use-package all-the-icons
-  :defer t
-)
-
 (use-package all-the-icons-dired
-  :after all-the-icons
+  :after '(all-the-icons dired)
   :hook
   ((dired-mode . all-the-icons-dired-mode)
    (dired-single-mode . all-the-icons-dired-mode)
