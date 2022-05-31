@@ -84,7 +84,7 @@
         pdf-tools
         which-key
         helpful
-	    ace-window
+	ace-window
         vertico
         orderless
         embark

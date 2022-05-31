@@ -24,9 +24,9 @@
   (spaceline-define-segment date
     "The current date."
     (format-time-string "%h %d"))
-  (spaceline-toggle-time-on)
+  ;;(spaceline-toggle-time-on)
   (spaceline-emacs-theme 'date 'time)
-  )
+)
 
 ;;(use-package doom-modeline
 ;;  :hook (after-init . doom-modeline-mode)
@@ -37,7 +37,7 @@
 
 (use-package doom-themes
   :defer t
-  )
+)
 
 (use-package spacemacs-theme
   :defer t
@@ -46,7 +46,7 @@
   (server-after-make-frame . (lambda () (load-theme 'spacemacs-dark t)))
   :init
   (load-theme 'spacemacs-dark t)
-  )
+)
 
 ;;(use-package spaceline-all-the-icons
 ;;  :after spaceline
@@ -62,21 +62,21 @@
   (minibuffer-setup . solaire-mode-fix-minibuffer)
   :custom  
   (solaire-global-mode +1)
-  )
+)
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode)
-  )
+)
 
 (use-package rainbow-mode
   :defer 1
   :diminish
   :hook ((prog-mode text-mode) . rainbow-mode)
-  )
+)
 
 (use-package all-the-icons
   :defer t
-  )
+)
 
 (use-package all-the-icons-dired
   :after all-the-icons
@@ -85,6 +85,6 @@
    (dired-single-mode . all-the-icons-dired-mode)
    (wdired-change-to-wdired-mode . all-the-icons-dired-mode)
    )
-  )
+)
 
 (provide 'skin-init)
