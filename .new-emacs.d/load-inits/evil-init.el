@@ -19,45 +19,10 @@
 
 (require 'thingatpt)
 
-(defgroup idle-highlight-in-visible-buffers nil
-  "Highlight other occurrences in all visible buffers of the word at point."
-  :group 'faces)
-
-(defface idle-highlight-in-visible-buffers
-  '((t (:inherit highlight)))
-  "Face used to highlight other occurrences of the word at point."
-  :group 'idle-highlight-in-visible-buffers)
-
-(defcustom idle-highlight-in-visible-buffers-exceptions '("def" "end")
-  "List of words to be excepted from highlighting."
-  :group 'idle-highlight-in-visible-buffers
-  :type '(repeat string))
-
-(defcustom idle-highlight-in-visible-buffers-idle-time 0.5
-  "Time after which to highlight the word at point."
-  :group 'idle-highlight-in-visible-buffers
-  :type 'float)
-
-(defvar idle-highlight-in-visible-buffers-regexp nil
-  "Buffer-local regexp to be idle-highlighted.")
-
-(defvar idle-highlight-in-visible-buffers-global-timer nil
-  "Timer to trigger highlighting.")
-
-(defun idle-highlight-in-visible-buffers-buffers-list ()
+(defun visible-buffers-buffers-list ()
   "Given a list of buffers, return buffers which are currently visible."
   (let ((buffers '()))
     (walk-windows (lambda (w) (push (window-buffer w) buffers))) buffers))
-
-(defun idle-highlight-in-visible-buffers-unhighlight-word ()
-  (interactive)
-  "Remove highlighting from all visible buffers."
-  (save-window-excursion
-    (dolist (buffer (idle-highlight-in-visible-buffers-buffers-list))
-      (switch-to-buffer buffer)
-      (when idle-highlight-in-visible-buffers-regexp
-        (unhighlight-regexp idle-highlight-in-visible-buffers-regexp)))
-    (setq idle-highlight-in-visible-buffers-regexp nil)))
 
 ;; (defun idle-highlight-in-visible-buffers-highlight-word-at-point ()
 ;;   (interactive)
@@ -77,14 +42,12 @@
   (interactive)
   (let* ((word (evil-find-word t)))
     (save-window-excursion
-      (dolist (buffer (idle-highlight-in-visible-buffers-buffers-list))
+      (dolist (buffer (visible-buffers-buffers-list))
         (switch-to-buffer buffer)
-        (if (search-forward word)
-	    (progn (evil-ex-search-word-forward)
-		   (evil-ex-search-word-backward))
-	  (when (search-backward word)
-	      ((progn (evil-ex-search-word-forward)
-		   (evil-ex-search-word-backward))))))))
+        (if (search-forward word nil t)
+	    (progn (evil-ex-search-word-forward))
+	  (when (search-backward word nil t)
+	      ((progn (evil-ex-search-word-forward))))))))
 )
 
 (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-visible-buffers-search-highlight-word-at-point)
