@@ -106,12 +106,6 @@
   ;; (global-undo-tree-mode)
   ;; (turn-on-undo-tree-mode)
 
-  (setq evil-emacs-state-cursor '("#81a2be" box))
-  (setq evil-normal-state-cursor '("#81a2be" box))
-  (setq evil-visual-state-cursor '("orange" box))
-  (setq evil-insert-state-cursor '("green" bar))
-  (setq evil-replace-state-cursor '("red" box))
-  (setq evil-operator-state-cursor '("red" hollow))
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
   (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)

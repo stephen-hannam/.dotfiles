@@ -1,22 +1,4 @@
 ;; evil
-(use-package evil
-  :init
-  (setq evil-want-keybinding nil)
-  (setq evil-want-integration t)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  (setq evil-vsplit-window-right t)
-  (setq evil-split-window-below t)
-  (setq evil-want-fine-undo t)
-  ;;(setq evil-undo-system 'undo-tree)
-  :config
-  (evil-mode 1)
-  ;; much more vim like search interface when ex-mode / is used
-  (evil-select-search-module 'evil-search-module 'evil-search)
-  (evil-set-initial-state 'message-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal)
-)
-
 (defun in-visible-buffers-search-highlight-word-at-point ()
   (interactive)
   (let* ((word (evil-find-word t)))
@@ -41,8 +23,33 @@
 	      ((progn (evil-ex-nohighlight))))))))
 )
 
-(evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-visible-buffers-search-highlight-word-at-point)
-(evil-define-key '(normal visual) 'evil-motion-state-map (kbd ", SPC") 'in-visible-buffers-search-unhighlight)
+(use-package evil
+  :init
+  (setq evil-want-keybinding nil)
+  (setq evil-want-integration t)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-i-jump nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (setq evil-want-fine-undo t)
+  ;;(setq evil-undo-system 'undo-tree)
+  :config
+  (evil-mode 1)
+  ;; much more vim like search interface when ex-mode / is used
+  (evil-select-search-module 'evil-search-module 'evil-search)
+  (evil-set-initial-state 'message-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal)
+  (setq evil-emacs-state-cursor '("#81a2be" box))
+  (setq evil-normal-state-cursor '("#81a2be" box))
+  (setq evil-visual-state-cursor '("orange" box))
+  (setq evil-insert-state-cursor '("green" bar))
+  (setq evil-replace-state-cursor '("red" box))
+  (setq evil-operator-state-cursor '("red" hollow))
+
+  (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-visible-buffers-search-highlight-word-at-point)
+  (evil-define-key '(normal visual) 'evil-motion-state-map (kbd ", SPC") 'in-visible-buffers-search-unhighlight)
+)
+
 
 (use-package evil-anzu
   :after evil

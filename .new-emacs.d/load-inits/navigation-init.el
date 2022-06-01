@@ -1,5 +1,7 @@
-;; avy, 'dired-stuff', ggtags, dashboard, ?ace-window?, chords
+;; avy, 'dired-stuff', ggtags, dashboard, ?ace-window?, chords, key-chords
 ;; direx + popwin for sidebar action ? or direx-k
+
+;; TODO: get some key-chords defined
 
 (use-package use-package-chords
   :disabled
