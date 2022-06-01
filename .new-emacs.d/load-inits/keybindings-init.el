@@ -84,15 +84,7 @@
 ;;(define-key map (kbd "C-S-<right>") 'srh/sp-forward-barf-maybe)
 
 (with-eval-after-load 'evil
-  (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
-  (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
-  (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
-  (evil-define-key '(normal) 'global (kbd "r") 'evil-replace-state)
-  (evil-define-key '(normal) 'global (kbd "<left>") 'evil-backward-word-begin)
-  (evil-define-key '(normal) 'global (kbd "<right>") 'evil-forward-word-end)
-  (evil-define-key '(normal) 'global (kbd "S-<up>") 'evil-backward-paragraph)
-  (evil-define-key '(normal) 'global (kbd "S-<down>") 'evil-forward-paragraph)
   (evil-define-key '(normal visual insert) 'global (kbd "C-<up>")
     (lambda() (interactive) (scroll-other-window-down 1)))
   (evil-define-key '(normal visual insert) 'global (kbd "C-<down>")
@@ -120,12 +112,7 @@
   ;;   (lambda() (interactive) (scroll-other-window-down 1)))
   ;; (evil-define-key '(normal visual insert) 'global (kbd "C-<down>")
   ;;   (lambda() (interactive) (scroll-other-window-down -1)))
-  (evil-define-key '(normal) 'global (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
   ;; :q should kill the current buffer rather than quitting emacs entirely
-  (evil-ex-define-cmd "q" 'usr/delete-window-maybe-kill-buffer-maybe-delete-frame)
-  (evil-ex-define-cmd "aq" 'kill-other-buffers)
-  ;; Need to type out :quit to close emacs
-  (evil-ex-define-cmd "quit" 'evil-quit)
 )
 
 (with-eval-after-load 'evil-nerd-commenter
