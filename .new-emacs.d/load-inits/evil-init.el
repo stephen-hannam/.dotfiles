@@ -1,14 +1,20 @@
 ;; evil
 (defun in-visible-buffers-search-highlight-word-at-point ()
   (interactive)
-  (let* ((word (evil-find-word t)))
+  (let* (
+         (word (evil-find-word t))
+         ($op)
+        )
     (save-window-excursion
       (dolist (buffer (usr/visible-buffers-buffers-list))
         (switch-to-buffer buffer)
+        (setq $op (point))
         (if (search-forward word nil t)
-	    (progn (evil-ex-search-word-forward))
+              (evil-ex-search-word-forward)
 	  (when (search-backward word nil t)
-	      ((progn (evil-ex-search-word-forward))))))))
+	    (evil-ex-search-word-forward)))))
+      (goto-char $op) 
+    )
 )
 
 (defun in-visible-buffers-search-unhighlight ()
@@ -18,9 +24,9 @@
       (dolist (buffer (usr/visible-buffers-buffers-list))
         (switch-to-buffer buffer)
         (if (search-forward word nil t)
-	    (progn (evil-ex-nohighlight))
+	    (evil-ex-nohighlight)
 	  (when (search-backward word nil t)
-	      ((progn (evil-ex-nohighlight))))))))
+	      ((evil-ex-nohighlight)))))))
 )
 
 (use-package evil
