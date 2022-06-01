@@ -152,12 +152,11 @@
 )
 
 (use-package evil-nerd-commenter
-  :defer 1
   :after evil
   :config
   (evil-define-key '(normal visual) 'global ";" 'evilnc-comment-or-uncomment-lines)
   ;; TODO: key-chord double-tap for paragraphs
-  ;; (evil-define-key '(normal visual) 'global (kbd ";;") 'evilnc-comment-or-uncomment-paragraphs)
+  (evil-define-key '(normal visual) 'global (kbd "C-;") 'evilnc-comment-or-uncomment-paragraphs)
 )
 
 (with-eval-after-load 'evil-mc

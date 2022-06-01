@@ -2,7 +2,7 @@
 (use-package s)
 (use-package diminish
   :ensure nil
-  )
+)
 
 (require 'evil-init)
 ;;(require 'hydras-init)

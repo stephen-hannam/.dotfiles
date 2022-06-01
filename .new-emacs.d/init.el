@@ -51,7 +51,7 @@
       #'straight-use-package
       '(
         anzu
-        avy	
+        avy
         evil
         evil-mc
         evil-numbers
