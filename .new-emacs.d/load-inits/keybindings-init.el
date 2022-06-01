@@ -83,54 +83,6 @@
 ;;(define-key map (kbd "C-S-<left>") 'srh/sp-backward-barf-maybe)
 ;;(define-key map (kbd "C-S-<right>") 'srh/sp-forward-barf-maybe)
 
-(with-eval-after-load 'evil
-  (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
-  (evil-define-key '(normal visual insert) 'global (kbd "C-<up>")
-    (lambda() (interactive) (scroll-other-window-down 1)))
-  (evil-define-key '(normal visual insert) 'global (kbd "C-<down>")
-    (lambda() (interactive) (scroll-other-window-down -1)))
-  (evil-define-key '(normal) 'global (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
-  ;; :q should kill the current buffer rather than quitting emacs entirely
-  (evil-ex-define-cmd "q" 'usr/delete-window-maybe-kill-buffer-maybe-delete-frame)
-  (evil-ex-define-cmd "aq" 'kill-other-buffers)
-  ;; Need to type out :quit to close emacs
-  (evil-ex-define-cmd "quit" 'evil-quit)
-  ;; (global-undo-tree-mode)
-  ;; (turn-on-undo-tree-mode)
-
-  (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
-  (evil-define-key '(normal visual insert) 'global  (kbd "M-DEL") 'sp-unwrap-sexp)
-  (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
-  (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
-  (evil-define-key '(normal) 'global (kbd "r") 'evil-replace-state)
-  (evil-define-key '(normal) 'global (kbd "<left>") 'evil-backward-word-begin)
-  (evil-define-key '(normal) 'global (kbd "<right>") 'evil-forward-word-end)
-  (evil-define-key '(normal) 'global (kbd "S-<up>") 'evil-backward-paragraph)
-  (evil-define-key '(normal) 'global (kbd "S-<down>") 'evil-forward-paragraph)
-  ;; NOTE: I have never really used scroll other window
-  ;; (evil-define-key '(normal visual insert) 'global (kbd "C-<up>")
-  ;;   (lambda() (interactive) (scroll-other-window-down 1)))
-  ;; (evil-define-key '(normal visual insert) 'global (kbd "C-<down>")
-  ;;   (lambda() (interactive) (scroll-other-window-down -1)))
-  ;; :q should kill the current buffer rather than quitting emacs entirely
-)
-
-(with-eval-after-load 'evil-nerd-commenter
-  (evil-define-key '(normal visual insert) 'global  (kbd "M-/") 'evilnc-comment-or-uncomment-lines)
-)
-
-(with-eval-after-load 'evil-numbers
-  (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
-  (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
-  (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
-  (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
-)
-
-(with-eval-after-load 'evil-mc
-  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
-  (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
-)
-
 (with-eval-after-load 'evil-collection
   (evil-collection-define-key 'normal 'dired-mode-map
     (kbd "<kp-0>") 'dired-up-directory)
@@ -148,6 +100,8 @@
     (kbd "<right>") 'image-dired-forward-image)
   (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
     (kbd "<left>") 'image-dired-backward-image)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-hide-dotfiles-mode)
 )
 
 (with-eval-after-load 'org
@@ -170,11 +124,6 @@
   (define-key org-mode-map (kbd "M-\\") 'org-toggle-checkbox)
 ) 
 
-(with-eval-after-load 'evil-collection
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "h" 'dired-hide-dotfiles-mode)
-)
-
 (with-eval-after-load 'dired-subtree
   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
@@ -192,7 +141,7 @@
 (with-eval-after-load 'org
   (modify-syntax-entry ?- "w" org-mode-syntax-table)
   (modify-syntax-entry ?_ "w" org-mode-syntax-table)
-  )
+)
 (with-eval-after-load 'magit
   (modify-syntax-entry ?- "w" magit-mode-syntax-table)
   (modify-syntax-entry ?_ "w" magit-mode-syntax-table)
@@ -200,11 +149,11 @@
   ;; ↓ kill all magit buffers associated with this repo when quiting from magit status
   (define-key magit-mode-map [remap magit-mode-bury-buffer]
     (lambda() (interactive) (magit-mode-bury-buffer '(16))))
-  )
+)
 (with-eval-after-load 'helpful
   (modify-syntax-entry ?- "w" helpful-mode-syntax-table)
   (modify-syntax-entry ?_ "w" helpful-mode-syntax-table)
-  )
+)
 
 ;; TODO: make use of double-tap bindings
 ;; NOTE: I think key-chord let's you do the same thing ... 

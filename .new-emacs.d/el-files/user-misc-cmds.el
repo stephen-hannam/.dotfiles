@@ -22,6 +22,12 @@ than having to call `add-to-list' multiple times."
     (delete-window-maybe-kill-buffer))
 )
 
+(defun usr/kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer-and-its-windows (delq (current-buffer) (buffer-list)))
+)
+
 (defun map-all-evil-states (keys action)
   "maps key combination to action for all evil modes"
   (define-key evil-normal-state-map keys action)

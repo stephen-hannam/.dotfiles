@@ -34,7 +34,6 @@
   (setq evil-want-fine-undo t)
   ;;(setq evil-undo-system 'undo-tree)
   :config
-  (evil-mode 1)
   ;; much more vim like search interface when ex-mode / is used
   (evil-select-search-module 'evil-search-module 'evil-search)
   (evil-set-initial-state 'message-buffer-mode 'normal)
@@ -45,9 +44,20 @@
   (setq evil-insert-state-cursor '("green" bar))
   (setq evil-replace-state-cursor '("red" box))
   (setq evil-operator-state-cursor '("red" hollow))
+  ;; evil key-bindings I DON'T want
+  (define-key evil-motion-state-map ";" nil) ;; reuse for commenting
 
   (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-visible-buffers-search-highlight-word-at-point)
-  (evil-define-key '(normal visual) 'evil-motion-state-map (kbd ", SPC") 'in-visible-buffers-search-unhighlight)
+
+  (use-package evil-leader
+    :config
+    (global-evil-leader-mode)
+    (evil-leader/set-leader ",")
+    ;; TODO: wrap buffer-menu in something to make it open in the mini-buffer
+    (evil-leader/set-key "b" 'buffer-menu)
+    (evil-leader/set-key "<SPC>" 'in-visible-buffers-search-unhighlight)
+  )
+
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
   (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
@@ -58,11 +68,11 @@
   (evil-define-key '(normal) 'global (kbd "S-<down>") 'evil-forward-paragraph)
   (evil-define-key '(normal) 'global (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
   (evil-ex-define-cmd "q" 'usr/delete-window-maybe-kill-buffer-maybe-delete-frame)
-  (evil-ex-define-cmd "aq" 'kill-other-buffers)
+  (evil-ex-define-cmd "aq" 'usr/kill-other-buffers)
   ;; Need to type out :quit to close emacs
   (evil-ex-define-cmd "quit" 'evil-quit)
+  (evil-mode 1)
 )
-
 
 (use-package evil-anzu
   :after evil
@@ -78,6 +88,55 @@
   :defer 1
   :after evil
   :config
+  (defun usr/mc-toggle-cursors ()
+    (interactive)
+    (if (evil-mc-frozen-p)
+        (evil-mc-resume-cursors)
+      (evil-mc-pause-cursors)))
+  
+  (defun usr/mc-select-matches ()
+    (interactive)
+    (evil-mc-execute-for-all-cursors
+      (lambda (args)
+        (interactive)
+        (when (thing-at-point-looking-at (caar evil-mc-pattern))
+          (if (alist-get :real args)
+              (progn
+                (goto-char (match-beginning 0))
+                (evil-visual-char)
+                (goto-char (- (match-end 0) 1)))
+            (setq region (evil-mc-create-region
+                          (match-beginning 0)
+                          (match-end 0)
+                          'char)))))))
+  
+  (defun usr/toggle-cursor-at-pos ()
+    (interactive)
+    (unless (evil-mc-undo-cursor-at-pos (point))
+      (evil-mc-make-cursor-here)))
+
+  (setq evil-mc-cursor-variables
+        (mapcar
+         (lambda (s)
+           (remove 'register-alist
+                   (remove 'evil-markers-alist
+                           (remove evil-was-yanked-without-register s))))
+         evil-mc-cursor-variables))
+  ;; Redefine this function to fix cursor misalignment issues.
+  ;; e.g. With multiple cursors, visually select one character and change.
+  ;;      With the original `evil-mc-execute-evil-change' the fake cursors would jump one
+  ;;      character to the left, incorrectly.
+  (defun evil-mc-execute-evil-change ()
+    "Execute an `evil-change' comand."
+    (let ((point (point)))
+      (evil-with-state normal
+        (unless (eq point (point-at-bol))
+          (evil-forward-char 1 nil t)) ; Perhaps this behavior depends on `evil-move-cursor-back'?
+        (evil-mc-execute-with-region-or-macro 'evil-change)
+        (evil-maybe-remove-spaces nil))))
+
+  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
+  (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
   (global-evil-mc-mode 1)
 )
 
@@ -85,12 +144,20 @@
 (use-package evil-numbers
   :defer t
   :after evil
+  :config
+  (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
+  (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
+  (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
+  (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
 )
 
 (use-package evil-nerd-commenter
-  :defer t
+  :defer 1
   :after evil
-  :bind ("C-;" . evilnc-comment-or-uncomment-lines)
+  :config
+  (evil-define-key '(normal visual) 'global ";" 'evilnc-comment-or-uncomment-lines)
+  ;; TODO: key-chord double-tap for paragraphs
+  ;; (evil-define-key '(normal visual) 'global (kbd ";;") 'evilnc-comment-or-uncomment-paragraphs)
 )
 
 (with-eval-after-load 'evil-mc

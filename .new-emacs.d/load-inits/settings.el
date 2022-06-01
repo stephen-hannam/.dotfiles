@@ -19,17 +19,6 @@
       create-lockfiles nil
       custom-file null-device)
 
-(set-charset-priority 'unicode)
-(setq locale-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-(set-language-environment "UTF-8")
-
 (setq display-time-24hr-format t)
 (display-time-mode 1)
 
@@ -39,7 +28,6 @@
 (tooltip-mode -1) ; Disable tooltips
 (set-fringe-mode 10) ; Give some breathing room
 
-(load-theme 'tango-dark t)
 (set-face-attribute 'default nil :height 100)
 
 (column-number-mode)
@@ -47,8 +35,6 @@
 (delete-selection-mode t)
 (show-paren-mode t)
 
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
 ;; makes help buffer use the same window every time
 (setq display-buffer-alist
       `((,(rx bos (or "*Apropos*" "*Help*" "*helpful" "*info*" "*Summary*") (0+ not-newline))
@@ -75,18 +61,5 @@
                                              ))
 
 (setq ilog-print-lambdas t)
-
-;; You will most likely need to adjust this font size for your system!
-(defvar usr/default-font-size 90)
-(defvar usr/default-variable-font-size 110)
-
-;;(ignore-errors (set-frame-font "Menlo-12")) ;; mono-spaced font ... ?
-(set-face-attribute 'default nil :font "Fira Code Retina" :height usr/default-font-size)
-
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" :height usr/default-font-size)
-
-;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Cantarell" :height usr/default-variable-font-size :weight 'regular)
 
 (provide 'settings)

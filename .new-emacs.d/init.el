@@ -59,8 +59,8 @@
         evil-anzu
         evil-collection
         evil-surround
+        evil-leader
         highlight-indent-guides
-        idle-highlight-in-visible-buffers-mode
         hydra
         dash ;; prereq for major-mode-hydra
         s ;; string manip library - prereq for major-mode-hydra
@@ -84,7 +84,7 @@
         pdf-tools
         which-key
         helpful
-	ace-window
+        ace-window
         vertico
         orderless
         embark
@@ -100,6 +100,7 @@
         ))
     
     (require 'settings)
+    (require 'user-syntax)
 
     (require 'pkgs-init)
     ;;(require 'hydras-init)
