@@ -29,18 +29,20 @@
 	      ((progn (evil-ex-search-word-forward))))))))
 )
 
+(defun in-visible-buffers-search-unhighlight ()
+  (interactive)
+  (let* ((word (evil-find-word t)))
+    (save-window-excursion
+      (dolist (buffer (usr/visible-buffers-buffers-list))
+        (switch-to-buffer buffer)
+        (if (search-forward word nil t)
+	    (progn (evil-ex-nohighlight))
+	  (when (search-backward word nil t)
+	      ((progn (evil-ex-nohighlight))))))))
+)
+
 (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-visible-buffers-search-highlight-word-at-point)
-
-;; (use-package evil-visualstar
-;;   :defer 1
-;;   :after evil
-;;   :config
-;;   (global-evil-visualstar-mode t)
-;; )
-
-;; (with-eval-after-load 'evil-visualstar
-;;   ;; (evil-define-key '(normal) 'global  (kbd ", SPC") ')
-;; )
+(evil-define-key '(normal visual) 'evil-motion-state-map (kbd ", SPC") 'in-visible-buffers-search-unhighlight)
 
 (use-package evil-anzu
   :after evil
