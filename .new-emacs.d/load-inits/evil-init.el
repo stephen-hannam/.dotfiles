@@ -97,7 +97,7 @@
 ;; yw -> yiw, dw -> diw
 ;; this will only apply to the below specified commands; evil-yank/delete/change
 ;; source : https://stackoverflow.com/questions/37238920/key-mapping-in-evil-mode-emacs
-(defun usr/evil-motion-range (orig-fun &rest args)
+(defun evil-motion-range (orig-fun &rest args)
   (if (not (memq this-command '(evil-yank evil-delete)))
       (apply orig-fun args)
     (let* ((orig-keymap evil-operator-state-local-map)
@@ -106,7 +106,7 @@
       (apply orig-fun args))))
 
 (with-eval-after-load 'evil
-  (advice-add 'evil-operator-range :around #'usr/evil-motion-range)
+  (advice-add 'evil-operator-range :around #'evil-motion-range)
 )
 
 (provide 'evil-init)
