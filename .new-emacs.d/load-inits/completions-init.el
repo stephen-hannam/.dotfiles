@@ -12,29 +12,26 @@
   (vertico-mode)
 )
 
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
 (use-package marginalia
   :after vertico
   :custom
   (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :config
   (marginalia-mode)
+  :bind
+  (("<tab>" . minibuffer-complete))
 )
 
 (use-package orderless
   :custom
-  (completion-styles '(orderless))
+  (completion-styles '(substring partial-completion orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles . (partial-completion)))))
-)
-
-(use-package marginalia
-  :config
-  (marginalia-mode)
-)
-
-(use-package marginalia
-  :config
-  (marginalia-mode)
 )
 
 (eval-when-compile
@@ -62,7 +59,7 @@
 (use-package embark
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-'" . embark-dwim)        ;; good alternative: M-.
    ("C-M-e" . embark-export)    ;; for exercises on 15 ways to use embark
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
@@ -176,7 +173,7 @@
         xref-show-definitions-function #'consult-xref)
 
   ;; Configure other variables and modes in the :config section,
-  ;; after lazily loading the package.
+  ;; after lazily loading the package. 
   :config
 
   ;; Optionally configure preview. The default value
