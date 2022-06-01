@@ -49,4 +49,9 @@ than having to call `add-to-list' multiple times."
     fret)
 )
 
+(defun usr/visible-buffers-buffers-list ()
+  "Given a list of buffers, return buffers which are currently visible."
+  (let ((buffers '()))
+    (walk-windows (lambda (w) (push (window-buffer w) buffers))) buffers))
+
 (provide 'user-misc-cmds)

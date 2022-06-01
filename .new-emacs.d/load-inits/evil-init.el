@@ -17,32 +17,11 @@
   (evil-set-initial-state 'dashboard-mode 'normal)
 )
 
-(require 'thingatpt)
-
-(defun visible-buffers-buffers-list ()
-  "Given a list of buffers, return buffers which are currently visible."
-  (let ((buffers '()))
-    (walk-windows (lambda (w) (push (window-buffer w) buffers))) buffers))
-
-;; (defun idle-highlight-in-visible-buffers-highlight-word-at-point ()
-;;   (interactive)
-;;   "Highlight the word under the point in all visible buffers."
-;;   (let* ((target-symbol (symbol-at-point))
-;;          (target (symbol-name target-symbol)))
-;;     (when (and target-symbol
-;;                (not (member target idle-highlight-in-visible-buffers-exceptions)))
-;;       (idle-highlight-in-visible-buffers-unhighlight-word)
-;;       (save-window-excursion
-;;         (dolist (buffer (idle-highlight-in-visible-buffers-buffers-list))
-;;           (switch-to-buffer buffer)
-;;           (setq idle-highlight-in-visible-buffers-regexp (concat "\\<" (regexp-quote target) "\\>"))
-;;           (highlight-regexp idle-highlight-in-visible-buffers-regexp 'idle-highlight-in-visible-buffers))))))
-
 (defun in-visible-buffers-search-highlight-word-at-point ()
   (interactive)
   (let* ((word (evil-find-word t)))
     (save-window-excursion
-      (dolist (buffer (visible-buffers-buffers-list))
+      (dolist (buffer (usr/visible-buffers-buffers-list))
         (switch-to-buffer buffer)
         (if (search-forward word nil t)
 	    (progn (evil-ex-search-word-forward))
