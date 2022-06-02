@@ -14,16 +14,16 @@
 ;; disable line numbers for some modes
 (dolist (mode '(
                 org-mode-hook
-		        term-mode-hook
+                term-mode-hook
                 help-mode-hook
                 special-mode-hook
                 dired-mode-hook
                 helpful-mode-hook
-		        shell-mode-hook
+                shell-mode-hook
                 vterm-mode-hook
                 treemacs-mode-hook
                 undo-tree-visualizer-mode-hook
-		        eshell-mode-hook
+                eshell-mode-hook
                 org-indent-mode-hook
                 ielm-mode-hook
                 comint-mode-hook
@@ -34,7 +34,7 @@
 ;; enable line high-lighting only for some modes
 (dolist (mode '(
                 prog-mode-hook
-		        text-mode-hook
+                text-mode-hook
                 ))
   (add-hook mode (lambda() (hl-line-mode t)))
 )

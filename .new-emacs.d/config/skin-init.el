@@ -91,5 +91,4 @@
           ("DEPRECATED" font-lock-doc-face bold)))
 )
 
-
 (provide 'skin-init)

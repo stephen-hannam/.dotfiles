@@ -91,9 +91,9 @@
     (kbd "<right>") 'image-dired-forward-image)
   (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
     (kbd "<left>") 'image-dired-backward-image)
-  (evil-collection-define-key 'normal 'dired-mode-map 
+  (evil-collection-define-key 'normal 'dired-mode-map
     (kbd "h") 'dired-hide-dotfiles-mode)
-  (evil-collection-define-key 'normal 'dired-mode-map 
+  (evil-collection-define-key 'normal 'dired-mode-map
     (kbd "/") 'usr/toggle-dired-hide-details)
 )
 
