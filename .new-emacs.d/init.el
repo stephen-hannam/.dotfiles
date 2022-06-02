@@ -60,6 +60,7 @@
         evil-collection
         evil-surround
         evil-leader
+        hl-todo
         highlight-indent-guides
         hydra
         dash ;; prereq for major-mode-hydra

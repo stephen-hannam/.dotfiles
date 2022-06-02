@@ -55,7 +55,7 @@
        (funcall #',split-type)
        (call-interactively #',fn))))
 
-;; NOTE-- embark, embark-consult: starting config from github
+;; NOTE: embark, embark-consult: starting config from github
 (use-package embark
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
