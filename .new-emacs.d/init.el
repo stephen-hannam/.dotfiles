@@ -107,7 +107,7 @@
     (require 'clean)
 
     (require 'pkgs-init)
-    ;;(require 'keybindings-init)
+    (require 'keybindings-init)
 
     (require 'hooks)
 

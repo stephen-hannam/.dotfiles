@@ -13,12 +13,12 @@
   (add-to-list 'recentf-exclude "^/\\(?:ssh\\|su\\|sudo\\)?:")
   ;; Magic advice to rename entries in recentf when moving files in
   ;; dired.
-  (defun rjs/recentf-rename-notify (oldname newname &rest args)
+  (defun usr/recentf-rename-notify (oldname newname &rest args)
     (if (file-directory-p newname)
-        (rjs/recentf-rename-directory oldname newname)
-      (rjs/recentf-rename-file oldname newname)))
+        (usr/recentf-rename-directory oldname newname)
+      (usr/recentf-rename-file oldname newname)))
 
-  (defun rjs/recentf-rename-file (oldname newname)
+  (defun usr/recentf-rename-file (oldname newname)
     (setq recentf-list
           (mapcar (lambda (name)
                     (if (string-equal name oldname)
@@ -27,7 +27,7 @@
                   recentf-list))
     recentf-cleanup)
 
-  (defun rjs/recentf-rename-directory (oldname newname)
+  (defun usr/recentf-rename-directory (oldname newname)
     ;; oldname, newname and all entries of recentf-list should already
     ;; be absolute and normalised so I think this can just test whether
     ;; oldname is a prefix of the element.
@@ -39,7 +39,7 @@
                   recentf-list))
     recentf-cleanup)
 
-  (advice-add 'dired-rename-file :after #'rjs/recentf-rename-notify))
+  (advice-add 'dired-rename-file :after #'usr/recentf-rename-notify))
 
 (use-package no-littering               ; Keep .emacs.d clean
   :config

@@ -66,22 +66,45 @@
 
 (add-hook 'after-init-hook #'set-extended-char-shortcuts)
 
-(define-key map (kbd "M-<up>") #'windmove-up)
-(define-key map (kbd "M-<down>") #'windmove-down)
-(define-key map (kbd "M-<left>") #'windmove-left)
-(define-key map (kbd "M-<right>") #'windmove-right)
-(define-key map (kbd "M-S-<up>") #'move-border-up)
-(define-key map (kbd "M-S-<down>") #'move-border-down)
-(define-key map (kbd "M-S-<left>") #'move-border-left)
-(define-key map (kbd "M-S-<right>") #'move-border-right)
-(define-key map (kbd "C-<escape>") #'abort-recursive-edit)
-(define-key map (kbd "C-s") #'swap-regions)
-(define-key map (kbd "C-q") #'kill-current-buffer)
-(define-key map (kbd "M-q") #'quoted-insert)
-;;(define-key map (kbd "C-<left>") 'srh/sp-backward-slurp-maybe)
-;;(define-key map (kbd "C-<right>") 'srh/sp-forward-slurp-maybe)
-;;(define-key map (kbd "C-S-<left>") 'srh/sp-backward-barf-maybe)
-;;(define-key map (kbd "C-S-<right>") 'srh/sp-forward-barf-maybe)
+(defvar my-keys-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "M-<up>") #'windmove-up)
+    (define-key map (kbd "M-<down>") #'windmove-down)
+    (define-key map (kbd "M-<left>") #'windmove-left)
+    (define-key map (kbd "M-<right>") #'windmove-right)
+    (define-key map (kbd "M-S-<up>") #'move-border-up)
+    (define-key map (kbd "M-S-<down>") #'move-border-down)
+    (define-key map (kbd "M-S-<left>") #'move-border-left)
+    (define-key map (kbd "M-S-<right>") #'move-border-right)
+    (define-key map (kbd "C-<escape>") #'abort-recursive-edit)
+    ;;(define-key map (kbd "C-s") #'swap-regions)
+    (define-key map (kbd "C-q") #'kill-current-buffer)
+    (define-key map (kbd "M-q") #'quoted-insert)
+    ;;(define-key map (kbd "C-<left>") 'srh/sp-backward-slurp-maybe)
+    ;;(define-key map (kbd "C-<right>") 'srh/sp-forward-slurp-maybe)
+    ;;(define-key map (kbd "C-S-<left>") 'srh/sp-backward-barf-maybe)
+    ;;(define-key map (kbd "C-S-<right>") 'srh/sp-forward-barf-maybe)
+    map)
+)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  :init-value t
+  :lighter " my-keys"
+)
+
+(my-keys-minor-mode 1)
+
+(defun my-keys-have-priority (_file)
+  "Try to ensure that my keybindings retain priority over other minor modes.
+Called via the `after-load-functions' special hook."
+  (unless (eq (caar minor-mode-map-alist) 'my-keys-minor-mode)
+    (let ((mykeys (assq 'my-keys-minor-mode minor-mode-map-alist)))
+      (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
+      (add-to-list 'minor-mode-map-alist mykeys)))
+)
+
+(add-hook 'after-load-functions 'my-keys-have-priority)
 
 (with-eval-after-load 'evil-collection
   (evil-collection-define-key 'normal 'dired-mode-map
@@ -123,37 +146,6 @@
   (define-key org-mode-map [C-left] 'org-metaleft)
   (define-key org-mode-map (kbd "M-\\") 'org-toggle-checkbox)
 ) 
-
-(with-eval-after-load 'dired-subtree
-  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
-  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
-)
-
-;; I like treating - and _ as parts of the word in certain cases
-(modify-syntax-entry ?- "w" (standard-syntax-table))
-(modify-syntax-entry ?_ "w" (standard-syntax-table))
-(modify-syntax-entry ?- "w" emacs-lisp-mode-syntax-table)
-(modify-syntax-entry ?_ "w" emacs-lisp-mode-syntax-table)
-(modify-syntax-entry ?- "w" c-mode-syntax-table)
-(modify-syntax-entry ?_ "w" c-mode-syntax-table)
-(modify-syntax-entry ?- "w" help-mode-syntax-table)
-(modify-syntax-entry ?_ "w" help-mode-syntax-table)
-(with-eval-after-load 'org
-  (modify-syntax-entry ?- "w" org-mode-syntax-table)
-  (modify-syntax-entry ?_ "w" org-mode-syntax-table)
-)
-(with-eval-after-load 'magit
-  (modify-syntax-entry ?- "w" magit-mode-syntax-table)
-  (modify-syntax-entry ?_ "w" magit-mode-syntax-table)
-  (define-key magit-mode-map (kbd "K") 'magit-ls-files)
-  ;; ↓ kill all magit buffers associated with this repo when quiting from magit status
-  (define-key magit-mode-map [remap magit-mode-bury-buffer]
-    (lambda() (interactive) (magit-mode-bury-buffer '(16))))
-)
-(with-eval-after-load 'helpful
-  (modify-syntax-entry ?- "w" helpful-mode-syntax-table)
-  (modify-syntax-entry ?_ "w" helpful-mode-syntax-table)
-)
 
 ;; TODO: make use of double-tap bindings
 ;; NOTE: I think key-chord let's you do the same thing ... 
@@ -208,3 +200,5 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; remap home to `smarter-move-beginning-of-line'
 (global-set-key [remap evil-beginning-of-line] 'smarter-move-beginning-of-line)
+
+(provide 'keybindings-init)
