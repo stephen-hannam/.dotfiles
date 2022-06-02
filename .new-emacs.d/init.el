@@ -10,8 +10,8 @@
               (if (file-directory-p xdgdir) xdgdir))
             "~/.emacs.d/")))
 
-    (add-to-list 'load-path (concat emacs-private-dir "el-files"))
-    (add-to-list 'load-path (concat emacs-private-dir "load-inits"))
+    (add-to-list 'load-path (concat emacs-private-dir "lib"))
+    (add-to-list 'load-path (concat emacs-private-dir "config"))
 
     (require 'cl)
     (require 'move-border)
