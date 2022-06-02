@@ -22,6 +22,7 @@
     (require 'user-misc-cmds)
     (require 'text-manips)
     (require 'interaction-log)
+    (require 'swap-regions)
     
     ;; straight.el - bootstrap straight package manager if need be
     

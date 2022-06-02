@@ -27,8 +27,10 @@
      ((string= "init caps" (get this-command 'state))
       (upcase-region p1 p2) (put this-command 'state "all caps"))
      ((string= "all caps" (get this-command 'state))
-      (downcase-region p1 p2) (put this-command 'state "all lower")) )
-    ) )
+      (downcase-region p1 p2) (put this-command 'state "all lower"))
+    )
+  )
+)
 
 ;; from: https://emacs.stackexchange.com/questions/6037/emacs-bind-key-to-prefix
 (defun srh/simulate-key-press (key)

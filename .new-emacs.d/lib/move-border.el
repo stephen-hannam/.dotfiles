@@ -18,7 +18,7 @@
 
 ;;; Code:
 
-(defun xor (b1 b2)
+(defun xnor (b1 b2)
   (or (and b1 b2)
       (and (not b1) (not b2))))
 
@@ -28,7 +28,7 @@
   (interactive)
   (if (null arg) (setq arg 3))
   (let ((left-edge (nth 0 (window-edges))))
-    (if (xor (= left-edge 0) dir)
+    (if (xnor (= left-edge 0) dir)
         (shrink-window arg t)
       (enlarge-window arg t))))
 
@@ -38,7 +38,7 @@
   (interactive)
   (if (null arg) (setq arg 3))
   (let ((top-edge (nth 1 (window-edges))))
-    (if (xor (= top-edge 0) dir)
+    (if (xnor (= top-edge 0) dir)
         (shrink-window arg nil)
       (enlarge-window arg nil))))
 
