@@ -74,6 +74,14 @@
     ;; TODO: wrap buffer-menu in something to make it open in the mini-buffer
     (evil-leader/set-key "b" 'buffer-menu)
     (evil-leader/set-key "<SPC>" 'in-visible-buffers-search-unhighlight)
+    (evil-leader/set-key "=" 'align-to-equals)
+    (evil-leader/set-key "<" 'align-to-non-blocking-assign)
+    (evil-leader/set-key ">" 'align-to-hash)
+    (evil-leader/set-key ":" 'align-to-colon)
+    (evil-leader/set-key "(" 'align-to-open-paren)
+    (evil-leader/set-key "[" 'align-to-open-bracket)
+    (evil-leader/set-key "." 'align-to-period)
+    ;;(evil-leader/set-key "," ') ; TODO: a maybe selector for align-to-comma-before/after
   )
 
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
