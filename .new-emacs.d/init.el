@@ -98,6 +98,7 @@
         swap-regions
         format-all
         sh-script ;; make executable after save if editing a script file
+        no-littering
         ))
     
     (require 'settings)
