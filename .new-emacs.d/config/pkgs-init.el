@@ -4,7 +4,6 @@
   :ensure nil
 )
 
-(require 'misc-init)
 (require 'evil-init)
 ;;(require 'hydras-init)
 (require 'completions-init)

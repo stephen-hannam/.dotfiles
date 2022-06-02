@@ -103,6 +103,7 @@
     
     (require 'settings)
     (require 'user-syntax)
+    (require 'clean)
 
     (require 'pkgs-init)
     ;;(require 'hydras-init)
