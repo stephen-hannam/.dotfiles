@@ -11,6 +11,7 @@
             "~/.emacs.d/")))
 
     (add-to-list 'load-path (concat emacs-private-dir "lib"))
+    (add-to-list 'load-path (concat emacs-private-dir "etc"))
     (add-to-list 'load-path (concat emacs-private-dir "config"))
 
     (require 'cl)
@@ -106,10 +107,11 @@
     (require 'clean)
 
     (require 'pkgs-init)
-    ;;(require 'hydras-init)
     ;;(require 'keybindings-init)
 
     (require 'hooks)
+
+    ;;(require 'hydras)
 
     (setq gc-cons-threshold 800000)
 )
