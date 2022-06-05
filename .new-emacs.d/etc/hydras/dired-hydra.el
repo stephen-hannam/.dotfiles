@@ -60,5 +60,31 @@ Current switches: %s(format dired-listing-switches)
   ("<escape>" (message "") :exit t)
 )
 
+;; TODO: setup machine depedendent hydra-defs
+;; ie: for work-stations, folders with fpga-firmware, exanic-software, etc
+(defhydra hydra-folder-shortcuts (
+                                  :exit t
+                                  :hint nil)
+  "
+^^^^Folders                               ^Files
+^^^^-------------------------------       ^----------------^
+_w_  Work            _p_  Projects        _t_  Tasks-File
+_d_  Documents
+_E_  Emacs
+_P_  Playground
+
+_._  %s(file-name-directory (or buffer-file-name load-file-name (concat \"file-name-directory for \" (format \"%s\" (current-buffer)) \" not found/unknown\")))
+"
+  ("w" (evil-window-vsplit nil "/data/shannam/Work"))
+  ("E" (evil-window-vsplit nil  stemacs-private-dir))
+  ("d" (evil-window-vsplit nil  "~/Documents"))
+  ("p" (evil-window-vsplit nil  "~/Projects"))
+  ("P" (evil-window-vsplit nil  "~/Playground"))
+  ("t" (find-file-other-window srh/tasksfile))
+  ("." (evil-window-vsplit nil "."))
+  ("q" (message ""))
+  ("<escape>" (message ""))
+  ("RET" (message "") :color pink)
+)
 
 (provide 'dired-hydra)
