@@ -201,4 +201,4 @@ point reaches the beginning or end of the buffer, stop there."
 ;; remap home to `smarter-move-beginning-of-line'
 (global-set-key [remap evil-beginning-of-line] 'smarter-move-beginning-of-line)
 
-(provide 'keybindings-init)
+(provide 'keybindings)

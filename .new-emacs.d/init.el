@@ -108,9 +108,9 @@
     (require 'user-syntax)
     (require 'clean)
 
+    (require 'keybindings)
     ;;(require 'hydras)
     (require 'pkgs-init)
-    (require 'keybindings-init)
 
     (require 'hooks)
 
