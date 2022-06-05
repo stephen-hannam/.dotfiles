@@ -1,5 +1,5 @@
 ;; evil
-(defun in-visible-buffers-search-highlight-word-at-point ()
+(defun in-all-visible-buffers-search-highlight-word-at-point ()
   (interactive)
   (let* (
          (word (evil-find-word t))
@@ -17,7 +17,7 @@
     )
 )
 
-(defun in-visible-buffers-search-unhighlight ()
+(defun in-all-visible-buffers-search-unhighlight ()
   (interactive)
   (let* ((word (evil-find-word t)))
     (save-window-excursion
@@ -65,7 +65,7 @@
   ;; evil key-bindings I DON'T want
   (define-key evil-motion-state-map ";" nil) ;; reuse for commenting
 
-  (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-visible-buffers-search-highlight-word-at-point)
+  (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
 
   (use-package evil-leader
     :config
@@ -73,7 +73,7 @@
     (evil-leader/set-leader ",")
     ;; TODO: wrap buffer-menu in something to make it open in the mini-buffer
     (evil-leader/set-key "b" 'buffer-menu)
-    (evil-leader/set-key "<SPC>" 'in-visible-buffers-search-unhighlight)
+    (evil-leader/set-key "<SPC>" 'in-all-visible-buffers-search-unhighlight)
     (evil-leader/set-key "=" 'align-to-equals)
     (evil-leader/set-key "<" 'align-to-non-blocking-assign)
     (evil-leader/set-key ">" 'align-to-hash)
@@ -81,7 +81,7 @@
     (evil-leader/set-key "(" 'align-to-open-paren)
     (evil-leader/set-key "[" 'align-to-open-bracket)
     (evil-leader/set-key "." 'align-to-period)
-    ;;(evil-leader/set-key "," ') ; TODO: a maybe selector for align-to-comma-before/after
+    ;;(evil-leader/set-key "," 'hydra-align-comma-before-or-after/body)
   )
 
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
@@ -116,33 +116,6 @@
   :defer 1
   :after evil
   :config
-  (defun usr/mc-toggle-cursors ()
-    (interactive)
-    (if (evil-mc-frozen-p)
-        (evil-mc-resume-cursors)
-      (evil-mc-pause-cursors)))
-  
-  (defun usr/mc-select-matches ()
-    (interactive)
-    (evil-mc-execute-for-all-cursors
-      (lambda (args)
-        (interactive)
-        (when (thing-at-point-looking-at (caar evil-mc-pattern))
-          (if (alist-get :real args)
-              (progn
-                (goto-char (match-beginning 0))
-                (evil-visual-char)
-                (goto-char (- (match-end 0) 1)))
-            (setq region (evil-mc-create-region
-                          (match-beginning 0)
-                          (match-end 0)
-                          'char)))))))
-  
-  (defun usr/toggle-cursor-at-pos ()
-    (interactive)
-    (unless (evil-mc-undo-cursor-at-pos (point))
-      (evil-mc-make-cursor-here)))
-
   (setq evil-mc-cursor-variables
         (mapcar
          (lambda (s)
@@ -162,10 +135,6 @@
           (evil-forward-char 1 nil t)) ; Perhaps this behavior depends on `evil-move-cursor-back'?
         (evil-mc-execute-with-region-or-macro 'evil-change)
         (evil-maybe-remove-spaces nil))))
-
-  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
-  (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
-  (global-evil-mc-mode 1)
 )
 
 ;; for incr/decr numbers in various patterns; dec, oct, hex, bin

@@ -33,7 +33,7 @@
 )
 
 ;; from: https://emacs.stackexchange.com/questions/6037/emacs-bind-key-to-prefix
-(defun srh/simulate-key-press (key)
+(defun usr/simulate-key-press (key)
   "Pretend that KEY was pressed.
 KEY must be given in `kbd' notation."
   `(lambda () (interactive)

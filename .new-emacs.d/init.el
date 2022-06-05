@@ -108,12 +108,11 @@
     (require 'user-syntax)
     (require 'clean)
 
+    ;;(require 'hydras)
     (require 'pkgs-init)
     (require 'keybindings-init)
 
     (require 'hooks)
-
-    ;;(require 'hydras)
 
     (setq gc-cons-threshold 800000)
 )
