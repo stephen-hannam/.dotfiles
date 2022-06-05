@@ -10,6 +10,7 @@
 (prefer-coding-system 'utf-8)
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 (set-language-environment "UTF-8")
+
 ;; You will most likely need to adjust this font size for your system!
 (defvar usr/default-font-size 90)
 (defvar usr/default-variable-font-size 110)

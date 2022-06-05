@@ -13,6 +13,7 @@
     (add-to-list 'load-path (concat emacs-private-dir "lib"))
     (add-to-list 'load-path (concat emacs-private-dir "etc"))
     (add-to-list 'load-path (concat emacs-private-dir "etc/themes"))
+    (add-to-list 'load-path (concat emacs-private-dir "etc/hydras"))
     (add-to-list 'load-path (concat emacs-private-dir "config"))
 
     (require 'cl)
