@@ -63,7 +63,6 @@
         evil-anzu
         evil-collection
         evil-surround
-        evil-leader
         hl-todo
         highlight-indent-guides
         hydra

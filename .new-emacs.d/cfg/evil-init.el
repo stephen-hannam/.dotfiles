@@ -55,23 +55,6 @@
 
   (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
 
-  ;;(use-package evil-leader
-  ;;  :config
-  ;;  (global-evil-leader-mode)
-  ;;  (evil-leader/set-leader ",")
-  ;;  ;; TODO: wrap buffer-menu in something to make it open in the mini-buffer
-  ;;  (evil-leader/set-key "b" 'buffer-menu)
-  ;;  ;;(evil-leader/set-key "<SPC>" 'in-all-visible-buffers-search-unhighlight)
-  ;;  (evil-leader/set-key "=" 'align-to-equals)
-  ;;  (evil-leader/set-key "<" 'align-to-non-blocking-assign)
-  ;;  (evil-leader/set-key ">" 'align-to-hash)
-  ;;  (evil-leader/set-key ":" 'align-to-colon)
-  ;;  (evil-leader/set-key "(" 'align-to-open-paren)
-  ;;  (evil-leader/set-key "[" 'align-to-open-bracket)
-  ;;  (evil-leader/set-key "." 'align-to-period)
-  ;;  ;;(evil-leader/set-key "," 'hydra-align-comma-before-or-after/body)
-  ;;)
-
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
   (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
@@ -132,6 +115,7 @@
 
   (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
   (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
+
   (global-evil-mc-mode 1)
 )
 
