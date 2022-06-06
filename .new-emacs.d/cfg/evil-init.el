@@ -17,18 +17,6 @@
     )
 )
 
-(defun in-all-visible-buffers-search-unhighlight ()
-  (interactive)
-  (let* ((word (evil-find-word t)))
-    (save-window-excursion
-      (dolist (buffer (usr/visible-buffers-buffers-list))
-        (switch-to-buffer buffer)
-        (if (search-forward word nil t)
-	    (evil-ex-nohighlight)
-	  (when (search-backward word nil t)
-	      ((evil-ex-nohighlight)))))))
-)
-
 ;; makes certain Vim like operator-state sequences operate on entire word
 ;; yw -> yiw, dw -> diw
 ;; this will only apply to the below specified commands; evil-yank/delete/change
@@ -67,22 +55,22 @@
 
   (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
 
-  (use-package evil-leader
-    :config
-    (global-evil-leader-mode)
-    (evil-leader/set-leader ",")
-    ;; TODO: wrap buffer-menu in something to make it open in the mini-buffer
-    (evil-leader/set-key "b" 'buffer-menu)
-    (evil-leader/set-key "<SPC>" 'in-all-visible-buffers-search-unhighlight)
-    (evil-leader/set-key "=" 'align-to-equals)
-    (evil-leader/set-key "<" 'align-to-non-blocking-assign)
-    (evil-leader/set-key ">" 'align-to-hash)
-    (evil-leader/set-key ":" 'align-to-colon)
-    (evil-leader/set-key "(" 'align-to-open-paren)
-    (evil-leader/set-key "[" 'align-to-open-bracket)
-    (evil-leader/set-key "." 'align-to-period)
-    ;;(evil-leader/set-key "," 'hydra-align-comma-before-or-after/body)
-  )
+  ;;(use-package evil-leader
+  ;;  :config
+  ;;  (global-evil-leader-mode)
+  ;;  (evil-leader/set-leader ",")
+  ;;  ;; TODO: wrap buffer-menu in something to make it open in the mini-buffer
+  ;;  (evil-leader/set-key "b" 'buffer-menu)
+  ;;  ;;(evil-leader/set-key "<SPC>" 'in-all-visible-buffers-search-unhighlight)
+  ;;  (evil-leader/set-key "=" 'align-to-equals)
+  ;;  (evil-leader/set-key "<" 'align-to-non-blocking-assign)
+  ;;  (evil-leader/set-key ">" 'align-to-hash)
+  ;;  (evil-leader/set-key ":" 'align-to-colon)
+  ;;  (evil-leader/set-key "(" 'align-to-open-paren)
+  ;;  (evil-leader/set-key "[" 'align-to-open-bracket)
+  ;;  (evil-leader/set-key "." 'align-to-period)
+  ;;  ;;(evil-leader/set-key "," 'hydra-align-comma-before-or-after/body)
+  ;;)
 
   (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
   (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
@@ -135,6 +123,16 @@
           (evil-forward-char 1 nil t)) ; Perhaps this behavior depends on `evil-move-cursor-back'?
         (evil-mc-execute-with-region-or-macro 'evil-change)
         (evil-maybe-remove-spaces nil))))
+  (defun usr/mc-toggle-cursors ()
+    (interactive)
+    (if (evil-mc-frozen-p)
+        (evil-mc-resume-cursors)
+      (evil-mc-pause-cursors))
+  )
+
+  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
+  (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
+  (global-evil-mc-mode 1)
 )
 
 ;; for incr/decr numbers in various patterns; dec, oct, hex, bin

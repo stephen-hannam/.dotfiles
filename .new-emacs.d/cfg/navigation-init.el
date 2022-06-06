@@ -19,12 +19,6 @@
          ("M-O" . ace-swap-window))
 )
 
-(defun usr/toggle-dired-hide-details ()
-  (interactive)
-  (if (derived-mode-p 'dired-mode)
-      (dired-hide-details-mode 'toggle)
-    (message "not in dired-mode")))
-
 (use-package dired
   :straight (:type built-in)
   :defer t
@@ -34,6 +28,8 @@
   :bind
   (:map dired-mode-map
    ([f5] . revert-buffer)
+   ("/" . dired-hide-details-mode)
+   ("h" . dired-hide-dotfiles-mode)
    )
   ([remap dired-mouse-find-file] . mouse-set-point)
   ([remap dired-mouse-find-file-other-frame] . mouse-set-point)
@@ -94,7 +90,7 @@
   (evil-collection-define-key 'normal 'dired-mode-map
     (kbd "h") 'dired-hide-dotfiles-mode)
   (evil-collection-define-key 'normal 'dired-mode-map
-    (kbd "/") 'usr/toggle-dired-hide-details)
+    (kbd "/") 'dired-hide-details-mode)
 )
 
 (provide 'navigation-init)

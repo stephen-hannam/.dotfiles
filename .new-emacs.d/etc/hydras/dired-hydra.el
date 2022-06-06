@@ -11,7 +11,7 @@ _!_: shell cmd           _&_: async cmd         _m_: mark               _k_: hid
 _D_: Delete              _G_: CHGRP             _u_: unmark             _w_: copy then hide          _<f5>_: [or g-r] revert buffer
 _R_: Move                _O_: CHOWN             _c_: compress           _=_: diff                    _t_: invert marks
 _K_: Hide Lines          _M_: CHMOD             _+_: MKDIR              _e_: new file                _h_: show/hide dotfiles
-_F_: Open All            _Z_: TAR               _o_: open to other window [or S-RET] ^^              _(_: [or ,/] hide details
+_F_: Open All            _Z_: TAR               _o_: open to other window [or S-RET] ^^              _/_: hide details
 _L_: Load into Emacs     _T_: TOUCH                           
 _C_: Copy                _H_: LN (hard)
 ^^                       _S_: LN (soft)          ^^ ^^                                             | _%_ regex : copy, rename, etc
@@ -38,7 +38,7 @@ Current switches: %s(format dired-listing-switches)
   ("m" #'dired-mark)
   ("h" #'dired-hide-dotfiles-mode)
   ("t" #'dired-toggle-marks)
-  ("(" #'dired-hide-details-mode)
+  ("/" #'dired-hide-details-mode)
   ("o" #'dired-find-file-other-window)
   ("w" #'dired-copy-filename-as-kill)
   ("x" #'dired-do-flagged-delete)

@@ -61,7 +61,7 @@
     (define-key key-translation-map (kbd "<f9> 8") (kbd "★"))
     (define-key key-translation-map (kbd "<f9> 6") (kbd "◆"))
     (define-key key-translation-map (kbd "<f9> I") (kbd "∞"))
-    )
+  )
 )
 
 (add-hook 'after-init-hook #'set-extended-char-shortcuts)

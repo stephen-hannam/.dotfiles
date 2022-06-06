@@ -1,12 +1,5 @@
 ;; inspired by: https://hungyi.net/posts/hydra-for-evil-mc/
 
-(defun usr/mc-toggle-cursors ()
-  (interactive)
-  (if (evil-mc-frozen-p)
-      (evil-mc-resume-cursors)
-    (evil-mc-pause-cursors))
-)
-
 (defun usr/mc-select-matches ()
   (interactive)
   (evil-mc-execute-for-all-cursors
@@ -55,9 +48,5 @@ Current pattern: %s(replace-regexp-in-string \"%\" \"%%\" (or (caar evil-mc-patt
   ("q" (message "") :color blue)
   ("<escape>" (message "") :color blue)
 )
-
-(evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
-(evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
-(global-evil-mc-mode 1)
 
 (provide 'mc-hydra)

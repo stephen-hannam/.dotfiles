@@ -14,7 +14,7 @@
     (add-to-list 'load-path (concat emacs-private-dir "etc"))
     (add-to-list 'load-path (concat emacs-private-dir "etc/themes"))
     (add-to-list 'load-path (concat emacs-private-dir "etc/hydras"))
-    (add-to-list 'load-path (concat emacs-private-dir "config"))
+    (add-to-list 'load-path (concat emacs-private-dir "cfg"))
 
     (require 'cl)
     (require 'move-border)
@@ -103,14 +103,15 @@
         format-all
         sh-script ;; make executable after save if editing a script file
         no-littering
+        general
         ))
     
     (require 'settings)
     (require 'user-syntax)
     (require 'clean)
 
+    (require 'hydras)
     (require 'keybindings)
-    ;;(require 'hydras)
     (require 'pkgs-init)
 
     (require 'hooks)

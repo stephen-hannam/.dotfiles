@@ -5,7 +5,7 @@
 )
 
 (require 'evil-init)
-;;(require 'hydras-init)
+(require 'general-init)
 (require 'completions-init)
 (require 'navigation-init)
 (require 'help-init)
