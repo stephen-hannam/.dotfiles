@@ -21,10 +21,6 @@ Switching from/to:
 - aggressive-indent -> ? parinfer, evil-surround
 - smart-parens -> ? parinfer, evil-surround, dumbparens :),
 - company -> ? corfu, cape, dabbrev-*
-- ? dired -> treemacs ??
-- general <- switch to everything in hydras!
-- evil persistent highlighting -> idle-highlight-in-visible-buffers-mode
-- ??? evil & evil-* -> multistate: https://gitlab.com/matsievskiysv/multistate ???
 
 Removing:
 - ivy-rich, ivy-*
@@ -64,7 +60,6 @@ Adding (most likely):
 - ? whicher <-- install binaries on which other packages depend ?
 - ? save-place <-- save place of cursor in file --> can it be done with built-ins?
 - async
-- key-chords: https://github.com/waymondo/use-package-chords
 - vertico + marginalia + embark + consult + orderless
 - perspective -- project "work-spaces"
 - ivy-yasnippet OR skeletons + abbrevmode + conditional hydras
@@ -97,10 +92,6 @@ Redo:
 - key-bindings that go unused -> free or redo
 - LEADER KEYS - refactor into new categories, new category -> "navigation, windows and such"
     -- 3 leaders: windows & navigation, projects & coding, text manipulation
-
-Consider obseleting:
-- general ... can I just use hydra?
-- dired ... in favor of treemacs ?
 
 My own vimrc customizations:
 - tabularize -- almost there, still an annoying extra whitespace issue
