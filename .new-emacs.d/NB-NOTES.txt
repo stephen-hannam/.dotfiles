@@ -28,6 +28,9 @@ Multiple Cursors ***
         - probably mc mode keymap is best
 -- see end of page for a paste-dump from evil-multiedit coexisting with evil-mc
 
+Better Surround !!
+-- have a surround sequence that begins by highlighting first expansion level (word/symbol), then allows for incremental expansion of that selected region, and then ends with user selecting from a displayed set of options which text-pair to surround the selected region with.
+
 Better themes:
 - zerodark-theme
 - wilmersdorf-emacs-theme aka doom-wilmersdorf
