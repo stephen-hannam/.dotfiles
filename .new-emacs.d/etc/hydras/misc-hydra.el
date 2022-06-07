@@ -2,6 +2,8 @@
                                              :exit t
                                              :hint nil)
   "
+  _<left>_ align to comma before
+  _<right>_ align to comma after
   "
   ("<left>"  (align-to-comma-before))
   ("<right>"  (align-to-comma-after))
