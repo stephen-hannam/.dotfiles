@@ -60,4 +60,46 @@ than having to call `add-to-list' multiple times."
   (let ((buffers '()))
     (walk-windows (lambda (w) (push (window-buffer w) buffers))) buffers))
 
+(defun usr/in-all-visible-buffers-search-unhighlight ()
+  (interactive)
+  (let* ((word (evil-find-word t)))
+    (save-window-excursion
+      (dolist (buffer (usr/visible-buffers-buffers-list))
+        (switch-to-buffer buffer)
+        (if (search-forward word nil t)
+	    (evil-ex-nohighlight)
+	  (when (search-backward word nil t)
+	      ((evil-ex-nohighlight)))))))
+)
+
+(defun usr/mc-toggle-cursors ()
+  (interactive)
+  (if (evil-mc-frozen-p)
+      (evil-mc-resume-cursors)
+    (evil-mc-pause-cursors))
+)
+
+(defun usr/mc-select-matches ()
+  (interactive)
+  (evil-mc-execute-for-all-cursors
+   (lambda (args)
+     (interactive)
+     (when (thing-at-point-looking-at (caar evil-mc-pattern))
+       (if (alist-get :real args)
+           (progn
+             (goto-char (match-beginning 0))
+             (evil-visual-char)
+             (goto-char (- (match-end 0) 1)))
+         (setq region (evil-mc-create-region
+                       (match-beginning 0)
+                       (match-end 0)
+                       'char))))))
+)
+
+(defun usr/mc-toggle-cursor-at-pos ()
+  (interactive)
+  (unless (evil-mc-undo-cursor-at-pos (point))
+    (evil-mc-make-cursor-here))
+)
+
 (provide 'user-misc-cmds)

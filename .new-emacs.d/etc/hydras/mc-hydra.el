@@ -1,28 +1,4 @@
 ;; inspired by: https://hungyi.net/posts/hydra-for-evil-mc/
-
-(defun usr/mc-select-matches ()
-  (interactive)
-  (evil-mc-execute-for-all-cursors
-   (lambda (args)
-     (interactive)
-     (when (thing-at-point-looking-at (caar evil-mc-pattern))
-       (if (alist-get :real args)
-           (progn
-             (goto-char (match-beginning 0))
-             (evil-visual-char)
-             (goto-char (- (match-end 0) 1)))
-         (setq region (evil-mc-create-region
-                       (match-beginning 0)
-                       (match-end 0)
-                       'char))))))
-)
-
-(defun usr/mc-toggle-cursor-at-pos ()
-  (interactive)
-  (unless (evil-mc-undo-cursor-at-pos (point))
-    (evil-mc-make-cursor-here))
-)
-
 (defvar tgl-all-mc-msg "Does nothing until you leave the mini-buffer")
 
 (defhydra hydra-evil-mc (

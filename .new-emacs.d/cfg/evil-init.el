@@ -38,7 +38,7 @@
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
   (setq evil-want-fine-undo t)
-  ;;(setq evil-undo-system 'undo-tree)
+  (setq evil-undo-system 'undo-tree)
   :config
   ;; much more vim like search interface when ex-mode / is used
   (evil-select-search-module 'evil-search-module 'evil-search)
@@ -55,15 +55,18 @@
 
   (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
 
-  (evil-define-key '(normal) 'global  (kbd "M-.") #'helpful-at-point)
-  (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit)
-  (evil-define-key '(insert) 'global (kbd "C-g") 'evil-normal-state)
-  (evil-define-key '(normal) 'global (kbd "r") 'evil-replace-state)
-  (evil-define-key '(normal) 'global (kbd "<left>") 'evil-backward-word-begin)
-  (evil-define-key '(normal) 'global (kbd "<right>") 'evil-forward-word-end)
-  (evil-define-key '(normal) 'global (kbd "S-<up>") 'evil-backward-paragraph)
-  (evil-define-key '(normal) 'global (kbd "S-<down>") 'evil-forward-paragraph)
-  (evil-define-key '(normal) 'global (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
+  (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit) ;; TODO: what is recursive-edit?
+
+  (evil-define-key '(normal) 'global 
+    (kbd "M-.") #'helpful-at-point
+    (kbd "C-g") 'evil-normal-state
+    (kbd "r") 'evil-replace-state
+    (kbd "<left>") 'evil-backward-word-begin
+    (kbd "<right>") 'evil-forward-word-end
+    (kbd "S-<up>") 'evil-backward-paragraph
+    (kbd "S-<down>") 'evil-forward-paragraph
+    (kbd "RET") (lambda() (interactive) (evil-insert-newline-below)))
+
   (evil-ex-define-cmd "q" 'usr/delete-window-maybe-kill-buffer-maybe-delete-frame)
   (evil-ex-define-cmd "aq" 'usr/kill-other-buffers)
   ;; Need to type out :quit to close emacs
@@ -71,15 +74,38 @@
 
   (advice-add 'evil-operator-range :around #'usr/evil-motion-range)
   (evil-mode 1)
+  (global-undo-tree-mode)
+  (turn-on-undo-tree-mode)
+  (add-hook 'evil-local-mode-hook 'turn-on-undo-tree-mode)
 )
 
 (use-package evil-anzu
   :after evil
 )
 
+(use-package evil-surround
+  :config
+  (global-evil-surround-mode 1)
+)
+
 (use-package evil-collection
   :after evil
   :config
+  ;; dired related over-rides of existing key-bindings
+  (evil-collection-define-key 'normal 'dired-mode-map
+    (kbd "<kp-0>") 'dired-up-directory
+    (kbd "o") 'dired-find-file-other-window
+    (kbd "e") 'dired-create-empty-file
+    (kbd "G") 'dired-do-chgrp
+    (kbd "k") '(lambda() (interactive) (dired-do-kill-lines 1))
+    (kbd "F") '(lambda() (interactive) (dired-do-find-marked-files))
+    (kbd "h") 'dired-hide-dotfiles-mode
+    (kbd "/") 'dired-hide-details-mode)
+
+  (evil-collection-define-key 'normal 'image-dired-thumbnail-mode-map
+    (kbd "<right>") 'image-dired-forward-image
+    (kbd "<left>") 'image-dired-backward-image)
+  
   (evil-collection-init)
 )
 
@@ -106,15 +132,10 @@
           (evil-forward-char 1 nil t)) ; Perhaps this behavior depends on `evil-move-cursor-back'?
         (evil-mc-execute-with-region-or-macro 'evil-change)
         (evil-maybe-remove-spaces nil))))
-  (defun usr/mc-toggle-cursors ()
-    (interactive)
-    (if (evil-mc-frozen-p)
-        (evil-mc-resume-cursors)
-      (evil-mc-pause-cursors))
-  )
 
-  (evil-define-key '(normal visual) 'global (kbd "R") 'evil-mc-undo-all-cursors)
-  (evil-define-key '(normal visual) 'global (kbd "!") 'usr/mc-toggle-cursors)
+  (evil-define-key '(normal visual) 'global 
+    (kbd "R") 'evil-mc-undo-all-cursors
+    (kbd "!") 'usr/mc-toggle-cursors)
 
   (global-evil-mc-mode 1)
 )
@@ -124,10 +145,11 @@
   :defer t
   :after evil
   :config
-  (evil-define-key '(normal visual) 'global (kbd "+") 'evil-numbers/inc-at-pt-incremental)
-  (evil-define-key '(normal visual) 'global (kbd "-") 'evil-numbers/dec-at-pt-incremental)
-  (evil-define-key '(normal visual) 'global (kbd "C-+") 'evil-numbers/inc-at-pt)
-  (evil-define-key '(normal visual) 'global (kbd "C--") 'evil-numbers/dec-at-pt)
+  (evil-define-key '(normal visual) 'global 
+    (kbd "+") 'evil-numbers/inc-at-pt-incremental
+    (kbd "-") 'evil-numbers/dec-at-pt-incremental
+    (kbd "C-+") 'evil-numbers/inc-at-pt
+    (kbd "C--") 'evil-numbers/dec-at-pt)
 )
 
 (use-package evil-nerd-commenter

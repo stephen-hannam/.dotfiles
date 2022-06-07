@@ -6,14 +6,6 @@ Existing problems:
 - tabularize adds extraneous white-space
 - TAB doesn't tab
 
-Cool ideas:
-- map caps_lock to escape if pressed alone, and ctrl if pressed with other keys ... !
-
-Config improvements:
-- use of early init
-- set gc thresh back to something smaller at end of init
-- for duration of init load set file-name-handler-alist to nil; TODO: more research on what this does
-
 Switching from/to:
 - use-package to straight <-- BUT, decided I'll still use use-package with straight for easier package config
 - doom-modeline -> ||| spaceline |||, OR (but prob not) telephone-line, or smart-mode-line w powerline theme, or emacs-powerline (https://github.com/jonathanchu/emacs-powerline)
@@ -22,34 +14,19 @@ Switching from/to:
 - smart-parens -> ? parinfer, evil-surround, dumbparens :),
 - company -> ? corfu, cape, dabbrev-*
 
-Removing:
-- ivy-rich, ivy-*
-- counsel
-- veri-kompass
+Extending and/or Fixing:
+-- undo-tree --> in side-bar, something sized just wide enough
+-- command-log-mode
+-- ? smart-parens ... replace or fix ?
+-- dired with dired-sidebar ?
 
-Definitely retaining:
-- stuff to make theming customization work with daemon mode
-- ? autorevert, dash ?
-- evil+
-- hydras <-- also use conditional-hydras! -- see the github wiki on hydra
-    --> also, simplify docstring with :columns (et al) attrs
-- org+
-- all-the-icons+
-- solaire
-- beacon
-- rainbow+
-- which-key
-- magit+
-- swap regions
-- *anzu
-- helpful
-- "theming"
-    Extending and/or Fixing:
-    -- dired stuff -> dired-mode invoked hydra for lots of FS shortcuts
-    -- undo-tree --> in side-bar, something sized just wide enough
-    -- command-log-mode
-    -- ? smart-parens ... replace or fix ?
-    -- dired with dired-sidebar ?
+Multiple Cursors ***
+-- simplify and wrap
+    - just have quick (non-hydra) hotkeys for mark-at-cursor, remove-mark-at-cursor, remove-all, toggle
+    - then have a wrapper which temporarily modifies how motion works
+        - arrow keys should only move 1 char at a time: can do this through hook on syntax forms, or mc mode keymap
+        - probably mc mode keymap is best
+-- see end of page for a paste-dump from evil-multiedit coexisting with evil-mc
 
 Better themes:
 - zerodark-theme
@@ -60,7 +37,6 @@ Adding (most likely):
 - ? whicher <-- install binaries on which other packages depend ?
 - ? save-place <-- save place of cursor in file --> can it be done with built-ins?
 - async
-- vertico + marginalia + embark + consult + orderless
 - perspective -- project "work-spaces"
 - ivy-yasnippet OR skeletons + abbrevmode + conditional hydras
     -- skeletons etc: https://www.gnu.org/software/emacs/manual/html_node/autotype/Wrapping-Skeletons.html
@@ -88,16 +64,12 @@ Investigate:
 - volatile-highlights - highlight previously modified region
 
 Redo:
-- take key-bindings from removed functionality and assign it elsewhere
-- key-bindings that go unused -> free or redo
 - LEADER KEYS - refactor into new categories, new category -> "navigation, windows and such"
     -- 3 leaders: windows & navigation, projects & coding, text manipulation
 
 My own vimrc customizations:
 - tabularize -- almost there, still an annoying extra whitespace issue
-- enter in normal mode adds blank line
-- key bindings in general
-- window splitting and resizing bindings
+    -- have a comma align that aligns table-style on all commas
 
 Aims:
 - dash-board and org mode (etc) used to habitually organize work/life/study
@@ -114,3 +86,46 @@ Aims:
         --- esp. init templates for new files of type
         --- quick format of module decl and inst in verilog
 
+==========================================================================================================================================================
+Co-existing with evil-mc
+How the two plugins mingle is entirely personal preference. I often reach for evil-mc for more complex operations and evil-multiedit for simpler ones.
+
+My strategy is to bind evil-multiedit to M-d/M-D, and evil-mc to a bunch of keys prefixed with gz:
+
+;; evil-multiedit
+(evil-define-key 'normal 'global
+  (kbd "M-d")   #'evil-multiedit-match-symbol-and-next
+  (kbd "M-D")   #'evil-multiedit-match-symbol-and-prev)
+(evil-define-key 'visual 'global
+  "R"           #'evil-multiedit-match-all
+  (kbd "M-d")   #'evil-multiedit-match-and-next
+  (kbd "M-D")   #'evil-multiedit-match-and-prev)
+(evil-define-key '(visual normal) 'global
+  (kbd "C-M-d") #'evil-multiedit-restore)
+
+(with-eval-after-load 'evil-mutliedit
+  (evil-define-key 'multiedit 'global
+    (kbd "M-d")   #'evil-multiedit-match-and-next
+    (kbd "M-S-d") #'evil-multiedit-match-and-prev
+    (kbd "RET")   #'evil-multiedit-toggle-or-restrict-region)
+  (evil-define-key '(multiedit multiedit-insert) 'global
+    (kbd "C-n")   #'evil-multiedit-next
+    (kbd "C-p")   #'evil-multiedit-prev))
+
+;; evil-mc
+(evil-define-key '(normal visual) 'global
+  "gzm" #'evil-mc-make-all-cursors
+  "gzu" #'evil-mc-undo-all-cursors
+  "gzz" #'+evil/mc-toggle-cursors
+  "gzc" #'+evil/mc-make-cursor-here
+  "gzn" #'evil-mc-make-and-goto-next-cursor
+  "gzp" #'evil-mc-make-and-goto-prev-cursor
+  "gzN" #'evil-mc-make-and-goto-last-cursor
+  "gzP" #'evil-mc-make-and-goto-first-cursor)
+(with-eval-after-load 'evil-mc
+  (evil-define-key '(normal visual) evil-mc-key-map
+    (kbd "C-n") #'evil-mc-make-and-goto-next-cursor
+    (kbd "C-N") #'evil-mc-make-and-goto-last-cursor
+    (kbd "C-p") #'evil-mc-make-and-goto-prev-cursor
+    (kbd "C-P") #'evil-mc-make-and-goto-first-cursor))
+==========================================================================================================================================================

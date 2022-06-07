@@ -1,15 +1,3 @@
-(defun in-all-visible-buffers-search-unhighlight ()
-  (interactive)
-  (let* ((word (evil-find-word t)))
-    (save-window-excursion
-      (dolist (buffer (usr/visible-buffers-buffers-list))
-        (switch-to-buffer buffer)
-        (if (search-forward word nil t)
-	    (evil-ex-nohighlight)
-	  (when (search-backward word nil t)
-	      ((evil-ex-nohighlight)))))))
-)
-
 (use-package general
   :defer t
   :config
@@ -35,8 +23,11 @@
   (evil/leader-keys
     "s"   '(swap-regions :wk "Swap-regions")
     "c"   '(cycle-capitalizations :wk "Cycle-capitalizations")
+    "m"   '(usr/mc-toggle-cursor-at-pos :wk "Toggle Multi-Cursor")
+    "f"   '(usr/mc-toggle-cursors :wk "Toggle All Multi-Cursors")
+    "r"   '(#'evil-mc-undo-all-cursors :wk "Remove All Multi-Cursors")
     ;; don't display wk, my muscle memory is forever
-    "SPC" '(in-all-visible-buffers-search-unhighlight :wk t) 
+    "SPC" '(usr/in-all-visible-buffers-search-unhighlight :wk t) 
     ":"   '(align-to-colon  :wk t)
     "<"   '(align-to-non-blocking-assign :wk t)
     ">"   '(align-to-hash :wk t)
@@ -47,9 +38,9 @@
     ","   '(hydra-align-comma-before-or-after/body  :wk t)
     ;; use wk for these
     "S"   '(hydra-text-scale/body :wk "Scale Text →")
-    "m"   '(hydra-evil-mc/body :wk "Multiple Cursors →")
-    "e"   '(hydra-extended-chars/body :wk "Extended Characters →")
-    "f"   '(hydra-folder-shortcuts/body :wk "Folder Shortcuts →")
+    "M"   '(hydra-evil-mc/body :wk "Multiple Cursors →")
+    "E"   '(hydra-extended-chars/body :wk "Extended Characters →")
+    "F"   '(hydra-folder-shortcuts/body :wk "Folder Shortcuts →")
   )
   (general-create-definer dired-4-dummies/leader-keys
     :states '(normal visual)
