@@ -20,6 +20,7 @@
 (require 'evil-init)
 (require 'completions-init)
 (require 'navigation-init)
+(require 'dired-init)
 (require 'help-init)
 (require 'skin-init)
 (require 'general-init)
