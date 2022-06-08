@@ -63,6 +63,7 @@
         evil-anzu
         evil-collection
         evil-surround
+        expand-region
         undo-tree
         hl-todo
         highlight-indent-guides

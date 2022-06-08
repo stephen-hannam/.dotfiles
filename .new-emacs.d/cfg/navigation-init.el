@@ -19,4 +19,8 @@
          ("M-O" . ace-swap-window))
 )
 
+(use-package expand-region
+  :bind ("C-=" . er/expand-region)
+)
+
 (provide 'navigation-init)
