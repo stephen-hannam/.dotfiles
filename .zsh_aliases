@@ -1,6 +1,9 @@
 alias history='fc -li 1'
 
-alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dgdf='dg --no-pager diff --name-status'
+
+alias gdf='git --no-pager diff --name-status'
 
 dot_clone_(){
   if [ $# -eq 0 ]; then
@@ -58,7 +61,7 @@ cdun(){
 	if [ $# -eq 0 ]; then
 		cdls ..
 	else
-		if [[ $1 == ?(-)+([0-9]) ]]; then
+		if [[ $1 == [0-9] ]]; then
 			local x=''
 			for i in $(seq ${1:-1}); do
 				x="$x../"
@@ -77,10 +80,7 @@ the_pag(){
 alias pag='the_pag '
 
 alias c+x='chmod +x '
-
 alias c-x='chmod -x '
-
-alias mown='sudo chown -R $USER:users '
 
 viv_def(){
 	/usr/local/bin/stephen/run-vivado-2018.3.sh $@

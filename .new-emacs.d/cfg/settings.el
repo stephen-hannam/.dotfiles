@@ -37,7 +37,7 @@
 
 ;; makes help buffer use the same window every time
 (setq display-buffer-alist
-      `((,(rx bos (or "*Apropos*" "*Help*" "*helpful" "*info*" "*Summary*") (0+ not-newline))
+      `((,(rx bos (or "*Apropos*" "*Help*" "*helpful" "*info*" "*Info*" "*Summary*") (0+ not-newline))
          (display-buffer-reuse-mode-window display-buffer-pop-up-window)
          (mode apropos-mode help-mode helpful-mode Info-mode Man-mode))))
 

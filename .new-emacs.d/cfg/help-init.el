@@ -12,12 +12,12 @@
           ("REVIEW"     font-lock-keyword-face bold)
           ("NOTE"       success bold)
           ("DEPRECATED" font-lock-doc-face bold)))
-  )
+)
 
 (use-package command-log-mode
   :defer 1
   :commands command-log-mode
-  )
+)
 
 (use-package which-key
   :defer 1
@@ -35,13 +35,10 @@
   (setq which-key-add-column-padding 8)
   (setq which-key-sort-order nil)
   (setq which-key-max-display-columns 4)
-  )
+)
 
 (use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
   :bind
   (
    ([remap describe-function] . helpful-function)
@@ -54,6 +51,6 @@
                                      (delete-window))))
          )
    )
-  )
+)
 
 (provide 'help-init)

@@ -23,7 +23,6 @@
     (require 'user-misc-cmds)
     (require 'text-manips)
     (require 'interaction-log)
-    (require 'swap-regions)
     
     ;; straight.el - bootstrap straight package manager if need be
     
@@ -100,7 +99,6 @@
         marginalia
         magit
         libgit
-        swap-regions
         format-all
         sh-script ;; make executable after save if editing a script file
         no-littering

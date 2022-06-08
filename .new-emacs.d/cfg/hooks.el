@@ -16,12 +16,12 @@
                 org-mode-hook
                 term-mode-hook
                 help-mode-hook
+                Info-mode-hook
                 special-mode-hook
                 dired-mode-hook
                 helpful-mode-hook
                 shell-mode-hook
                 vterm-mode-hook
-                treemacs-mode-hook
                 undo-tree-visualizer-mode-hook
                 eshell-mode-hook
                 org-indent-mode-hook

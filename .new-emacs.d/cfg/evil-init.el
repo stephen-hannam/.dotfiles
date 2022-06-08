@@ -52,6 +52,8 @@
   (setq evil-operator-state-cursor '("red" hollow))
   ;; evil key-bindings I DON'T want
   (define-key evil-motion-state-map ";" nil) ;; reuse for commenting
+  (define-key evil-motion-state-map "+" nil)
+  (define-key evil-motion-state-map "-" nil)
 
   (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
 
@@ -133,7 +135,7 @@
         (evil-mc-execute-with-region-or-macro 'evil-change)
         (evil-maybe-remove-spaces nil))))
 
-  (evil-define-key '(normal visual) 'global 
+  (evil-define-key '(normal visual) 'global
     (kbd "R") 'evil-mc-undo-all-cursors
     (kbd "!") 'usr/mc-toggle-cursors)
 
@@ -142,7 +144,7 @@
 
 ;; for incr/decr numbers in various patterns; dec, oct, hex, bin
 (use-package evil-numbers
-  :defer t
+  :defer 1
   :after evil
   :config
   (evil-define-key '(normal visual) 'global 

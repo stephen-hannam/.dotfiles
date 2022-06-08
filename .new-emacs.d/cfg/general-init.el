@@ -21,7 +21,6 @@
     :prefix ","
     :global-prefix "C-,")
   (evil/leader-keys
-    "s"   '(swap-regions :wk "Swap-regions")
     "c"   '(cycle-capitalizations :wk "Cycle-capitalizations")
     ;; don't display wk, my muscle memory is forever
     "SPC" '(usr/in-all-visible-buffers-search-unhighlight :wk t) 
