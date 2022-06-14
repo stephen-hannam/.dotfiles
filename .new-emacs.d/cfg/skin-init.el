@@ -27,8 +27,6 @@
   (spaceline-emacs-theme 'date 'time)
 )
 
-(use-package all-the-icons)
-
 (use-package spaceline-all-the-icons
   :after '(spaceline all-the-icons)
   :config (spaceline-all-the-icons-theme)
@@ -68,15 +66,6 @@
   :hook ((prog-mode text-mode) . rainbow-mode)
 )
 
-(use-package all-the-icons-dired
-  :after '(all-the-icons dired)
-  :hook
-  ((dired-mode . all-the-icons-dired-mode)
-   (dired-single-mode . all-the-icons-dired-mode)
-   (wdired-change-to-wdired-mode . all-the-icons-dired-mode)
-   )
-)
-
 (use-package hl-todo
   :defer t
   :hook (prog-mode . hl-todo-mode)
@@ -90,5 +79,9 @@
           ("NOTE"       success bold)
           ("DEPRECATED" font-lock-doc-face bold)))
 )
+
+;;(use-package vscode-icon
+;;  :commands (vscode-icon-for-file)
+;;)
 
 (provide 'skin-init)

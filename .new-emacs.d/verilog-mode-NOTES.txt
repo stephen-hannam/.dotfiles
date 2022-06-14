@@ -1,3 +1,4 @@
 1) Quick actions:
     - convert reg decl to wire (& vice-a-versa); need to ensure inline init'ing done right!
     - convert all <= to = in an always block -- see if this can be done automatically ?
+    - macro to quickly instantiate a module -- should dup port names in .*(*) and create wires/regs for signals if not existing inside parent module

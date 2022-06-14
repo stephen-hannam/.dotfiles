@@ -15,14 +15,15 @@
   (after-init . global-anzu-mode)
 )
 
+(use-package all-the-icons)
 (use-package s)
 
-(require 'evil-init)
+(require 'skin-init)
 (require 'completions-init)
 (require 'navigation-init)
 (require 'dired-init)
 (require 'help-init)
-(require 'skin-init)
 (require 'general-init)
+(require 'evil-init)
 
 (provide 'pkgs-init)

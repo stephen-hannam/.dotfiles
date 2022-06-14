@@ -49,4 +49,12 @@
   ([remap dired-single-buffer-mouse] . mouse-set-point)
 )
 
+(use-package all-the-icons-dired
+  :hook
+  ((dired-mode . all-the-icons-dired-mode)
+   (dired-single-mode . all-the-icons-dired-mode)
+   (wdired-change-to-wdired-mode . all-the-icons-dired-mode)
+   )
+)
+
 (provide 'dired-init)

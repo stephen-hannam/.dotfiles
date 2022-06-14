@@ -15,12 +15,21 @@
               aw-ignore-current nil
               aw-leading-char-style 'char
               aw-scope 'frame)
-  :bind (("M-o" . ace-window)
-         ("M-O" . ace-swap-window))
+  :bind (
+         ("M-O" . ace-swap-window)
+        )
 )
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region)
 )
+
+;;(use-package ibuffer-sidebar
+;;  :ensure nil
+;;  :commands (ibuffer-sidebar-toggle-sidebar)
+;;  :config
+;;  (setq ibuffer-sidebar-use-custom-font t)
+;;  (setq ibuffer-sidebar-face `(:family "Helvetica" :height 140))
+;;)
 
 (provide 'navigation-init)

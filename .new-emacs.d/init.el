@@ -75,7 +75,6 @@
         spaceline-all-the-icons
         dired-single
         dired-subtree
-        dired-sidebar
         dired-hide-dotfiles
         git-gutter
         spacegray-theme
@@ -103,6 +102,8 @@
         sh-script ;; make executable after save if editing a script file
         no-littering
         general
+        ;;vscode-icon
+        ;;ibuffer-sidebar
         ))
     
     (require 'settings)
