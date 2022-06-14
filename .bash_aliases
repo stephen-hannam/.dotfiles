@@ -1,6 +1,23 @@
 #set -euo pipefail
+alias dg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dga='dg add'
+alias dgs='dg status'
+alias dgm='dg mv'
+alias dgr='dg rm'
+alias dgrc='dg rm --cached'
+alias dgc='dg commit'
+alias dgd='dg diff'
+alias dgdf='dg --no-pager diff --name-status'
 
-alias dotgit='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias g='git'
+alias ga='git add'
+alias gs='git status'
+alias gm='git mv'
+alias gr='git rm'
+alias grc='git rm --cached'
+alias gc='git commit'
+alias gd='git diff'
+alias gdf='git --no-pager diff --name-status'
 
 dot_clone_(){
   if [ $# -eq 0 ]; then
