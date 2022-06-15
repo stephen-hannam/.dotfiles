@@ -9,6 +9,8 @@ alias dgrc='dg rm --cached'
 alias dgc='dg commit'
 alias dgd='dg diff'
 alias dgdf='dg --no-pager diff --name-status'
+alias dgpulo='dg pull origin'
+alias dgpuso='dg push -u origin'
 
 alias g='git'
 alias ga='git add'
@@ -19,6 +21,8 @@ alias grc='git rm --cached'
 alias gc='git commit'
 alias gd='git diff'
 alias gdf='git --no-pager diff --name-status'
+alias gpulo='git pull origin'
+alias gpuso='git push -u origin'
 
 dot_clone_(){
   if [ $# -eq 0 ]; then
