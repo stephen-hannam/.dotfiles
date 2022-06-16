@@ -1,0 +1,10 @@
+Focus on making it minimal
+* no evil, no general, no fancy icons, no fancy theming
+* no pdf or image stuff, no terminal emulation from inside emacs
+
+Try to make key-bindings all work the same in -nw mode
+* preferably without use of shim packages like "term-lossless"
+* also limits theming
+
+Modal editing is still something I want
+* no evil, but substitute with something lighter: modalka, boon, xah-fly-keys, ryo, meow?
