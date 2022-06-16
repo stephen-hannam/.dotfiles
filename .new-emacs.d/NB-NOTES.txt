@@ -20,16 +20,13 @@ Extending and/or Fixing:
 -- ? smart-parens ... replace or fix ?
 -- dired with dired-sidebar ?
 
-Multiple Cursors ***
--- simplify and wrap
-    - just have quick (non-hydra) hotkeys for mark-at-cursor, remove-mark-at-cursor, remove-all, toggle
-    - then have a wrapper which temporarily modifies how motion works
-        - arrow keys should only move 1 char at a time: can do this through hook on syntax forms, or mc mode keymap
-        - probably mc mode keymap is best
--- see end of page for a paste-dump from evil-multiedit coexisting with evil-mc
+Redo:
+- LEADER KEYS - refactor into new categories, new category -> "navigation, windows and such"
+    -- 3 leaders: windows & navigation, projects & coding, text manipulation
 
 Better Surround !!
 -- have a surround sequence that begins by highlighting first expansion level (word/symbol), then allows for incremental expansion of that selected region, and then ends with user selecting from a displayed set of options which text-pair to surround the selected region with.
+--> expand-region + siege-mode w/ leader-key-binds and a hydra
 
 Better themes:
 - zerodark-theme
@@ -58,17 +55,13 @@ Adding (most likely):
 - icons-in-terminal
 
 Investigate:
-- ace-window
+- ace-window --> use only for swapping windows around
 - which-key-posframe
 - lispy
 - snails
 - shell-pop
 - golden-ratio
 - volatile-highlights - highlight previously modified region
-
-Redo:
-- LEADER KEYS - refactor into new categories, new category -> "navigation, windows and such"
-    -- 3 leaders: windows & navigation, projects & coding, text manipulation
 
 My own vimrc customizations:
 - tabularize -- almost there, still an annoying extra whitespace issue
@@ -81,9 +74,9 @@ Aims:
     -- needs to work just as well with remote servers, whether that's TRAMP based, sshfs based, etc.
     -- peek preview of module decl esp. @ ports
 - increase text-based efficiency by putting closer at hand short-cuts for complex actions
-    -- swapping regions
+    -- swapping regions/lines
     -- incr/decr
-    -- form/manip table like text-forms
+    -- form/manip table like text-forms --> hotkey and hydra table-insert and related functions
     -- multiple cursors
     -- auto-format and quick completions and snippets
         --- esp. init templates for new files of type

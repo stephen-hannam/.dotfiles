@@ -55,9 +55,9 @@
   (define-key evil-motion-state-map "+" nil)
   (define-key evil-motion-state-map "-" nil)
 
-  (evil-define-key '(normal visual) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
+  (evil-define-key '(normal visual emacs) 'evil-motion-state-map (kbd "*") 'in-all-visible-buffers-search-highlight-word-at-point)
 
-  (evil-define-key '(normal visual) 'global (kbd "C-e") 'exit-recursive-edit) ;; TODO: what is recursive-edit?
+  (evil-define-key '(normal visual emacs) 'global (kbd "C-e") 'exit-recursive-edit) ;; TODO: what is recursive-edit?
 
   (evil-define-key '(normal) 'global 
     (kbd "M-.") #'helpful-at-point
