@@ -19,3 +19,10 @@ Advantages over vim:
 * magit
 * in-built REPL
 * the kind of auto-complete and snippets functionality I want
+
+Will still want
+- which-key & helpful
+- vertico, orderless, marginalia
+- undo-tree, git-gutter, spaceline, magit, rainbow-*, hl-todo
+- dash, s, hydra, major-mode-hydra
+- avy, anzu, multiple-cursors, nerd-commenter (need it be evil-?)

@@ -34,4 +34,9 @@
           (server-name . "newmacs")
           (env . (("EMACSDIR" . "~/.new-emacs.d")))
          ))
+
+("2ew" . ((user-emacs-directory . "~/.new-v2-emacs.d")
+          (server-name . "2ewmacs")
+          (env . (("EMACSDIR" . "~/.new-v2-emacs.d")))
+         ))
 )
