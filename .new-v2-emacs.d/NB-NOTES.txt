@@ -8,3 +8,14 @@ Try to make key-bindings all work the same in -nw mode
 
 Modal editing is still something I want
 * no evil, but substitute with something lighter: modalka, boon, xah-fly-keys, ryo, meow?
+
+Add VHDL stuff
+* especially boiler-plate snippets
+
+Advantages over vim:
+* extensible via elisp/racket
+* lsp servers and ggtags
+* org mode and tables
+* magit
+* in-built REPL
+* the kind of auto-complete and snippets functionality I want
