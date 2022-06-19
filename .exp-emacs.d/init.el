@@ -78,6 +78,7 @@
 
     (require 'expand-surround)
     (require 'aides)
+    (require 'try-meow)
 
     (setq gc-cons-threshold 800000)
 )

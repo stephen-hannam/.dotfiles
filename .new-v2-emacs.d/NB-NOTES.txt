@@ -1,3 +1,6 @@
+TODO:
+1) config tab completions in vertico, esp. for directory paths
+
 Focus on making it minimal
 * no evil, no general, no fancy icons, no fancy theming
 * no pdf or image stuff, no terminal emulation from inside emacs
