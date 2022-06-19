@@ -77,6 +77,7 @@
     (setq use-package-verbose t)
 
     (require 'expand-surround)
+    (require 'aides)
 
     (setq gc-cons-threshold 800000)
 )
