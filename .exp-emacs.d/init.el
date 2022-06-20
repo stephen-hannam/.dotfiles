@@ -62,7 +62,9 @@
     
     (setq package-archives '(("melpa". "https://melpa.org/packages/")
                              ("org"  . "https://orgmode.org/elpa/")
-                             ("elpa" . "https://elpa.gnu.org/packages/")))
+                             ("elpa" . "https://elpa.gnu.org/packages/")
+                             ("cselpa" . "https://elpa.thecybershadow.net/packages/")
+                            ))
     
     (package-initialize)
     (unless package-archive-contents
@@ -79,6 +81,7 @@
     (require 'expand-surround)
     (require 'aides)
     (require 'try-meow)
+    (require 'try-term-keys)
 
     (setq gc-cons-threshold 800000)
 )
