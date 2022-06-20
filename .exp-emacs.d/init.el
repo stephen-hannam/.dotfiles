@@ -57,10 +57,28 @@
 
     (set-face-attribute 'default nil :height 100)
 
+    (global-set-key (kbd "C-e") nil)
+    (global-set-key (kbd "C-h .") nil)
+    (global-set-key (kbd "M-.") nil)
+    (global-set-key (kbd "<pause>") nil)
+    
+    (define-key global-map [remap quit-window] 'delete-window-maybe-kill-buffer)
+    
+    ;; free up C-u for other purposes
+    (global-set-key (kbd "C-M-u") 'universal-argument)
+    (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+    (global-set-key (kbd "C-h q") #'helpful-kill-buffers)
+    
+    ;; Navigate through buffers
+    (global-set-key (kbd "M-[") 'previous-buffer)
+    (global-set-key (kbd "M-]") 'next-buffer)
+    ;;(global-set-key (kbd "<f12>") 'swiper)
+
     ;; Initialize package sources
     (require 'package)
     
-    (setq package-archives '(("melpa". "https://melpa.org/packages/")
+    (setq package-archives '(
+                             ("melpa". "https://melpa.org/packages/")
                              ("org"  . "https://orgmode.org/elpa/")
                              ("elpa" . "https://elpa.gnu.org/packages/")
                              ("cselpa" . "https://elpa.thecybershadow.net/packages/")

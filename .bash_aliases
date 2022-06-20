@@ -22,6 +22,7 @@ alias gd='git diff'
 alias gdf='git --no-pager diff --name-status'
 alias gpulo='git pull origin'
 alias gpuso='git push -u origin'
+alias gout='git checkout'
 
 dot_clone_(){
   if [ $# -eq 0 ]; then
