@@ -1,5 +1,7 @@
 (use-package expand-region
-  :bind ("C-e" . er/expand-region)
+  :bind (
+         ("C-=" . er/expand-region)
+        )
 )
 
 (use-package wrap-region
