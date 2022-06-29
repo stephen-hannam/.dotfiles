@@ -71,14 +71,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting bgnotify history-substring-search command-time)
+plugins=(zsh-syntax-highlighting bgnotify history-substring-search cmdtime)
 
 source $ZSH/oh-my-zsh.sh
 
-REPORTTIME=60
-ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
-ZSH_COMMAND_TIME_COLOR="cyan"
-ZSH_COMMAND_TIME_EXCLUDE=(vim vivado ssh)
+#REPORTTIME=60
+#ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
+#ZSH_COMMAND_TIME_COLOR="cyan"
+#ZSH_COMMAND_TIME_EXCLUDE=(vim vivado ssh)
 
 # User configuration
 
