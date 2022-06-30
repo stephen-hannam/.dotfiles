@@ -1,0 +1,1 @@
+* for all commenting in visual/selection mode, the single key-binding should be '//'
