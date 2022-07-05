@@ -285,3 +285,5 @@ hex2dec(){
   echo "ibase=16; ${hex^^}" | bc
 }
 alias h2d='hex2dec'
+
+alias ssk='kitty +kitten ssh'
