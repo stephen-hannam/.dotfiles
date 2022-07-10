@@ -151,3 +151,4 @@ hex2dec(){
 alias h2d='hex2dec'
 
 alias ssk='kitty +kitten ssh'
+alias icat="kitty +kitten icat --align=left"
