@@ -98,8 +98,8 @@
 
     (require 'expand-surround)
     (require 'aides)
-    (require 'try-meow)
     (require 'try-term-keys)
+    (require 'try-meow)
 
     (setq gc-cons-threshold 800000)
 )

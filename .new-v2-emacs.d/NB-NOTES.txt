@@ -29,3 +29,6 @@ Will still want
 - undo-tree, git-gutter, spaceline, magit, rainbow-*, hl-todo
 - dash, s, hydra, major-mode-hydra
 - avy, anzu, multiple-cursors, nerd-commenter (need it be evil-?)
+
+Quick Calc
+-> in normal mode, KeyPad digits will open a bottom bar calc
