@@ -117,8 +117,6 @@ alias l='ls -CF'
 alias clc='clear; cdls .'
 
 alias mv='mv -v'
-alias rm='rm -v'
-alias cp='cp -iv'
 alias ln='ln -v'
 
 # why would you ever not use -w on vwstat?
