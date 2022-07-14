@@ -1,5 +1,7 @@
 ;; themes, mode-line, solaire, etc
 
+;; TODO: have separate skin cfgs for GUI and -nw
+
 (use-package git-gutter
   :config
   (global-git-gutter-mode 1)
