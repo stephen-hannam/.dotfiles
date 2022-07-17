@@ -1,8 +1,18 @@
+Short list, just f'ing:
+- get keybindings straightened out in -nw mode
+- fix existing problems
+- add:
+    * expand + isolate
+    * 
+
+
+
+
 Existing problems:
 - smart-parens is all fucked up
 - key-bindings will interfere with terminator key-bindings in -nw mode
 - aggressive-indent fucks with the undo --> ditch aggressive for something better
-- search highlight/clear not happening across all visible buffers
+- search highlight/clear not happening across all visible buffers <- FIXED, somewhere
 - tabularize adds extraneous white-space
 - TAB doesn't tab
 
