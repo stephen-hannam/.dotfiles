@@ -174,16 +174,13 @@ fi
 #export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
 #ssh-add -l > /dev/null || ssh-add
 
-export XILINXD_LICENSE_FILE=2100@exabuild001.cisco.com
-
 export PIPENV_IGNORE_VIRTUALENVS=1
 
-export PATH=$HOME/.local/bin:$HOME/.opam/default/bin:$PATH
 export PATH=/usr/local/bin:$PATH
-
-export ADS_HOSTS="2822 5399 8174 7891 5706 893 6886 9066 7148 5856"
-export ADS_HOSTS_192="2822 5399 8174 7891 5706"
-export ADS_HOSTS_202="893 6886 9066 7148 5856"
+export PATH=$HOME/.local/bin:$PATH
+[ -f $HOME/.opam/default/bin ] && export PATH=$HOME/.opam/default/bin:$PATH || echo "$HOME/.opam/default/bin not found on $HOST"
+[ -f $HOME/doom-emacs/bin ] && export PATH=$HOME/doom-emacs/bin:$PATH || echo "$HOME/doom-emacs/bin not found on $HOST"
+[ -f $HOME/.rustup ] && export PATH=$HOME/.rustup:$PATH || echo "$HOME/.rustup not found on $HOST"
 
 function sshagent_findsockets {
     find /tmp -uid $(id -u) -type s -name agent.\* 2>/dev/null
@@ -258,3 +255,4 @@ sshagent_init
 [ -f $HOME/.local/share/rcs/.bash_extras ] && source $HOME/.local/share/rcs/.bash_extras || echo "No local extras to source for $HOST"
 
 cd ~
+. "$HOME/.cargo/env"
