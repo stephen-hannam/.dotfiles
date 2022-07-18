@@ -1,1 +1,9 @@
 * for all commenting in visual/selection mode, the single key-binding should be '//'
+
+** bindings I frequently use in Vim
+- dt<char>, dT<char>
+- dw, yw
+- di<first-char-of-pair>, yi<first-char-of-pair>
+- dd
+
+--> just use Evil as evil, forget about meow

@@ -119,8 +119,11 @@ source $HOME/.zsh_aliases
 
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.opam/default/bin:$PATH
-export PATH=$HOME/doom-emacs/bin:$PATH
+
+extra_exports=("$HOME/.opam/default/bin" "$HOME/doom-emacs/bin" "$HOME/.cargo/bin")
+for exp in ${extra_exports[@]}; do
+    [ -d ${exp} ] && export PATH=${exp}:$PATH || echo "${exp} not found on $HOST"
+done
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
