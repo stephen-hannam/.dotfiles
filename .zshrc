@@ -119,9 +119,11 @@ source $HOME/.zsh_aliases
 
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-[ -f $HOME/.opam/default/bin ] && export PATH=$HOME/.opam/default/bin:$PATH || echo "$HOME/.opam/default/bin not found on $HOST"
-[ -f $HOME/doom-emacs/bin ] && export PATH=$HOME/doom-emacs/bin:$PATH || echo "$HOME/doom-emacs/bin not found on $HOST"
-[ -f $HOME/.rustup ] && export PATH=$HOME/.rustup:$PATH || echo "$HOME/.rustup not found on $HOST"
+
+extra_exports=("$HOME/.opam/default/bin" "$HOME/doom-emacs/bin" "$HOME/.cargo/bin")
+for exp in ${extra_exports[@]}; do
+    [ -d ${exp} ] && export PATH=${exp}:$PATH || echo "${exp} not found on $HOST"
+done
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
