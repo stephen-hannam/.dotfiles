@@ -4,9 +4,9 @@ Short list, just f'ing:
 - add:
     * expand + isolate
     * 
-
 - lang dependent -edit hydra, eg:
     * verilog-edit when file-type {,system}verilog <- lang-edit hydra -> impl as per verilog notes
+- DIRED - most used pinned to top of directory listings
 
 
 
