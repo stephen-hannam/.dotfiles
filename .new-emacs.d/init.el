@@ -53,6 +53,7 @@
     (mapc
       #'straight-use-package
       '(
+        term-keys
         anzu
         avy
         evil

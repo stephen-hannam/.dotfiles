@@ -95,7 +95,7 @@
   :config
   ;; dired related over-rides of existing key-bindings
   (evil-collection-define-key 'normal 'dired-mode-map
-    (kbd "<kp-0>") 'dired-up-directory
+    (kbd "0") 'dired-up-directory
     (kbd "o") 'dired-find-file-other-window
     (kbd "e") 'dired-create-empty-file
     (kbd "G") 'dired-do-chgrp
