@@ -61,11 +61,9 @@
         evil-nerd-commenter
         evil-anzu
         evil-collection
-        evil-surround
         expand-region
         undo-tree
         hl-todo
-        highlight-indent-guides
         hydra
         dash ;; prereq for major-mode-hydra
         s ;; string manip library - prereq for major-mode-hydra
