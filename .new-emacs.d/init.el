@@ -53,7 +53,7 @@
     (mapc
       #'straight-use-package
       '(
-        term-keys
+        '(term-keys :type git :host github :repo "stephen-hannam/term-keys")
         anzu
         avy
         evil

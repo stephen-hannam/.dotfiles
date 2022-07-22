@@ -1,6 +1,4 @@
 (use-package term-keys
-  :straight
-  (term-keys :type git :host github :repo "stephen-hannam/term-keys")
   :config
   (term-keys-mode t)
 )
