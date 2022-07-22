@@ -1,21 +1,3 @@
-(use-package term-keys
-  :config
-  (term-keys-mode t)
-)
-
-(defun generate-kitty-term-keys ()
-  (interactive)
-  (when term-keys-mode
-    (progn
-     (require 'term-keys-kitty)
-     (with-temp-buffer
-       (insert (term-keys/kitty-conf))
-       (write-region (point-min) (point-max) "~/.config/kitty/kitty-for-term-keys.conf")
-     )
-   )
-  )
-)
-
 (global-set-key (kbd "C-h .") nil)
 (global-set-key (kbd "M-.") nil)
 (global-set-key (kbd "<pause>") nil)
@@ -28,8 +10,8 @@
 (global-set-key (kbd "C-h q") #'helpful-kill-buffers)
 
 ;; Navigate through buffers
-(global-set-key (kbd "M-[") 'previous-buffer)
-(global-set-key (kbd "M-]") 'next-buffer)
+;;(global-set-key (kbd "M-[") 'previous-buffer)
+;;(global-set-key (kbd "M-]") 'next-buffer)
 (global-set-key (kbd "<f12>") 'swiper)
 
 (defun set-extended-char-shortcuts ()
@@ -197,5 +179,23 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; remap home to `smarter-move-beginning-of-line'
 (global-set-key [remap evil-beginning-of-line] 'smarter-move-beginning-of-line)
+
+(use-package term-keys
+  :config
+  (term-keys-mode t)
+)
+
+(defun generate-kitty-term-keys ()
+  (interactive)
+  (when term-keys-mode
+    (progn
+     (require 'term-keys-kitty)
+     (with-temp-buffer
+       (insert (term-keys/kitty-conf))
+       (write-region (point-min) (point-max) "~/.config/kitty/kitty-for-term-keys.conf")
+     )
+   )
+  )
+)
 
 (provide 'keybindings)

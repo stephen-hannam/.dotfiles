@@ -9,16 +9,17 @@
 
 ;; TODO: assess: (define-key isearch-mode-map (kbd "C-'") 'avy-isearch) <<- integrate avy with isearch
 
-(use-package ace-window
-  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-              aw-char-position 'left
-              aw-ignore-current nil
-              aw-leading-char-style 'char
-              aw-scope 'frame)
-  :bind (
-         ("M-O" . ace-swap-window)
-        )
-)
+;; NOTE: config below totally screws up the term-keys behaviour
+;;(use-package ace-window
+;;  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+;;              aw-char-position 'left
+;;              aw-ignore-current nil
+;;              aw-leading-char-style 'char
+;;              aw-scope 'frame)
+;;  :bind (
+;;         ("M-O" . ace-swap-window)
+;;        )
+;;)
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region)
