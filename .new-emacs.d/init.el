@@ -87,13 +87,12 @@
         pdf-tools
         which-key
         helpful
-        ace-window
         vertico
         orderless
-        embark
-        embark-consult
-        consult
-        consult-dir
+        ;;embark
+        ;;embark-consult
+        ;;consult
+        ;;consult-dir
         marginalia
         magit
         libgit
@@ -101,8 +100,6 @@
         sh-script ;; make executable after save if editing a script file
         no-littering
         general
-        ;;vscode-icon
-        ;;ibuffer-sidebar
         ))
     
     (require 'settings)

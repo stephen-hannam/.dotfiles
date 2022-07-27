@@ -1,28 +1,16 @@
-;; avy, 'dired-stuff', ggtags, dashboard, ?ace-window?, chords, key-chords
+;; avy, 'dired-stuff', dashboard, chords, key-chords
 ;; direx + popwin for sidebar action ? or direx-k
 
 ;; TODO: look into winner-mode to manipulate windows configurations on a stack or in a linked-list ... etc
 
-(use-package avy
-  :bind ("M-s" . avy-goto-char)
-)
-
-;; TODO: assess: (define-key isearch-mode-map (kbd "C-'") 'avy-isearch) <<- integrate avy with isearch
-
-;; NOTE: config below totally screws up the term-keys behaviour
-;;(use-package ace-window
-;;  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-;;              aw-char-position 'left
-;;              aw-ignore-current nil
-;;              aw-leading-char-style 'char
-;;              aw-scope 'frame)
-;;  :bind (
-;;         ("M-O" . ace-swap-window)
-;;        )
-;;)
-
+;; TODO: bind this in evil visual+normal modes only
 (use-package expand-region
   :bind ("C-=" . er/expand-region)
+)
+
+;; TODO: bind this in evil visual+normal modes only
+(use-package avy
+  :bind ("M-s" . avy-goto-char)
 )
 
 ;;(use-package ibuffer-sidebar

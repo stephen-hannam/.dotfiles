@@ -10,8 +10,8 @@
 (global-set-key (kbd "C-h q") #'helpful-kill-buffers)
 
 ;; Navigate through buffers
-;;(global-set-key (kbd "M-[") 'previous-buffer)
-;;(global-set-key (kbd "M-]") 'next-buffer)
+(global-set-key (kbd "M-[") 'previous-buffer)
+(global-set-key (kbd "M-]") 'next-buffer)
 (global-set-key (kbd "<f12>") 'swiper)
 
 (defun set-extended-char-shortcuts ()
