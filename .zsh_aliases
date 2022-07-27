@@ -1,41 +1,43 @@
 alias history='fc -li 1'
 
-alias dg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dga='dg add'
-alias dgs='dg status'
-alias dgm='dg mv'
-alias dgr='dg rm'
-alias dgrc='dg rm --cached'
-alias dgc='dg commit'
-alias dgd='dg diff'
-alias dgdf='dg --no-pager diff --name-status'
-alias dgpulo='dg pull origin'
-alias dgpuso='dg push -u origin'
-
-alias g='git'
-alias ga='git add'
-alias gs='git status'
-alias gm='git mv'
-alias gr='git rm'
-alias grc='git rm --cached'
-alias gc='git commit'
-alias gd='git diff'
-alias gdf='git --no-pager diff --name-status'
-alias gpulo='git pull origin'
-alias gpuso='git push -u origin'
-alias gout='git checkout'
-
-dot_clone_(){
-  if [ $# -eq 0 ]; then
-    repo="stephen-hannam"
-  else
-    repo=$1
-  fi
-  git clone --separate-git-dir=$HOME/.dotfiles git@github.com:${repo}/.dotfiles.git dotfiles-tmp
-  rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
-  rm -rf dotfiles-tmp
-}
-alias dotclone='dot_clone_'
+if (( $+commands[git] )); then
+  alias dg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+  alias dga='dg add'
+  alias dgs='dg status'
+  alias dgm='dg mv'
+  alias dgr='dg rm'
+  alias dgrc='dg rm --cached'
+  alias dgc='dg commit'
+  alias dgd='dg diff'
+  alias dgdf='dg --no-pager diff --name-status'
+  alias dgpulo='dg pull origin'
+  alias dgpuso='dg push -u origin'
+  
+  alias g='git'
+  alias ga='git add'
+  alias gs='git status'
+  alias gm='git mv'
+  alias gr='git rm'
+  alias grc='git rm --cached'
+  alias gc='git commit'
+  alias gd='git diff'
+  alias gdf='git --no-pager diff --name-status'
+  alias gpulo='git pull origin'
+  alias gpuso='git push -u origin'
+  alias gout='git checkout'
+  
+  dot_clone_(){
+    if [ $# -eq 0 ]; then
+      repo="stephen-hannam"
+    else
+      repo=$1
+    fi
+    git clone --separate-git-dir=$HOME/.dotfiles git@github.com:${repo}/.dotfiles.git dotfiles-tmp
+    rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
+    rm -rf dotfiles-tmp
+  }
+  alias dotclone='dot_clone_'
+fi
 
 # some more ls aliases
 llfunc(){
@@ -90,6 +92,24 @@ cdun(){
 }
 alias ..='cdun'
 
+alias -- -='cd -'
+alias -- -1='cd -1'
+alias -- -2='cd -2'
+alias -- -3='cd -3'
+alias -- -4='cd -4'
+alias -- -5='cd -5'
+alias -- -6='cd -6'
+alias -- -7='cd -7'
+alias -- -8='cd -8'
+alias -- -9='cd -9'
+
+#### dirs
+
+# This alias is a convenient way to list the last few directories
+# visited, with their numbers. You can then use the 'cd -n' aliases to
+# jump to those directories.
+alias ds='dirs -v | head -10'
+
 alias x='exit'
 
 the_pag(){
@@ -100,53 +120,63 @@ alias pag='the_pag '
 alias c+x='chmod +x '
 alias c-x='chmod -x '
 
-viv_def(){
-	/usr/local/bin/stephen/run-vivado-2018.3.sh $@
-}
-#alias vivado='viv_def'
-
-tidy_up_ip_folders(){
-	if [ -d ./ip/ ]; then
-		pushd ip
-		for f in `ls -d --color=none *`; do
-			pushd $f
-			rm -rf ^*.(xci|tcl)
-			popd
-		done
-		popd
-	fi
-}
-
-tidy_up_vivados_mess(){
-	rm vivado*
-	rm -rf .Xil
-	rm -rf hd_visual
-	rm -rf ip_user_files
-	rm -rf managed_ip_project
-	rm .XIC.lock
-	rm -rf .Xilinx
-	rm -f webtalk*
-	rm -f usage_statistics_webtalk*
-	rm -f tight_setup_hold_pins.txt
-	rm -f iter_*
-	tidy_up_ip_folders &>/dev/null
-}
-alias tv='tidy_up_vivados_mess'
+if (( $+commands[vivado] )); then
+  viv_def(){
+  	/usr/local/bin/stephen/run-vivado-2018.3.sh $@
+  }
+  #alias vivado='viv_def'
+  
+  tidy_up_ip_folders(){
+  	if [ -d ./ip/ ]; then
+  		pushd ip
+  		for f in `ls -d --color=none *`; do
+  			pushd $f
+  			rm -rf ^*.(xci|tcl)
+  			popd
+  		done
+  		popd
+  	fi
+  }
+  
+  tidy_up_vivados_mess(){
+  	rm vivado*
+  	rm -rf .Xil
+  	rm -rf hd_visual
+  	rm -rf ip_user_files
+  	rm -rf managed_ip_project
+  	rm .XIC.lock
+  	rm -rf .Xilinx
+  	rm -f webtalk*
+  	rm -f usage_statistics_webtalk*
+  	rm -f tight_setup_hold_pins.txt
+  	rm -f iter_*
+  	tidy_up_ip_folders &>/dev/null
+  }
+  alias tv='tidy_up_vivados_mess'
+fi
 
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
 
-alias em='emacsclient -cn -a "vim" -s stemacs'
-alias nw='emacsclient -nw -a "vim" -s stemacs'
-alias dmacs='emacs --daemon'
-alias kmacs='killall emacs'
+if (( $+commands[emacs] )); then
+  alias em='emacsclient -cn -a "vim" -s stemacs'
+  alias nw='emacsclient -nw -a "vim" -s stemacs'
+  alias dmacs='emacs --daemon'
+  alias kmacs='killall emacs'
+fi
 
-alias gpgp='gpg -c --no-symkey-cache --cipher-algo AES256'
+if (( $+commands[gpg] )); then
+  alias gpgp='gpg -c --no-symkey-cache --cipher-algo AES256'
+fi
 
-hex2dec(){
-  hex=$1
-  echo "ibase=16; ${hex:u}" | bc
-}
-alias h2d='hex2dec'
+if (( $+commands[bc] )); then
+  hex2dec(){
+    hex=$1
+    echo "ibase=16; ${hex:u}" | bc
+  }
+  alias h2d='hex2dec'
+fi
 
-alias ssk='kitty +kitten ssh'
-alias icat="kitty +kitten icat --align=left"
+if (( $+commands[kitty] )); then
+  alias ssk='kitty +kitten ssh'
+  alias icat="kitty +kitten icat --align=left"
+fi
