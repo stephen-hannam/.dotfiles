@@ -120,40 +120,38 @@ alias pag='the_pag '
 alias c+x='chmod +x '
 alias c-x='chmod -x '
 
-if (( $+commands[vivado] )); then
-  viv_def(){
-  	/usr/local/bin/stephen/run-vivado-2018.3.sh $@
-  }
-  #alias vivado='viv_def'
-  
-  tidy_up_ip_folders(){
-  	if [ -d ./ip/ ]; then
-  		pushd ip
-  		for f in `ls -d --color=none *`; do
-  			pushd $f
-  			rm -rf ^*.(xci|tcl)
-  			popd
-  		done
-  		popd
-  	fi
-  }
-  
-  tidy_up_vivados_mess(){
-  	rm vivado*
-  	rm -rf .Xil
-  	rm -rf hd_visual
-  	rm -rf ip_user_files
-  	rm -rf managed_ip_project
-  	rm .XIC.lock
-  	rm -rf .Xilinx
-  	rm -f webtalk*
-  	rm -f usage_statistics_webtalk*
-  	rm -f tight_setup_hold_pins.txt
-  	rm -f iter_*
-  	tidy_up_ip_folders &>/dev/null
-  }
-  alias tv='tidy_up_vivados_mess'
-fi
+viv_def(){
+	/usr/local/bin/stephen/run-vivado-2018.3.sh $@
+}
+#alias vivado='viv_def'
+
+tidy_up_ip_folders(){
+	if [ -d ./ip/ ]; then
+		pushd ip
+		for f in `ls -d --color=none *`; do
+			pushd $f
+			rm -rf ^*.(xci|tcl)
+			popd
+		done
+		popd
+	fi
+}
+
+tidy_up_vivados_mess(){
+	rm vivado*
+	rm -rf .Xil
+	rm -rf hd_visual
+	rm -rf ip_user_files
+	rm -rf managed_ip_project
+	rm .XIC.lock
+	rm -rf .Xilinx
+	rm -f webtalk*
+	rm -f usage_statistics_webtalk*
+	rm -f tight_setup_hold_pins.txt
+	rm -f iter_*
+	tidy_up_ip_folders &>/dev/null
+}
+alias tv='tidy_up_vivados_mess'
 
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
 
