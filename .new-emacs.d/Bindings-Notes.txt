@@ -2,3 +2,4 @@
 --> just use Evil as evil, forget about meow
 
 * DIRED - rev alphabetic order of dir listing ... and floating pin of most frequently/recently used entries to the top
+* REPL-hydra - binding for hydra that gives REPLs to open for multiple different languages
