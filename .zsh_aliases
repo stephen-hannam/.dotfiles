@@ -139,6 +139,7 @@ tidy_up_ip_folders(){
 
 tidy_up_vivados_mess(){
 	rm vivado*
+	rm *_bskew_check*
 	rm -rf .Xil
 	rm -rf hd_visual
 	rm -rf ip_user_files
