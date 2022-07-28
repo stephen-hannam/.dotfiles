@@ -1,5 +1,7 @@
 * for all commenting in visual/selection mode, the single key-binding should be '//'
 --> just use Evil as evil, forget about meow
 
+* buffer prev/next - C-left/right
+
 * DIRED - rev alphabetic order of dir listing ... and floating pin of most frequently/recently used entries to the top
 * REPL-hydra - binding for hydra that gives REPLs to open for multiple different languages
