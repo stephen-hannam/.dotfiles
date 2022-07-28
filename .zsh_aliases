@@ -150,6 +150,8 @@ tidy_up_vivados_mess(){
 	rm usage_statistics_webtalk* 2>/dev/null
 	rm tight_setup_hold_pins.txt 2>/dev/null
 	rm iter_* 2>/dev/null
+	rm gtwiz_* 2>/dev/null
+	rm compile_simlib* 2>/dev/null
 	tidy_up_ip_folders &>/dev/null
 }
 alias tv='tidy_up_vivados_mess'
