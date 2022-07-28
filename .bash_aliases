@@ -273,19 +273,19 @@ tidy_up_ip_folders(){
 }
 
 tidy_up_vivados_mess(){
-	rm vivado*
-	rm *_bskew_check*
-	rm -rf .Xil
-	rm -rf hd_visual
-	rm -rf ip_user_files
-	rm -rf managed_ip_project
-	rm .XIC.lock
-	rm -rf .Xilinx
-	rm -f webtalk*
-	rm -f usage_statistics_webtalk*
-	rm -f tight_setup_hold_pins.txt
-	rm -f iter_*
-  tidy_up_ip_folders
+	rm -rf .Xil 2>/dev/null
+	rm -rf hd_visual 2>/dev/null
+	rm -rf ip_user_files 2>/dev/null
+	rm -rf managed_ip_project 2>/dev/null
+	rm -rf .Xilinx 2>/dev/null
+	rm .XIC.lock 2>/dev/null
+	rm vivado* 2>/dev/null
+	rm *_bskew_check* 2>/dev/null
+	rm webtalk* 2>/dev/null
+	rm usage_statistics_webtalk* 2>/dev/null
+	rm tight_setup_hold_pins.txt 2>/dev/null
+	rm iter_* 2>/dev/null
+	tidy_up_ip_folders &>/dev/null
 }
 alias tv='tidy_up_vivados_mess'
 
