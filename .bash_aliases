@@ -307,3 +307,5 @@ alias h2d='hex2dec'
 
 alias ssk='kitty +kitten ssh'
 alias icat="kitty +kitten icat --align=left"
+
+alias get_rusty="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"

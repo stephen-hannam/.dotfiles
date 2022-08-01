@@ -181,3 +181,7 @@ if (( $+commands[kitty] )); then
   alias ssk='kitty +kitten ssh'
   alias icat="kitty +kitten icat --align=left"
 fi
+
+if (( $+commands[curl] )); then
+  alias get_rusty="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+fi
