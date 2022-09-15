@@ -185,3 +185,7 @@ fi
 if (( $+commands[curl] )); then
   alias get_rusty="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
 fi
+
+if (( $+commands[youtube-dl] )); then
+  alias youtube-mp3 'youtube-dl -x --audio-format mp3'
+fi
