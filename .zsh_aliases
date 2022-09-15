@@ -187,5 +187,5 @@ if (( $+commands[curl] )); then
 fi
 
 if (( $+commands[youtube-dl] )); then
-  alias youtube-mp3 'youtube-dl -x --audio-format mp3'
+  alias youtube-mp3='youtube-dl -x --audio-format mp3'
 fi
