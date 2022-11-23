@@ -45,7 +45,7 @@
 [profiles]
   [[default]]
     cursor_color = "#aaaaaa"
-    scrollback_lines = 5000
+    scrollback_lines = 50000
 [layouts]
   [[default]]
     [[[window0]]]
