@@ -174,7 +174,8 @@ cdls() {
   if [ "$SUCCESS" -eq 0 ]; then
     ls -A --quoting-style=escape | head -n 100 | xargs ls -ACFSd --group-directories-first --color=force
     if [ `ls -A | wc -l` -gt 100 ]; then
-      echo " ... " $((`ls -A | wc -l` - 100)) " more"
+      echo
+      echo " ..." $((`ls -A | wc -l` - 100)) "more"
     fi
   fi
 }
