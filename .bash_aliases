@@ -172,17 +172,7 @@ cdls() {
   builtin cd "$FARG"
   SUCCESS=$?
   if [ "$SUCCESS" -eq 0 ]; then
-    #clear
-    ls -ACF --group-directories-first
-		#if [[ -x stat && -x du ]]; then
-    #if [[ ${PWD} != ~ &&  $(stat -c '%U' "$PWD") == "${USER}" ]]; then
-    #  	#du -sh 2>/dev/null
-		#  DUS=`find -maxdepth 1 -name '*' -exec du -sh {} + 2>/dev/null`
-		#	NUMF=`find -maxdepth 1 -type f | wc -l 2> /dev/null`
-		#	NUMD=`find -maxdepth 1 -type d | wc -l 2> /dev/null`
-		#	echo ${DUS} in ${NUMF} files and $((NUMD-1)) folders
-    #fi
-		#fi
+    ls --quoting-style=escape | head -n 100 | xargs ls -ACFSd --group-directories-first --color=force
   fi
 }
 alias cd='cdls'

@@ -72,7 +72,7 @@ cdls() {
   builtin cd "$FARG"
   SUCCESS=$?
   if [ "$SUCCESS" -eq 0 ]; then
-    ls -ACF --group-directories-first
+    ls --quoting-style=escape | head -n 100 | xargs ls -ACFSd --group-directories-first --color=force
   fi
 }
 alias cd='cdls'
@@ -138,6 +138,8 @@ tidy_up_ip_folders(){
 }
 
 tidy_up_vivados_mess(){
+	rm -rf xsim.* 2>/dev/null
+	rm -rf xvlog.* 2>/dev/null
 	rm -rf .Xil 2>/dev/null
 	rm -rf hd_visual 2>/dev/null
 	rm -rf ip_user_files 2>/dev/null
