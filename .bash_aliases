@@ -303,3 +303,5 @@ alias ssk='kitty +kitten ssh'
 alias icat="kitty +kitten icat --align=left"
 
 alias get_rusty="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+
+alias kwebex="ps aux | grep -i webex | grep -v grep | head -n 1 | tr -s ' ' | cut -d' ' -f2 | xargs -n 1 kill -15"

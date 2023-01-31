@@ -195,3 +195,5 @@ fi
 if (( $+commands[youtube-dl] )); then
   alias youtube-mp3='youtube-dl -x --audio-format mp3'
 fi
+
+alias kwebex="ps aux | grep -i webex | grep -v grep | head -n 1 | tr -s ' ' | cut -d' ' -f2 | xargs -n 1 kill -15"
