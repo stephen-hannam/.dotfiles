@@ -82,6 +82,8 @@ endif
 syntax on
 filetype plugin on
 
+autocmd BufNewFile,BufRead *.tcl,*.jou setfiletype xtcl
+
 "if has ("autocmd")
 "    " File type detection. Indent based on filetype. Recommended.
 "    filetype plugin indent on

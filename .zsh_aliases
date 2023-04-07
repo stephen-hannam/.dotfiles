@@ -25,6 +25,7 @@ if (( $+commands[git] )); then
   alias gpulo='git pull origin'
   alias gpuso='git push -u origin'
   alias gout='git checkout'
+  alias gcp='git cherry-pick'
   
   dot_clone_(){
     if [ $# -eq 0 ]; then
@@ -163,6 +164,21 @@ tidy_up_vivados_mess(){
 alias tv='tidy_up_vivados_mess'
 
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
+
+thup_(){
+	case $# in
+    1) tail -n $1 nohup.out ;;
+    *) tail -f nohup.out ;;
+	esac
+}
+alias thup='thup_'
+
+mhup_(){
+  nohup make $@ &
+}
+alias mhup='mhup_'
+
+alias rhup='rm -rf nohup.out outputs'
 
 if (( $+commands[emacs] )); then
   alias em='emacsclient -cn -a "vim" -s stemacs'
