@@ -49,13 +49,6 @@ llfunc(){
 }
 alias ll='llfunc'
 
-alias lu='du -sch .[!.]* * 2>/dev/null | sort -h'
-alias lf='find -maxdepth 1 -type f -exec du -sch {} + 2>/dev/null | sort -h'
-alias lt='ls -lt | sed -e "s/^.\{10\}[ ]*[0-9]*[ ]*\w*[ ]*\w*[ ]*[0-9]*//g"'
-alias la='ls -A --group-directories-first'
-alias l='ls -CF'
-alias clc='clear; cdls .'
-
 alias mv='mv -v'
 alias ln='ln -v'
 
