@@ -82,6 +82,8 @@ endif
 syntax on
 filetype plugin on
 
+autocmd BufNewFile,BufRead *.tcl,*.jou setfiletype xtcl
+
 "if has ("autocmd")
 "    " File type detection. Indent based on filetype. Recommended.
 "    filetype plugin indent on
@@ -94,6 +96,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'dense-analysis/ale'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'wellle/visual-split.vim'
 Plug 'wellle/tmux-complete.vim'
@@ -125,6 +128,9 @@ Plug 'wincent/command-t'
 
 " Initialize plugin system
 call plug#end()
+
+"""""""" ALE
+let g:ale_set_highlights = 0
 
 """""""" YCM
 

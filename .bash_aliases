@@ -172,17 +172,11 @@ cdls() {
   builtin cd "$FARG"
   SUCCESS=$?
   if [ "$SUCCESS" -eq 0 ]; then
-    #clear
-    ls -ACF --group-directories-first
-		#if [[ -x stat && -x du ]]; then
-    #if [[ ${PWD} != ~ &&  $(stat -c '%U' "$PWD") == "${USER}" ]]; then
-    #  	#du -sh 2>/dev/null
-		#  DUS=`find -maxdepth 1 -name '*' -exec du -sh {} + 2>/dev/null`
-		#	NUMF=`find -maxdepth 1 -type f | wc -l 2> /dev/null`
-		#	NUMD=`find -maxdepth 1 -type d | wc -l 2> /dev/null`
-		#	echo ${DUS} in ${NUMF} files and $((NUMD-1)) folders
-    #fi
-		#fi
+    ls -A --quoting-style=escape | head -n 100 | xargs ls -ACFSd --group-directories-first --color=force
+    if [ `ls -A | wc -l` -gt 100 ]; then
+      echo
+      echo " ..." $((`ls -A | wc -l` - 100)) "more"
+    fi
   fi
 }
 alias cd='cdls'
@@ -293,6 +287,21 @@ alias tv='tidy_up_vivados_mess'
 
 alias khup='kill -s SIGTERM `lsof -t nohup.out`'
 
+thup_(){
+	case $# in
+    1) tail -n $1 nohup.out ;;
+    *) tail -f nohup.out ;;
+	esac
+}
+alias thup='thup_'
+
+mhup_(){
+  nohup make $@ &
+}
+alias mhup='mhup_'
+
+alias rhup='rm -rf nohup.out outputs'
+
 alias em='emacsclient -cn -a "vim" -s stemacs'
 alias dmacs='emacs --daemon'
 alias kmacs='killall emacs'
@@ -309,3 +318,5 @@ alias ssk='kitty +kitten ssh'
 alias icat="kitty +kitten icat --align=left"
 
 alias get_rusty="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+
+alias kwebex="ps aux | grep -i webex | grep -v grep | head -n 1 | tr -s ' ' | cut -d' ' -f2 | xargs -n 1 kill -15"

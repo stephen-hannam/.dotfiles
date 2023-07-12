@@ -257,3 +257,4 @@ sshagent_init
 [ -f $HOME/.local/share/rcs/.bash_extras ] && source $HOME/.local/share/rcs/.bash_extras || echo "No local extras to source for $HOST"
 
 cd ~
+. "$HOME/.cargo/env"
